@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -23,10 +23,9 @@
     </div>
     <div class="top-actions">
       <select id="language" class="language" aria-label="Language">
-        <option value="en">English</option><option value="zh">简体中文</option>
+        <option value="en">English</option><option value="zh" selected>简体中文</option>
       </select>
       <button id="resetBtn" class="btn" type="button" data-i18n="reset">Reset defaults</button>
-      <button id="exportBtn" class="btn primary" type="button" data-i18n="export">Export CSV</button>
     </div>
   </header>
   <div class="layout">
@@ -130,7 +129,7 @@
 <script>
 (function(){
 "use strict";
-const DEFAULTS={loanAmount:100000,tenure:60,loanRate:4,investmentAmount:100000,returnRate:6,payoutFrequency:6,mode:"reducing",language:"en"};
+const DEFAULTS={loanAmount:100000,tenure:60,loanRate:4,investmentAmount:100000,returnRate:6,payoutFrequency:6,mode:"reducing",language:"zh"};
 const $=id=>document.getElementById(id);
 const fields=["loanAmount","tenure","loanRate","investmentAmount","returnRate","payoutFrequency"];
 let state={...DEFAULTS};
@@ -295,7 +294,7 @@ fields.forEach(id=>$(id).addEventListener("input",render));
 $("language").addEventListener("change",e=>{state.language=e.target.value;render()});
 document.querySelectorAll("[data-mode]").forEach(b=>b.addEventListener("click",()=>{state.mode=b.dataset.mode;render()}));
 $("resetBtn").addEventListener("click",()=>{state={...DEFAULTS};fields.forEach(k=>$(k).value=DEFAULTS[k]);render()});
-$("exportBtn").addEventListener("click",exportCsv);$("exportTableBtn").addEventListener("click",exportCsv);
+$("exportTableBtn").addEventListener("click",exportCsv);
 let resizeTimer;window.addEventListener("resize",()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(render,100)});
 render();
 })();

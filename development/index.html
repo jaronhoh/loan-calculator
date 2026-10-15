@@ -163,11 +163,11 @@ function validate(){
 }
 function buildSchedule(v,mode){
  const n=v.tenure,P=cents(v.loanAmount),annualRate=v.loanRate/100,monthlyRate=annualRate/12;
- let payment=0,totalInterest=0;
+ let payment=0,totalInterest=0,flatTotalInterest=0;
  if(mode==="reducing"){
    payment=monthlyRate===0?P/n:P*monthlyRate/(1-Math.pow(1+monthlyRate,-n));
  }else{
-   const flatTotalInterest=P*annualRate*n/12;
+   flatTotalInterest=P*annualRate*n/12;
    payment=(P+flatTotalInterest)/n;
    totalInterest=0;
  }
@@ -178,7 +178,7 @@ function buildSchedule(v,mode){
  const rows=[];
  for(let month=1;month<=n;month++){
    const opening=balance;
-   const interest=mode==="reducing"?cents(opening*monthlyRate):cents((P*annualRate*n/12)/n);
+   const interest=mode==="reducing"?cents(opening*monthlyRate):(month===n?cents(flatTotalInterest-totalInterest):cents(flatTotalInterest/n));
    let principal=cents(payment-interest);
    let actualPayment=payment;
    if(month===n){principal=opening;actualPayment=cents(principal+interest);}

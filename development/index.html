@@ -167,8 +167,9 @@ function buildSchedule(v,mode){
  if(mode==="reducing"){
    payment=monthlyRate===0?P/n:P*monthlyRate/(1-Math.pow(1+monthlyRate,-n));
  }else{
-   totalInterest=P*annualRate*n/12;
-   payment=(P+totalInterest)/n;
+   const flatTotalInterest=P*annualRate*n/12;
+   payment=(P+flatTotalInterest)/n;
+   totalInterest=0;
  }
  payment=cents(payment);
  let balance=P,cumulative=0;

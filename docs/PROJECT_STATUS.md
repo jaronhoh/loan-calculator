@@ -18,7 +18,7 @@
 ## v2.2 current handoff — 2026-10-16 (MYT)
 - Branch: main only; no new branch.
 - GitHub baseline: 99afe9820670d864a825ca9fc285685f6dcf93ea.
-- Code commit: recorded in the follow-up status commit after the implementation commit exists.
+- Code and test commit: fae87acf2dc7ab8f88e306d35d18772731f7c052 (main; includes application, v22 tests and initial status).
 - Implemented FR-13 / AC-16–AC-20: Optimize next to investment input, Chinese/English status, current-mode rounded payment, integer-cent reserve calculation, automatic existing render pipeline, invalid result preserves amount.
 - Default verified: RM100,000 − 5 × RM1,841.65 = RM90,791.75; Flat Rate default RM90,000.00.
 - Invalid investment alone can be repaired by Optimize; other invalid inputs block it. Zero rounded monthly payments are supported; unsafe numeric amounts and nonpositive results are rejected.

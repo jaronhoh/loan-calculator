@@ -158,7 +158,7 @@ Run from repository root: `node tests/v21-regression.cjs`.
 - FR-15/FR-16 preserve three existing chart series, add Available Cash from each monthly schedule row, and keep bilingual per-month mouse/touch tooltips for all four series.
 - FR-17 adds a neutral gray dashed RM0 reference with an RM0 label. The Y-axis includes zero for positive-only, negative-only and mixed data. The reference is not a data series and has no tooltip.
 - Existing Site reused: `appgprj_6ad0f21a67c88191ba4abfa0761bc3c0`; URL and owner-only allowlist were rechecked after deployment and remained unchanged.
-- GitHub implementation commit SHA: recorded in the final handoff update after the implementation commit is created.
+- GitHub implementation commit SHA: `ddb6142f7143104f6b099da2c142a56be081ecfd` (direct update to `main`; final handoff documentation follow-up follows this implementation commit).
 - Sites source commit: `37d2b7f2f7fd8286098421f52690b91c24a8dafa`.
 - Sites saved version: `appgprj_6ad0f21a67c88191ba4abfa0761bc3c0~appgver_c156d25c9c90819185ffd92bb5ecae4d`.
 - Sites deployment ID: `appgdep_6ad22fbfbcc08191961c3aeea718b523`; status **succeeded**, failure message null; deployment timestamp `2026-10-16T14:08:20Z` (22:08:20 MYT).

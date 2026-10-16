@@ -9,7 +9,8 @@
 - Branch: main (no additional GitHub branch created)
 - Application: development/index.html
 - Version: v2.1
-- Existing PocketBay app #3128: untouched.
+- Existing PocketBay app #3128: user explicitly authorized permanent deletion on 2026-10-16; deletion NOT executed or verified (no PocketBay delete integration available).
+- Official production platform: ChatGPT Sites; keep the existing Site intact.
 - Existing ChatGPT Site: appgprj_6ad0f21a67c88191ba4abfa0761bc3c0
 - Site URL: https://loan-investment-calculator.savoryboar128.chatgpt.site
 - Audience: existing owner-only custom access preserved.
@@ -60,6 +61,12 @@ Run from repository root: `node tests/v21-regression.cjs`.
 - Existing Site reused; owner-only audience preserved; PocketBay #3128 untouched.
 - Deployment success verifies publication, not browser/mobile acceptance. The outstanding browser checks below remain unverified.
 
+## PocketBay retirement request — 2026-10-16
+- User explicitly requested deletion of PocketBay app #3128 (loan-calculator), with PRD/GitHub updates.
+- PocketBay deletion: **NOT EXECUTED / NOT VERIFIED**. Available tools do not provide PocketBay account application deletion; do not confuse this with uninstalling a ChatGPT plugin.
+- Required owner action: delete app #3128 from the PocketBay account interface, verify it is absent, then record confirmed deletion here.
+- GitHub application source and ChatGPT Sites must remain untouched.
+
 ## Next action
 1. Verify desktop and mobile layout, every tooltip in both languages, repeated click/outside click/Esc and Enter/Space in a supported real-browser environment.
 2. Verify actual CSV download, refresh defaults and 420-month scrolling.
@@ -102,3 +109,5 @@ Run from repository root: `node tests/v21-regression.cjs`.
 - Website: https://loan-investment-calculator.savoryboar128.chatgpt.site
 - Earlier unverified browser/mobile notes describe the agent's historical verification limits; no further acceptance action is pending following user sign-off.
 - No application changes or redeployment performed for closure. PocketBay #3128 unchanged.
+
+| 2026-10-16 | User requested permanent removal of PocketBay #3128 and documentation sync | GitHub documentation updated; deletion pending (no PocketBay delete tool) | No deletion confirmation | User authorization / GitHub verified |

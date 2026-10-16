@@ -21,7 +21,7 @@
 | Source commit including regression script | fa20f985fea4b934a215025556aa6f8e984a1dcf | tests/v21-regression.cjs |
 | Automated regression | PASS: 256 scenarios, 77,849 assertions | Node VM execution with DOM stubs, 2026-10-16 |
 | Browser / mobile acceptance | NOT VERIFIED | Required control-browser skill unavailable in this managed environment; no browser or touch simulation performed |
-| Sites source synchronization | Prepared and pushed to existing Site source repository | Sites source commit 97c950106b3320d83650a2203250504c8155c9dc |
+| Sites source synchronization | Prepared and pushed to existing Site source repository | Sites source commit bda9857bd7cd071977113bb87a41e07365ffb817 |
 | v2.1 production deployment | SUCCEEDED, 2026-10-16 17:41:43 MYT | Native Sites save/deploy returned terminal succeeded |
 | Live Site | v2.1 deployed to existing Site | https://loan-investment-calculator.savoryboar128.chatgpt.site |
 
@@ -50,9 +50,9 @@ Run from repository root: `node tests/v21-regression.cjs`.
 - Application version: v2.1.
 - GitHub application source commit: 1c7e2bedb5ff6c843aec51ca69c7b83a8d3b158c (application blob db7f1cdfb9b7e755c436a653f88d1b3960de65b3 on main).
 - GitHub source including tests: fa20f985fea4b934a215025556aa6f8e984a1dcf.
-- Sites source commit: 97c950106b3320d83650a2203250504c8155c9dc.
-- Saved version: appgprj_6ad0f21a67c88191ba4abfa0761bc3c0~appgver_7d3c4b46a8608191b3abc9bc719b84e1.
-- Deployment: appgdep_6ad1f14241e081919f4b03df22ad47ba.
+- Sites source commit: bda9857bd7cd071977113bb87a41e07365ffb817.
+- Saved version: appgprj_6ad0f21a67c88191ba4abfa0761bc3c0~appgver_8da1f8eabe708191aa6b6ec54d68ce3b.
+- Deployment: appgdep_6ad1f20d2a508191bceb0a0ec2a5104f.
 - Terminal status: succeeded; failure_message: null.
 - Verified at: 2026-10-16 17:41:43 MYT (09:41:43 UTC), native Sites deployment response.
 - URL: https://loan-investment-calculator.savoryboar128.chatgpt.site
@@ -70,9 +70,9 @@ Run from repository root: `node tests/v21-regression.cjs`.
 | 2026-10-15 | v2.0 deployed to PocketBay #3128 | User reported | Deployment identifier unknown | User reported |
 | 2026-10-16 | v2.1 UI changes and documentation | Committed to main; browser test pending | b427e7d9f466599bd51ec8f1051b18d323d12e5d; docs commits | GitHub verified |
 
-| 2026-10-16 | v2.1 numeric/validation/tooltip fixes, regression tests and existing Sites source preparation | Automated PASS; browser acceptance pending; v2.1 not deployed | fa20f985fea4b934a215025556aa6f8e984a1dcf; Sites source 97c950106b3320d83650a2203250504c8155c9dc | GitHub, Node VM, Sites source helper |
+| 2026-10-16 | v2.1 numeric/validation/tooltip fixes, regression tests and existing Sites source preparation | Automated PASS; browser acceptance pending; v2.1 not deployed | fa20f985fea4b934a215025556aa6f8e984a1dcf; Sites source bda9857bd7cd071977113bb87a41e07365ffb817 | GitHub, Node VM, Sites source helper |
 
-| 2026-10-16 17:41:43 MYT | User requested website update; published prepared v2.1 to existing Site | Sites deployment succeeded; browser/mobile acceptance remains unverified | appgdep_6ad1f14241e081919f4b03df22ad47ba | Native Sites deployment result |
+| 2026-10-16 17:41:43 MYT | User requested website update; published prepared v2.1 to existing Site | Sites deployment succeeded; browser/mobile acceptance remains unverified | appgdep_6ad1f20d2a508191bceb0a0ec2a5104f | Native Sites deployment result |
 
 ## Hover Tooltip revision — 2026-10-16 17:41 MYT
 - Requested reference: https://ui.shadcn.com/docs/components/base/tooltip
@@ -81,4 +81,13 @@ Run from repository root: `node tests/v21-regression.cjs`.
 - Popover is portalled to body and positioned near its trigger with horizontal viewport clamping and top/bottom choice; reduced-motion respected.
 - Re-ran Node regression: PASS 256 scenarios / 77,849 assertions; changed static expectation for anchored positioning. Actual browser hover/focus/touch and responsive visual acceptance remain unverified.
 - Application commit: 126199a38ed894a7d21199f8f0172f6d808e56b8; test commit: 65a1a83f0335d63fd40832676d0b1d6f3cabf41f. PRD and shaping updated.
-- Deployment succeeded natively: appgdep_6ad1f14241e081919f4b03df22ad47ba; source 97c950106b3320d83650a2203250504c8155c9dc; saved version appgprj_6ad0f21a67c88191ba4abfa0761bc3c0~appgver_7d3c4b46a8608191b3abc9bc719b84e1.
+- Deployment succeeded natively: appgdep_6ad1f20d2a508191bceb0a0ec2a5104f; source bda9857bd7cd071977113bb87a41e07365ffb817; saved version appgprj_6ad0f21a67c88191ba4abfa0761bc3c0~appgver_8da1f8eabe708191aa6b6ec54d68ce3b.
+
+## Latest revision — label hover, no i icons
+- Updated: 2026-10-16 17:45:05 MYT.
+- All 11 monthly headers now use the label itself as hover/focus/touch trigger; i icons removed.
+- Application source: f17662306cfff9dd9419f02a4248c6934a166c15; main branch only.
+- Regression PASS: 256 scenarios / 77,851 assertions (Node VM; actual browser/mobile visual and input acceptance remains unverified).
+- Existing Sites deployment: succeeded; ID appgdep_6ad1f20d2a508191bceb0a0ec2a5104f; saved version appgprj_6ad0f21a67c88191ba4abfa0761bc3c0~appgver_8da1f8eabe708191aa6b6ec54d68ce3b; source bda9857bd7cd071977113bb87a41e07365ffb817.
+- URL: https://loan-investment-calculator.savoryboar128.chatgpt.site
+- PRD and shaping synchronized; PocketBay #3128 untouched.

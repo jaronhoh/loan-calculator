@@ -1,20 +1,55 @@
 const fs=require('fs'),vm=require('vm'),assert=require('assert/strict');
 const html=fs.readFileSync(__dirname+'/../development/index.html','utf8');
-const elements={},listeners={},docListeners={};let strokes=0,checks=0,paths=[],current=[];
+const elements={},listeners={},docListeners={};let strokes=0,checks=0;
 const cls={toggle(){},add(){},remove(){}};
-function el(id){return elements[id]??={value:'',textContent:'',innerHTML:'',hidden:false,style:{},dataset:{},offsetWidth:100,offsetHeight:40,classList:cls,closest(){return null},querySelector(){return null},setAttribute(){},addEventListener(k,f){(listeners[id]??={})[k]=f},getBoundingClientRect(){return {width:800,height:300,left:0,top:0}},getContext(){return new Proxy({},{get:(_,k)=> (...a)=>{if(k==='beginPath')current=[];if(k==='moveTo'||k==='lineTo')current.push([a[0],a[1]]);if(k==='stroke'){strokes++;paths.push(current.slice())}}})}};}
+function el(id){return elements[id]??={value:'',textContent:'',innerHTML:'',style:{},hidden:id==='trendTooltip',classList:cls,rect:{width:800,height:300,left:40,top:60},closest(){return null},querySelector(){return null},addEventListener(k,f){(listeners[id]??={})[k]=f},getBoundingClientRect(){return id==='trendTooltip'?{width:220,height:60,left:0,top:0}:this.rect},getContext(){return new Proxy({},{get:(_,k)=>()=>{if(k==='stroke')strokes++}})}};}
 for(const id of ['loanAmount','tenure','loanRate','investmentAmount','returnRate','payoutFrequency']){let value='';Object.defineProperty(el(id),'value',{get:()=>value,set:x=>value=String(x)});}
 const document={getElementById:el,querySelectorAll:()=>[],addEventListener(k,f){docListeners[k]=f},documentElement:{},body:{appendChild(){}},createElement:()=>({click(){},remove(){}})};
-const context={document,window:{devicePixelRatio:1,addEventListener(){}},console,Blob,URL:{createObjectURL(b){context.blob=b;return 'blob:test'},revokeObjectURL(){}},setTimeout,clearTimeout};
-const script=html.match(/<script>([\s\S]*?)<\/script>/)[1].replace(/render\(\);\s*\}\)\(\);\s*$/, 'globalThis.api={buildSchedule,DEFAULTS,FORMULAS,setState:s=>state={...state,...s},getGeometry:()=>trendGeometry,showTrendTooltip};})();');
+const context={document,window:{innerWidth:390,innerHeight:844,devicePixelRatio:1,addEventListener(k,f){(listeners.window??={})[k]=f}},console,Blob,URL:{createObjectURL(b){context.blob=b;return 'blob:test'},revokeObjectURL(){}},setTimeout,clearTimeout};
+const script=html.match(/<script>([\s\S]*?)<\/script>/)[1].replace(/render\(\);\s*\}\)\(\);\s*$/, 'globalThis.api={buildSchedule,DEFAULTS,FORMULAS,money,setState:s=>state={...state,...s},getChartState:()=>trendChartState};})();');
 vm.runInNewContext(script,context);const a=context.api;
 const check=(v,msg)=>{assert.ok(v,msg);checks++};
 function reset(){listeners.resetBtn.click();}
 function click(){listeners.optimizeBtn.click();}
+const tableColumn={investmentPrincipal:6,balance:4,cumulativeNetCashFlow:8,availableCash:9};
+const chartName={investmentPrincipal:{en:'Investment principal',zh:'投资本金'},balance:{en:'Remaining loan',zh:'剩余贷款'},cumulativeNetCashFlow:{en:'Cumulative cash flow',zh:'累计净现金流'},availableCash:{en:'Available cash',zh:'可用现金'}};
+function pointEvent(monthIndex,seriesIndex,type='mouse'){
+ const s=a.getChartState(),p={x:s.pad.l+(s.rows.length===1?s.plotW/2:monthIndex/(s.rows.length-1)*s.plotW),y:s.pad.t+(s.max-s.series[seriesIndex].value(s.rows[monthIndex]))/(s.max-s.min)*s.plotH},rect=el('trendChart').getBoundingClientRect();
+ const e={pointerType:type,clientX:rect.left+p.x,clientY:rect.top+p.y,target:el('trendChart'),preventDefault(){}};
+ listeners.trendChart[type==='touch'?'pointerdown':'pointermove'](e);return {tooltip:el('trendTooltip').textContent,p};
+}
+function tableValue(monthIndex,column){const tr=el('scheduleBody').innerHTML.split('</tr>')[monthIndex],cells=[...tr.matchAll(/<td[^>]*>(.*?)<\/td>/g)].map(m=>m[1].replace(/<[^>]*>/g,''));return cells[column];}
+function chartTooltipRegression(){
+ const s=a.getChartState(),idx={investmentPrincipal:0,balance:1,cumulativeNetCashFlow:2,availableCash:3};
+ for(const mode of ['reducing','flat'])for(const language of ['zh','en']){
+  a.setState({mode});listeners.language.change({target:{value:language}});
+  const current=a.getChartState(),trs=el('scheduleBody').innerHTML.split('</tr>');
+  for(const key of Object.keys(tableColumn))for(let month=0;month<current.rows.length;month++){
+   const {tooltip}=pointEvent(month,idx[key]);
+   const displayed=tableValue(month,tableColumn[key]),name=chartName[key][language],monthLabel=language==='zh'?`第 ${month+1} 个月`:`Month ${month+1}`;
+   check(tooltip.startsWith(monthLabel+'\n')&&tooltip.split('\n').includes(name+': '+displayed),`${mode} ${key} month ${month+1} ${language} matches table`);
+  }
+  const firstAvailable=pointEvent(0,3).tooltip;check(firstAvailable.includes(language==='zh'?'−RM ':'−RM '),'negative cash tooltip');
+ }
+ listeners.language.change({target:{value:'zh'}});
+ const mobile=el('trendChart');mobile.rect={width:360,height:230,left:10,top:20};listeners.window.resize();
+ const touch=pointEvent(59,3,'touch');check(touch.tooltip.includes('第 60 个月'),'touch chart tooltip');
+ const bounds=el('trendTooltip').style;check(parseFloat(bounds.left)>=12&&parseFloat(bounds.left)<=366,'mobile tooltip stays in viewport');
+ check(parseFloat(bounds.top)>=12&&parseFloat(bounds.top)<=832,'mobile tooltip stays vertically in viewport');
+ check(/\.btn\.optimize:hover/.test(html)&&/\.btn\.optimize:focus-visible/.test(html)&&/\.btn\.optimize:disabled/.test(html),'button interaction states');
+ check((html.match(/data-i18n="availableCash"/g)||[]).length===1,'bilingual available cash legend');
+ check(s.series.length===4,'four chart series');
+ listeners.trendChart.pointerleave({pointerType:'mouse'});check(el('trendTooltip').hidden,'mouse leave closes tooltip');
+ reset();el('investmentAmount').value='75000';listeners.investmentAmount.input();
+ let manual=pointEvent(0,3).tooltip;check(manual.split('\n').includes('可用现金: '+tableValue(0,9)),'manual investment edit refreshes available-cash tooltip');
+ reset();click();manual=pointEvent(0,3).tooltip;check(manual.split('\n').includes('可用现金: '+tableValue(0,9)),'Optimize refreshes available-cash tooltip');
+ listeners.trendChart.focus();listeners.trendChart.keydown({key:'ArrowRight',preventDefault(){}});check(el('trendTooltip').textContent.includes('第 2 个月'),'keyboard tooltip navigation');
+ reset();check(el('trendTooltip').hidden,'reset closes chart tooltip');
+}
 (async()=>{
 for(const mode of ['reducing','flat'])for(const freq of [1,3,6,12]){
  reset();a.setState({mode});el('payoutFrequency').value=freq;
-  const before=strokes,payment=mode==='flat'?2000:1841.65,expected=(100000-(freq-1)*payment).toFixed(2);click();
+ const before=strokes,payment=mode==='flat'?2000:1841.65,expected=(100000-(freq-1)*payment).toFixed(2);click();
  check(el('investmentAmount').value===expected,mode+' '+freq);
  check(strokes>before,'chart redrawn');check(el('scheduleBody').innerHTML.includes(Number(expected).toLocaleString('zh-CN',{minimumFractionDigits:2})),'table refreshed');
  const total=Math.round(Number(expected)*.06*freq/12*100)/100*(60/freq);check(el('totalPayouts').textContent.includes(total.toLocaleString('zh-CN',{minimumFractionDigits:2,maximumFractionDigits:2})),'summary refreshed');
@@ -22,12 +57,6 @@ for(const mode of ['reducing','flat'])for(const freq of [1,3,6,12]){
  for(const language of ['zh','en']){a.setState({language});listeners.exportTableBtn.click();const csv=await context.blob.text();check(csv.trim().split('\r\n').length===61,'CSV rows');check(csv.includes(','+expected+','),'CSV optimized principal');}
 }
 reset();click();check(el('investmentAmount').value==='90791.75','AC-18 default');
-const g=a.getGeometry(),wanted=['investmentPrincipal','balance','cumulativeNetCashFlow','availableCash'];
-check(g.points.length===60*4,'four chart series points for all 60 months');
-for(let month=1;month<=60;month++)for(const key of wanted){const p=g.points.find(q=>q.month===month&&q.key===key);check(!!p,`chart point ${key} month ${month}`);const row=el('trendChart')._trendRows[month-1],tableRow=el('scheduleBody').innerHTML.split('</tr>')[month-1];const actual=key==='balance'?row.balance:row[key];check(Math.abs(p.value-actual)<.001,`${key} month ${month} matches schedule`);a.showTrendTooltip(p);check(!el('trendTooltip').hidden&&el('trendTooltip').innerHTML.includes(String(month)),'tooltip month rendered');check(el('trendTooltip').innerHTML.includes(key==='availableCash'?'可用现金':key==='investmentPrincipal'?'投资本金':key==='balance'?'剩余贷款':'累计净现金流'),'tooltip bilingual label');check(el('trendTooltip').innerHTML.includes('RM'),'tooltip RM amount');}
-check(g.min<0,'negative values included in chart scale');
-const negative=g.points.find(p=>p.key==='availableCash'&&p.value<0);check(!!negative,'negative available cash point');a.showTrendTooltip(negative);check(el('trendTooltip').innerHTML.includes('−RM'),'negative tooltip has minus sign');
-a.setState({language:'en'});a.showTrendTooltip(g.points.find(p=>p.key==='availableCash'));check(el('trendTooltip').innerHTML.includes('Available cash')&&el('trendTooltip').innerHTML.includes('Month 1'),'English tooltip labels');
 for(const amount of ['0.01','100000.01']){reset();el('loanAmount').value=amount;el('tenure').value=1;el('payoutFrequency').value=1;click();check(el('investmentAmount').value===amount,'monthly payout reserves zero even for one-month term');}
 reset();el('loanAmount').value='0.01';el('tenure').value=420;click();check(el('investmentAmount').value==='0.01','zero rounded payment');
 reset();el('loanAmount').value=111;el('loanRate').value=0;el('tenure').value=11;el('payoutFrequency').value=12;click();check(el('investmentAmount').value==='0.01','smallest positive investment');
@@ -41,6 +70,6 @@ for(const language of ['zh','en'])for(const key of ['payment','availableCash','n
 check(!!docListeners.pointerdown&&!!docListeners.keydown&&!!docListeners.focusin,'tooltip handlers retained');
 check(/@media\(max-width:600px\)/.test(html)&&/overflow:auto/.test(html),'responsive CSS retained');
 check(/id="optimizeBtn"[^>]*min-height:44px/.test(html),'touch button target');
-console.log(JSON.stringify({status:'PASS',checks,scenarios:8,limits:'Node VM DOM stubs; responsive CSS and tooltip handlers checked, real browser acceptance separate.'},null,2));
+reset();chartTooltipRegression();
+console.log(JSON.stringify({status:'PASS',checks,payoutScenarios:8,tooltipScenarios:4,monthsPerSeries:60,series:4,limits:'Node VM DOM stubs; responsive CSS and pointer geometry exercised at desktop/mobile dimensions; browser pixel-rendering remains separate.'},null,2));
 })().catch(e=>{console.error(e);process.exitCode=1});
-

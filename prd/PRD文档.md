@@ -1,6 +1,6 @@
 # Loan Investment Calculator — 产品需求文档（PRD）
 
-> **状态：v2.1 UI 变更已确认（代码已提交，待页面验收）**  
+> **状态：v2.1 已验收并在 ChatGPT Sites 发布；PocketBay #3128 删除待执行/核实**  
 > **版本：v2.1｜更新日期：2026-10-16**  
 > 唯一产品定义来源：[产品定型稿](../shaping/06-最终定型稿.md)。若 PRD 与定型稿不一致，以定型稿为准，并通过变更记录同步修订。
 
@@ -187,7 +187,8 @@ Loan Investment Calculator 是面向马来西亚用户的免费、无需注册�
 - 静态 HTML/CSS/JavaScript。
 - 图表采用原生 Canvas 绘制，不要求后端或图表 API。
 - CSV 通过浏览器端 Blob 下载。
-- 可通过 GitHub Pages 发布静态页面。
+- 正式网站采用现有 ChatGPT Sites（loan-investment-calculator.savoryboar128.chatgpt.site）；保留 GitHub `main` 为源代码。
+- 旧 PocketBay 应用 #3128 已获用户授权删除，但尚无删除成功的系统证据；在实际删除并核实前，不得记录为已删除。
 
 ## 10. 变更记录
 
@@ -200,3 +201,5 @@ Loan Investment Calculator 是面向马来西亚用户的免费、无需注册�
 > 2026-10-16 Tooltip 修订：参考 https://ui.shadcn.com/docs/components/base/tooltip ，桌面端改为 hover/focus 触发、表头旁深色提示；手机保留点按。纯 HTML 实现同类样式与交互，未引入 React/shadcn 运行依赖。
 
 > 2026-10-16 最终修订：移除全部表头 `i` 图标，直接 hover 表头 label 显示 Tooltip；保留键盘 focus 与手机点按。
+
+| 运维变更 | 2026-10-16 | 用户要求删除旧 PocketBay #3128，保留 ChatGPT Sites 为正式网站；删除执行及验证待完成。 |

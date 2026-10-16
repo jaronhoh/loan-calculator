@@ -1,7 +1,7 @@
 # Loan Investment Calculator — Project Status & Handoff
 
 > Single source of truth for cross-conversation handoff.
-> Last updated: 2026-10-16 21:16 (Malaysia, UTC+08:00)
+> Last updated: 2026-10-16 21:38 (Malaysia, UTC+08:00)
 > Case status: v2.2 RELEASED — code committed, regression tests passed, and the existing ChatGPT Site deployment succeeded.
 
 ## Project identity
@@ -137,8 +137,13 @@ Run from repository root: `node tests/v21-regression.cjs`.
 
 | 2026-10-16 21:15 MYT | v2.2 one-click optimization released | Regression PASS; existing Sites deployment succeeded; owner-only access preserved | Sites source e6afe3df5f8a5df0bae79734935182936047e0ed; deployment appgdep_6ad2236be1848191b19694d39e4cf73a | GitHub fae87acf2dc7ab8f88e306d35d18772731f7c052, Node regression outputs, native Sites response |
 
-## v2.2 UI enhancement requested — 2026-10-16 (documentation only)
+## v2.2 UI enhancement implementation — 2026-10-16 21:38 MYT
 - User confirmed three changes: (1) make existing Optimize button visually distinct with an accent color; (2) add Available Cash as fourth series to Assets & Cash Flow trend using the monthly table values, including negatives; (3) add per-month hover/touch tooltips for all four series showing month, series label and RM amount.
 - PRD FR-14/FR-15/FR-16; acceptance AC-21 through AC-24; shaping, module plan and append log synchronized.
-- **Baseline v2.2 one-click optimization already deployed** according to prior recorded evidence: Sites deployment appgdep_6ad2236be1848191b19694d39e4cf73a, Sites source e6afe3df5f8a5df0bae79734935182936047e0ed. This new UI enhancement is **NOT YET IMPLEMENTED, TESTED OR DEPLOYED**.
-- Next: implement/test in GitHub main without new branches, then update existing owner-only Site and record deployment evidence. Do not replace the existing site or change access.
+- Implemented FR-14/AC-21: Optimize uses the blue accent with hover, focus-visible, disabled and readable text states; the existing optimization formula remains unchanged.
+- Implemented FR-15/AC-22: trend chart draws investment principal, remaining loan, cumulative net cash flow and available cash. The fourth series reads each monthly row's `availableCash`, includes negative values in the axis scale, and uses a distinct purple line with bilingual legend.
+- Implemented FR-16/AC-23–AC-24: desktop pointer hover and mobile touch tap show each month's series, localized month label and signed RM value to two decimals. Chart keyboard focus/arrow navigation is wired and tooltip stays within chart bounds.
+- Automated regression PASS: `node tests/v21-regression.cjs` — 256 scenarios / 77,854 checks; `node tests/v22-regression.cjs` — 8 mode/frequency combinations / 1,327 checks; `node tests/v23-regression.cjs` — 8 mode/language/amount combinations / 11,566 checks, validating 1,920 chart points against monthly schedule rows, negative cash, bilingual tooltip labels and interaction states.
+- JavaScript syntax check passed. Tests use Node VM DOM/Canvas stubs; real browser layout, mouse, keyboard and touch acceptance were not exercised.
+- GitHub application commit: 4118714f9b16d4dc33c9d103b6d1ecc56a783f9f. Test commits: e9148a5fe4c62e711dd5617626f947c55c06baa2, 724f7e2a088f960714f3d0d89ae2e26f5d06b427, 6b6953f429aa359b109fc3336d949c5df86e5210.
+- Existing Site deployment ID/time: pending. This UI increment is **not Released** until Sites returns a successful production deployment. Existing Site URL, owner-only custom access and calculation engine remain the release target.

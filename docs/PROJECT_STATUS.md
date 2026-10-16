@@ -1,37 +1,36 @@
 # Loan Investment Calculator — Project Status & Handoff
 
 > Single source of truth for cross-conversation handoff.
-> Last updated: 2026-10-16 17:49 (Malaysia, UTC+08:00)
-> Case status: OPEN — v2.2 implemented and regression tested; deployment blocked, NOT Released.
+> Last updated: 2026-10-16 21:16 (Malaysia, UTC+08:00)
+> Case status: v2.2 RELEASED — code committed, regression tests passed, and the existing ChatGPT Site deployment succeeded.
 
 ## Project identity
 - Repository: jaronhoh/loan-calculator
 - Branch: main (no additional GitHub branch created)
 - Application: development/index.html
-- Production version: v2.1; development version: v2.2 (NOT Released)
+- Production version: v2.2 (Released 2026-10-16); development version: v2.2
 - Existing PocketBay app #3128: user explicitly authorized permanent deletion on 2026-10-16; deletion NOT executed or verified (no PocketBay delete integration available).
 - Official production platform: ChatGPT Sites; keep the existing Site intact.
 - Existing ChatGPT Site: appgprj_6ad0f21a67c88191ba4abfa0761bc3c0
 - Site URL: https://loan-investment-calculator.savoryboar128.chatgpt.site
 - Audience: existing owner-only custom access preserved.
 
-## v2.2 current handoff — 2026-10-16 (MYT)
-- Branch: main only; no new branch.
-- GitHub baseline: 99afe9820670d864a825ca9fc285685f6dcf93ea.
-- Code and test commit: fae87acf2dc7ab8f88e306d35d18772731f7c052 (main; includes application, v22 tests and initial status).
-- Implemented FR-13 / AC-16–AC-20: Optimize next to investment input, Chinese/English status, current-mode rounded payment, integer-cent reserve calculation, automatic existing render pipeline, invalid result preserves amount.
-- Default verified: RM100,000 − 5 × RM1,841.65 = RM90,791.75; Flat Rate default RM90,000.00.
-- Invalid investment alone can be repaired by Optimize; other invalid inputs block it. Zero rounded monthly payments are supported; unsafe numeric amounts and nonpositive results are rejected.
-- Existing loan/investment engine unchanged; later negative available cash remains visible.
-- Automated tests: PASS — v21: 256 scenarios / 77,851 checks; v22: 8 mode/frequency combinations / 122 checks including additional boundary cases.
+## v2.2 release — 2026-10-16 (MYT)
+- Branch: main; no additional GitHub branch created.
+- GitHub code and test commit: fae87acf2dc7ab8f88e306d35d18772731f7c052; deployment evidence and release status are recorded in this update.
+- Implemented FR-13 / AC-16–AC-20: bilingual Optimize button beside Investment Amount, current-mode rounded monthly payment, cent-based reserve calculation, existing calculation/render pipeline, and invalid-result preservation.
+- Default verified: RM100,000 − 5 × RM1,841.65 = **RM90,791.75**; Flat Rate result: RM90,000.00.
+- Existing loan/investment engine is unchanged. The formula reserves only payments before the first payout; later negative available cash remains visible.
+- Automated tests: PASS — v21: 256 scenarios / 77,851 checks; v22: 8 mode/frequency combinations / 122 checks.
 - Commands: node tests/v21-regression.cjs; node tests/v22-regression.cjs.
-- Tests cover optimized input, summary, Canvas drawing calls, monthly table, CSV both languages, reset, cent boundaries, invalid inputs, preserved tooltip formulas/listeners and responsive CSS.
-- Verification limit: tests run in Node VM with DOM stubs. Real browser launch failed (bundled Chromium missing; installed Edge failed under sandbox). Actual layout, keyboard, tooltip/touch and download acceptance are NOT VERIFIED.
-- Sites: NOT DEPLOYED. Source helper did not complete. Automatic approval rejected sending the source credential through stdin: approval required but granular sandbox_approval is disabled. No detailed reviewer reason was supplied. Do not bypass or claim deployment success.
-- Existing Site retained: appgprj_6ad0f21a67c88191ba4abfa0761bc3c0; owner-only custom audience confirmed unchanged; latest existing version 4 before work.
-- Live URL remains https://loan-investment-calculator.savoryboar128.chatgpt.site (v2.1).
-- No v2.2 Sites source commit, saved version or deployment ID exists. Resume the supported source workflow when execution is permitted, then deploy the same existing Site and record returned IDs/commit/status.
-- Release status: **NOT Released — deployment and real browser acceptance pending**.
+- v22 coverage includes all 4 payout frequencies × both loan modes, RM0.01 rounding, default and boundary values, invalid inputs preserving the original amount, updated summary/chart/table/CSV, Reset, tooltip handlers and responsive CSS.
+- Verification limit: tests use Node VM DOM stubs; actual browser layout, native keyboard/touch interactions, and browser CSV download were not independently exercised.
+- Existing Site reused: appgprj_6ad0f21a67c88191ba4abfa0761bc3c0; owner-only custom access preserved.
+- Sites source commit: e6afe3df5f8a5df0bae79734935182936047e0ed.
+- Saved version: appgprj_6ad0f21a67c88191ba4abfa0761bc3c0~appgver_af4aa1f95814819195c6771c2c3693e1.
+- Deployment: appgdep_6ad2236be1848191b19694d39e4cf73a; terminal status succeeded, failure message null; published 2026-10-16 21:15:44 MYT.
+- Live URL: https://loan-investment-calculator.savoryboar128.chatgpt.site
+- Release status: **Released**. The browser verification limit above is recorded separately from the successful regression and deployment results.
 
 ## v2.1 historical status
 | Area | Result | Evidence |
@@ -85,19 +84,16 @@ Run from repository root: `node tests/v21-regression.cjs`.
 - Required owner action: delete app #3128 from the PocketBay account interface, verify it is absent, then record confirmed deletion here.
 - GitHub application source and ChatGPT Sites must remain untouched.
 
-## v2.2 planned — One-click Optimize Investment (2026-10-16)
+## v2.2 requirement baseline — One-click Optimize Investment (2026-10-16)
 - User confirmed a simple formula, superseding the earlier proposed whole-tenure optimization search.
 - Optimized investment = loan amount − (payout frequency in months − 1) × current loan-mode monthly payment, rounded to RM0.01.
 - Default example: RM100,000 − 5 × RM1,841.65 = RM90,791.75.
 - One button by investment amount; valid result fills the existing input and recalculates. Invalid/nonpositive result leaves existing input untouched and displays a concise error.
 - Formula reserves cash only before the **first** payout. It does **not** guarantee nonnegative cash throughout the full tenure or minimize losses; retain deficit visibility.
-- PRD and shipping brief updated. **Not implemented, not tested, not deployed**; v2.1 remains live and accepted.
-- Work follow-up: implement in main/development/index.html, add regression tests, verify browser behavior, publish to existing Sites without creating branches, then update this status file with evidence.
+- This planning note is superseded by the v2.2 release record above.
 
 ## Next action
-1. Verify desktop and mobile layout, every tooltip in both languages, repeated click/outside click/Esc and Enter/Space in a supported real-browser environment.
-2. Verify actual CSV download, refresh defaults and 420-month scrolling.
-3. Record browser acceptance results without conflating them with deployment success.
+- No deployment action is pending. Browser/device acceptance can be recorded separately if performed later.
 
 ## Change log (append-only)
 | Date/time | Change | Result | Commit / PR / deployment | Evidence source |
@@ -139,4 +135,4 @@ Run from repository root: `node tests/v21-regression.cjs`.
 
 | 2026-10-16 | User requested permanent removal of PocketBay #3128 and documentation sync | GitHub documentation updated; deletion pending (no PocketBay delete tool) | No deletion confirmation | User authorization / GitHub verified |
 
-| 2026-10-16 | v2.2 one-click optimization formula finalized; PRD and shaping synchronized | Documentation only; development/testing/deployment pending | No app commit/deployment yet | User confirmation / GitHub docs |
+| 2026-10-16 21:15 MYT | v2.2 one-click optimization released | Regression PASS; existing Sites deployment succeeded; owner-only access preserved | Sites source e6afe3df5f8a5df0bae79734935182936047e0ed; deployment appgdep_6ad2236be1848191b19694d39e4cf73a | GitHub fae87acf2dc7ab8f88e306d35d18772731f7c052, Node regression outputs, native Sites response |

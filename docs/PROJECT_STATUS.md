@@ -148,6 +148,6 @@ Run from repository root: `node tests/v21-regression.cjs`.
 - GitHub application commits on main: 4118714f9b16d4dc33c9d103b6d1ecc56a783f9f; final Tooltip recalculation fix c0876b8e95668b37c5bf1de92bd23757f2769560. Test commits: e9148a5fe4c62e711dd5617626f947c55c06baa2, 724f7e2a088f960714f3d0d89ae2e26f5d06b427, 6b6953f429aa359b109fc3336d949c5df86e5210.
 - Sites source commit: aea578bf0dde3fd753f2620dfffd4b5ab5426f9a.
 - Sites saved version: appgprj_6ad0f21a67c88191ba4abfa0761bc3c0~appgver_93f9bf730da08191b39f18af0851f152.
-- Deployment ID: appgdep_6ad22823560c81919a6da962144d9cf4; terminal status **succeeded**, failure message null. Deployment timestamp: 2026-10-16 21:35:51 MYT (2026-10-16T13:35:51Z).
+- Deployment ID: appgdep_6ad22823560c81919a6da962144d9cf4; terminal status **succeeded**, failure message null. Sites API `updated_at`: 2026-10-16T13:36:39Z (21:36:39 MYT).
 - Live URL verified: https://loan-investment-calculator.savoryboar128.chatgpt.site. Site re-read after deployment: active, same URL, access_mode custom, owner-only allowlist unchanged, no additional viewers.
 - Release status: **Released**. Automated tests passed. Actual browser/mobile layout, pointer/touch and browser CSV download were not independently exercised.

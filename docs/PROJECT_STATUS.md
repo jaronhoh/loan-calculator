@@ -67,6 +67,15 @@ Run from repository root: `node tests/v21-regression.cjs`.
 - Required owner action: delete app #3128 from the PocketBay account interface, verify it is absent, then record confirmed deletion here.
 - GitHub application source and ChatGPT Sites must remain untouched.
 
+## v2.2 planned — One-click Optimize Investment (2026-10-16)
+- User confirmed a simple formula, superseding the earlier proposed whole-tenure optimization search.
+- Optimized investment = loan amount − (payout frequency in months − 1) × current loan-mode monthly payment, rounded to RM0.01.
+- Default example: RM100,000 − 5 × RM1,841.65 = RM90,791.75.
+- One button by investment amount; valid result fills the existing input and recalculates. Invalid/nonpositive result leaves existing input untouched and displays a concise error.
+- Formula reserves cash only before the **first** payout. It does **not** guarantee nonnegative cash throughout the full tenure or minimize losses; retain deficit visibility.
+- PRD and shipping brief updated. **Not implemented, not tested, not deployed**; v2.1 remains live and accepted.
+- Work follow-up: implement in main/development/index.html, add regression tests, verify browser behavior, publish to existing Sites without creating branches, then update this status file with evidence.
+
 ## Next action
 1. Verify desktop and mobile layout, every tooltip in both languages, repeated click/outside click/Esc and Enter/Space in a supported real-browser environment.
 2. Verify actual CSV download, refresh defaults and 420-month scrolling.
@@ -111,3 +120,5 @@ Run from repository root: `node tests/v21-regression.cjs`.
 - No application changes or redeployment performed for closure. PocketBay #3128 unchanged.
 
 | 2026-10-16 | User requested permanent removal of PocketBay #3128 and documentation sync | GitHub documentation updated; deletion pending (no PocketBay delete tool) | No deletion confirmation | User authorization / GitHub verified |
+
+| 2026-10-16 | v2.2 one-click optimization formula finalized; PRD and shaping synchronized | Documentation only; development/testing/deployment pending | No app commit/deployment yet | User confirmation / GitHub docs |

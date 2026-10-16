@@ -136,3 +136,9 @@ Run from repository root: `node tests/v21-regression.cjs`.
 | 2026-10-16 | User requested permanent removal of PocketBay #3128 and documentation sync | GitHub documentation updated; deletion pending (no PocketBay delete tool) | No deletion confirmation | User authorization / GitHub verified |
 
 | 2026-10-16 21:15 MYT | v2.2 one-click optimization released | Regression PASS; existing Sites deployment succeeded; owner-only access preserved | Sites source e6afe3df5f8a5df0bae79734935182936047e0ed; deployment appgdep_6ad2236be1848191b19694d39e4cf73a | GitHub fae87acf2dc7ab8f88e306d35d18772731f7c052, Node regression outputs, native Sites response |
+
+## v2.2 UI enhancement requested — 2026-10-16 (documentation only)
+- User confirmed three changes: (1) make existing Optimize button visually distinct with an accent color; (2) add Available Cash as fourth series to Assets & Cash Flow trend using the monthly table values, including negatives; (3) add per-month hover/touch tooltips for all four series showing month, series label and RM amount.
+- PRD FR-14/FR-15/FR-16; acceptance AC-21 through AC-24; shaping, module plan and append log synchronized.
+- **Baseline v2.2 one-click optimization already deployed** according to prior recorded evidence: Sites deployment appgdep_6ad2236be1848191b19694d39e4cf73a, Sites source e6afe3df5f8a5df0bae79734935182936047e0ed. This new UI enhancement is **NOT YET IMPLEMENTED, TESTED OR DEPLOYED**.
+- Next: implement/test in GitHub main without new branches, then update existing owner-only Site and record deployment evidence. Do not replace the existing site or change access.

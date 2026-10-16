@@ -1,14 +1,14 @@
 # Loan Investment Calculator — Project Status & Handoff
 
 > Single source of truth for cross-conversation handoff.
-> Last updated: 2026-10-16 21:38 (Malaysia, UTC+08:00)
-> Case status: v2.2 RELEASED — code committed, regression tests passed, and the existing ChatGPT Site deployment succeeded.
+> Last updated: 2026-10-16 21:36 (Malaysia, UTC+08:00)
+> Case status: v2.2 UI enhancement RELEASED — FR-14–FR-16 implemented, regression tests passed, and the existing owner-only ChatGPT Site deployment succeeded.
 
 ## Project identity
 - Repository: jaronhoh/loan-calculator
 - Branch: main (no additional GitHub branch created)
 - Application: development/index.html
-- Production version: v2.2 (Released 2026-10-16); development version: v2.2
+- Production version: v2.2 with UI enhancement (Released 2026-10-16); development version: v2.2
 - Existing PocketBay app #3128: user explicitly authorized permanent deletion on 2026-10-16; deletion NOT executed or verified (no PocketBay delete integration available).
 - Official production platform: ChatGPT Sites; keep the existing Site intact.
 - Existing ChatGPT Site: appgprj_6ad0f21a67c88191ba4abfa0761bc3c0
@@ -145,5 +145,9 @@ Run from repository root: `node tests/v21-regression.cjs`.
 - Implemented FR-16/AC-23–AC-24: desktop pointer hover and mobile touch tap show each month's series, localized month label and signed RM value to two decimals. Chart keyboard focus/arrow navigation is wired and tooltip stays within chart bounds.
 - Automated regression PASS: `node tests/v21-regression.cjs` — 256 scenarios / 77,854 checks; `node tests/v22-regression.cjs` — 8 mode/frequency combinations / 1,327 checks; `node tests/v23-regression.cjs` — 8 mode/language/amount combinations / 11,566 checks, validating 1,920 chart points against monthly schedule rows, negative cash, bilingual tooltip labels and interaction states.
 - JavaScript syntax check passed. Tests use Node VM DOM/Canvas stubs; real browser layout, mouse, keyboard and touch acceptance were not exercised.
-- GitHub application commit: 4118714f9b16d4dc33c9d103b6d1ecc56a783f9f. Test commits: e9148a5fe4c62e711dd5617626f947c55c06baa2, 724f7e2a088f960714f3d0d89ae2e26f5d06b427, 6b6953f429aa359b109fc3336d949c5df86e5210.
-- Existing Site deployment ID/time: pending. This UI increment is **not Released** until Sites returns a successful production deployment. Existing Site URL, owner-only custom access and calculation engine remain the release target.
+- GitHub application commits on main: 4118714f9b16d4dc33c9d103b6d1ecc56a783f9f; final Tooltip recalculation fix c0876b8e95668b37c5bf1de92bd23757f2769560. Test commits: e9148a5fe4c62e711dd5617626f947c55c06baa2, 724f7e2a088f960714f3d0d89ae2e26f5d06b427, 6b6953f429aa359b109fc3336d949c5df86e5210.
+- Sites source commit: aea578bf0dde3fd753f2620dfffd4b5ab5426f9a.
+- Sites saved version: appgprj_6ad0f21a67c88191ba4abfa0761bc3c0~appgver_93f9bf730da08191b39f18af0851f152.
+- Deployment ID: appgdep_6ad22823560c81919a6da962144d9cf4; terminal status **succeeded**, failure message null. Deployment timestamp: 2026-10-16 21:35:51 MYT (2026-10-16T13:35:51Z).
+- Live URL verified: https://loan-investment-calculator.savoryboar128.chatgpt.site. Site re-read after deployment: active, same URL, access_mode custom, owner-only allowlist unchanged, no additional viewers.
+- Release status: **Released**. Automated tests passed. Actual browser/mobile layout, pointer/touch and browser CSV download were not independently exercised.

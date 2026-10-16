@@ -22,8 +22,8 @@
 | Automated regression | PASS: 256 scenarios, 77,849 assertions | Node VM execution with DOM stubs, 2026-10-16 |
 | Browser / mobile acceptance | NOT VERIFIED | Required control-browser skill unavailable in this managed environment; no browser or touch simulation performed |
 | Sites source synchronization | Prepared and pushed to existing Site source repository | Sites source commit 5eebbd0eab862e4f36355c86e8d7f68e7bb6f41b |
-| v2.1 production deployment | NOT DEPLOYED | Publication withheld pending required browser acceptance; no save/deploy call made |
-| Existing live Site | Existing version 1 reported by Sites API | This is not evidence that v2.1 is live |
+| v2.1 production deployment | SUCCEEDED, 2026-10-16 17:35:55 MYT | Native Sites save/deploy returned terminal succeeded |
+| Live Site | v2.1 deployed to existing Site | https://loan-investment-calculator.savoryboar128.chatgpt.site |
 
 ## Changes
 - Monthly net cash flow chart card and Compare selector confirmed absent; monthly cash flow data retained.
@@ -46,12 +46,23 @@ Run from repository root: `node tests/v21-regression.cjs`.
 - Static inspection confirmed mobile CSS, scrollable table and viewport-contained tooltip rules.
 - DOM stubs do not prove real browser rendering, native keyboard activation, tooltip closing interactions, touchscreen use, CSV download integration, refresh behavior or responsive layout. These remain acceptance items.
 
+## Verified deployment
+- Application version: v2.1.
+- GitHub application source commit: 1c7e2bedb5ff6c843aec51ca69c7b83a8d3b158c (unchanged application blob 027e969c5c0fa0caf4453bb5cebb3bb2b9b9dc49 on main).
+- GitHub source including tests: fa20f985fea4b934a215025556aa6f8e984a1dcf.
+- Sites source commit: 5eebbd0eab862e4f36355c86e8d7f68e7bb6f41b.
+- Saved version: appgprj_6ad0f21a67c88191ba4abfa0761bc3c0~appgver_d57cb96d81988191ae5e36b4cbad1664.
+- Deployment: appgdep_6ad1efe670a88191b5bb93414148b8a5.
+- Terminal status: succeeded; failure_message: null.
+- Verified at: 2026-10-16 17:35:55 MYT (09:35:55 UTC), native Sites deployment response.
+- URL: https://loan-investment-calculator.savoryboar128.chatgpt.site
+- Existing Site reused; owner-only audience preserved; PocketBay #3128 untouched.
+- Deployment success verifies publication, not browser/mobile acceptance. The outstanding browser checks below remain unverified.
+
 ## Next action
-1. In an environment with supported control-browser, verify desktop and 375px mobile layout, every tooltip in both languages, repeated click/outside click/Esc and Enter/Space.
-2. Verify both mode buttons, language switch, CSV download content, Reset, refresh defaults and 420-month table in the actual browser.
-3. If any failures occur, fix and rerun checks; then synchronize the exact tested main source to the existing Site.
-4. Only after acceptance, save/deploy the matching source version, confirm terminal deployment success and record saved version, deployment ID and URL here.
-5. Do not modify PocketBay #3128.
+1. Verify desktop and mobile layout, every tooltip in both languages, repeated click/outside click/Esc and Enter/Space in a supported real-browser environment.
+2. Verify actual CSV download, refresh defaults and 420-month scrolling.
+3. Record browser acceptance results without conflating them with deployment success.
 
 ## Change log (append-only)
 | Date/time | Change | Result | Commit / PR / deployment | Evidence source |
@@ -60,3 +71,5 @@ Run from repository root: `node tests/v21-regression.cjs`.
 | 2026-10-16 | v2.1 UI changes and documentation | Committed to main; browser test pending | b427e7d9f466599bd51ec8f1051b18d323d12e5d; docs commits | GitHub verified |
 
 | 2026-10-16 | v2.1 numeric/validation/tooltip fixes, regression tests and existing Sites source preparation | Automated PASS; browser acceptance pending; v2.1 not deployed | fa20f985fea4b934a215025556aa6f8e984a1dcf; Sites source 5eebbd0eab862e4f36355c86e8d7f68e7bb6f41b | GitHub, Node VM, Sites source helper |
+
+| 2026-10-16 17:35:55 MYT | User requested website update; published prepared v2.1 to existing Site | Sites deployment succeeded; browser/mobile acceptance remains unverified | appgdep_6ad1efe670a88191b5bb93414148b8a5 | Native Sites deployment result |

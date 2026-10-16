@@ -151,3 +151,8 @@ Run from repository root: `node tests/v21-regression.cjs`.
 - Deployment ID: appgdep_6ad22823560c81919a6da962144d9cf4; terminal status **succeeded**, failure message null. Sites API `updated_at`: 2026-10-16T13:36:39Z (21:36:39 MYT).
 - Live URL verified: https://loan-investment-calculator.savoryboar128.chatgpt.site. Site re-read after deployment: active, same URL, access_mode custom, owner-only allowlist unchanged, no additional viewers.
 - Release status: **Released**. Automated tests passed. Actual browser/mobile layout, pointer/touch and browser CSV download were not independently exercised.
+
+## Additional UI requirement — RM0 reference line (2026-10-16)
+- User confirmed FR-17 / AC-25: Assets & Cash Flow trend chart must show a fixed, labeled RM0 horizontal dashed reference line (neutral gray). Y-axis bounds must include zero for all-positive, all-negative and mixed values.
+- The RM0 reference is not a fifth data series, has no separate tooltip and does not affect calculations. Preserve the existing four-series hover/touch tooltips.
+- Documentation-only update; **FR-17 implementation, tests and production Sites deployment are pending**. Earlier releases/deployments remain historical records and are not evidence of this enhancement.

@@ -1,7 +1,8 @@
 # Loan Investment Calculator — Project Status & Handoff
 
 > Single source of truth for cross-conversation handoff.
-> Last updated: 2026-10-16 (Malaysia, UTC+08:00)
+> Last updated: 2026-10-16 17:49 (Malaysia, UTC+08:00)
+> Case status: CLOSED — user confirmed testing completed and accepted the release.
 
 ## Project identity
 - Repository: jaronhoh/loan-calculator
@@ -91,3 +92,13 @@ Run from repository root: `node tests/v21-regression.cjs`.
 - Existing Sites deployment: succeeded; ID appgdep_6ad1f20d2a508191bceb0a0ec2a5104f; saved version appgprj_6ad0f21a67c88191ba4abfa0761bc3c0~appgver_8da1f8eabe708191aa6b6ec54d68ce3b; source bda9857bd7cd071977113bb87a41e07365ffb817.
 - URL: https://loan-investment-calculator.savoryboar128.chatgpt.site
 - PRD and shaping synchronized; PocketBay #3128 untouched.
+
+## Case closure — 2026-10-16 17:49 MYT
+- User confirmation: “ok 我测试完成，close case”.
+- Acceptance: user-reported testing completed; release accepted and case closed. Individual device/browser and test-case details were not supplied; no agent browser test is claimed.
+- Final behavior: hover monthly header labels to display bilingual formula tooltips; no i icons.
+- Deployment remains the verified successful label-hover release: appgdep_6ad1f20d2a508191bceb0a0ec2a5104f.
+- Sites source commit: bda9857bd7cd071977113bb87a41e07365ffb817; GitHub application commit: f17662306cfff9dd9419f02a4248c6934a166c15.
+- Website: https://loan-investment-calculator.savoryboar128.chatgpt.site
+- Earlier unverified browser/mobile notes describe the agent's historical verification limits; no further acceptance action is pending following user sign-off.
+- No application changes or redeployment performed for closure. PocketBay #3128 unchanged.

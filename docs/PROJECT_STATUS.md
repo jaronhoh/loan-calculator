@@ -2,20 +2,38 @@
 
 > Single source of truth for cross-conversation handoff.
 > Last updated: 2026-10-16 17:49 (Malaysia, UTC+08:00)
-> Case status: CLOSED — user confirmed testing completed and accepted the release.
+> Case status: OPEN — v2.2 implemented and regression tested; deployment blocked, NOT Released.
 
 ## Project identity
 - Repository: jaronhoh/loan-calculator
 - Branch: main (no additional GitHub branch created)
 - Application: development/index.html
-- Version: v2.1
+- Production version: v2.1; development version: v2.2 (NOT Released)
 - Existing PocketBay app #3128: user explicitly authorized permanent deletion on 2026-10-16; deletion NOT executed or verified (no PocketBay delete integration available).
 - Official production platform: ChatGPT Sites; keep the existing Site intact.
 - Existing ChatGPT Site: appgprj_6ad0f21a67c88191ba4abfa0761bc3c0
 - Site URL: https://loan-investment-calculator.savoryboar128.chatgpt.site
 - Audience: existing owner-only custom access preserved.
 
-## Current status
+## v2.2 current handoff — 2026-10-16 (MYT)
+- Branch: main only; no new branch.
+- GitHub baseline: 99afe9820670d864a825ca9fc285685f6dcf93ea.
+- Code commit: recorded in the follow-up status commit after the implementation commit exists.
+- Implemented FR-13 / AC-16–AC-20: Optimize next to investment input, Chinese/English status, current-mode rounded payment, integer-cent reserve calculation, automatic existing render pipeline, invalid result preserves amount.
+- Default verified: RM100,000 − 5 × RM1,841.65 = RM90,791.75; Flat Rate default RM90,000.00.
+- Invalid investment alone can be repaired by Optimize; other invalid inputs block it. Zero rounded monthly payments are supported; unsafe numeric amounts and nonpositive results are rejected.
+- Existing loan/investment engine unchanged; later negative available cash remains visible.
+- Automated tests: PASS — v21: 256 scenarios / 77,851 checks; v22: 8 mode/frequency combinations / 122 checks including additional boundary cases.
+- Commands: node tests/v21-regression.cjs; node tests/v22-regression.cjs.
+- Tests cover optimized input, summary, Canvas drawing calls, monthly table, CSV both languages, reset, cent boundaries, invalid inputs, preserved tooltip formulas/listeners and responsive CSS.
+- Verification limit: tests run in Node VM with DOM stubs. Real browser launch failed (bundled Chromium missing; installed Edge failed under sandbox). Actual layout, keyboard, tooltip/touch and download acceptance are NOT VERIFIED.
+- Sites: NOT DEPLOYED. Source helper did not complete. Automatic approval rejected sending the source credential through stdin: approval required but granular sandbox_approval is disabled. No detailed reviewer reason was supplied. Do not bypass or claim deployment success.
+- Existing Site retained: appgprj_6ad0f21a67c88191ba4abfa0761bc3c0; owner-only custom audience confirmed unchanged; latest existing version 4 before work.
+- Live URL remains https://loan-investment-calculator.savoryboar128.chatgpt.site (v2.1).
+- No v2.2 Sites source commit, saved version or deployment ID exists. Resume the supported source workflow when execution is permitted, then deploy the same existing Site and record returned IDs/commit/status.
+- Release status: **NOT Released — deployment and real browser acceptance pending**.
+
+## v2.1 historical status
 | Area | Result | Evidence |
 | --- | --- | --- |
 | Source baseline | Latest main read before changes | aa54fa0eea6596e6a2ebedc9d3cf2c3b872a3981 |

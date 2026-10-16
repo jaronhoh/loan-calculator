@@ -1,14 +1,14 @@
 # Loan Investment Calculator — Project Status & Handoff
 
 > Single source of truth for cross-conversation handoff.
-> Last updated: 2026-10-16 21:36 (Malaysia, UTC+08:00)
-> Case status: v2.2 UI enhancement RELEASED — FR-14–FR-16 implemented, regression tests passed, and the existing owner-only ChatGPT Site deployment succeeded.
+> Last updated: 2026-10-16 22:09 (Malaysia, UTC+08:00)
+> Case status: v2.2 UI enhancement RELEASED — FR-14–FR-17 implemented, regression tests passed, and the existing owner-only ChatGPT Site deployment succeeded.
 
 ## Project identity
 - Repository: jaronhoh/loan-calculator
 - Branch: main (no additional GitHub branch created)
 - Application: development/index.html
-- Production version: v2.2 with UI enhancement (Released 2026-10-16); development version: v2.2
+- Production version: v2.2 with FR-14–FR-17 UI enhancements (Released 2026-10-16); development version: v2.2
 - Existing PocketBay app #3128: user explicitly authorized permanent deletion on 2026-10-16; deletion NOT executed or verified (no PocketBay delete integration available).
 - Official production platform: ChatGPT Sites; keep the existing Site intact.
 - Existing ChatGPT Site: appgprj_6ad0f21a67c88191ba4abfa0761bc3c0
@@ -152,7 +152,17 @@ Run from repository root: `node tests/v21-regression.cjs`.
 - Live URL verified: https://loan-investment-calculator.savoryboar128.chatgpt.site. Site re-read after deployment: active, same URL, access_mode custom, owner-only allowlist unchanged, no additional viewers.
 - Release status: **Released**. Automated tests passed. Actual browser/mobile layout, pointer/touch and browser CSV download were not independently exercised.
 
-## Additional UI requirement — RM0 reference line (2026-10-16)
-- User confirmed FR-17 / AC-25: Assets & Cash Flow trend chart must show a fixed, labeled RM0 horizontal dashed reference line (neutral gray). Y-axis bounds must include zero for all-positive, all-negative and mixed values.
-- The RM0 reference is not a fifth data series, has no separate tooltip and does not affect calculations. Preserve the existing four-series hover/touch tooltips.
-- Documentation-only update; **FR-17 implementation, tests and production Sites deployment are pending**. Earlier releases/deployments remain historical records and are not evidence of this enhancement.
+## v2.2 UI enhancement release — FR-14 to FR-17 (2026-10-16)
+- Existing GitHub `main` request baseline: `78787d37056d54b2a922c2d5f4e5fc05e47e2b5c`.
+- FR-14 preserves the existing optimization formula and styles Optimize with accent, hover, focus-visible and disabled states.
+- FR-15/FR-16 preserve three existing chart series, add Available Cash from each monthly schedule row, and keep bilingual per-month mouse/touch tooltips for all four series.
+- FR-17 adds a neutral gray dashed RM0 reference with an RM0 label. The Y-axis includes zero for positive-only, negative-only and mixed data. The reference is not a data series and has no tooltip.
+- Existing Site reused: `appgprj_6ad0f21a67c88191ba4abfa0761bc3c0`; URL and owner-only allowlist were rechecked after deployment and remained unchanged.
+- GitHub implementation commit SHA: recorded in the final handoff update after the implementation commit is created.
+- Sites source commit: `37d2b7f2f7fd8286098421f52690b91c24a8dafa`.
+- Sites saved version: `appgprj_6ad0f21a67c88191ba4abfa0761bc3c0~appgver_c156d25c9c90819185ffd92bb5ecae4d`.
+- Sites deployment ID: `appgdep_6ad22fbfbcc08191961c3aeea718b523`; status **succeeded**, failure message null; deployment timestamp `2026-10-16T14:08:20Z` (22:08:20 MYT).
+- Automated tests: PASS — `node tests/v21-regression.cjs` (256 scenarios / 77,854 checks), `node tests/v22-regression.cjs` (8 optimizer and interaction scenarios / 1,097 checks), `node tests/v23-regression.cjs` (8 mode/language/amount scenarios / 11,566 checks), `node tests/v24-regression.cjs` (3 axis cases / 28 checks). Total: 90,545 checks.
+- Regression checks cover loan formulas, Optimize, four trend-series values, signed bilingual tooltips, RM0 position/label/dash, CSV, Reset, responsive CSS and pointer/touch handlers.
+- Production verification: Sites returned terminal `succeeded` for the existing live URL; Site reread confirmed active status, version 7, same URL, custom owner-only access, no additional viewers. Live browser/mobile pixel rendering and physical touch were not independently exercised.
+- Release status: **Released**. The pre-existing project status referred to the earlier FR-14–FR-16 release; this entry records the subsequent RM0 release.

@@ -124,7 +124,7 @@ Loan Investment Calculator 是面向马来西亚用户的免费、无需注册�
 - Investment Payout、Investment Principal。
 - Monthly Net Cash Flow、Cumulative Net Cash Flow、Available Cash、Net Asset。
 - 期限最长 420 个月；MVP 一次性渲染所有行，容器横向滚动。
-- 逐月明细每个表头标签旁显示可点击/可键盘操作的圆形 `i` 图标；采用 shadcn/ui Tooltip 风格：鼠标 hover 或键盘 focus 显示对应中英文公式/字段含义，移开或失焦关闭，支持 Esc 关闭；手机端点按查看、再次点按或点击外部关闭，不改变计算结果。
+- 逐月明细每个表头文字本身作为 Tooltip 触发区域（不显示 `i` 图标，可键盘聚焦）；采用 shadcn/ui Tooltip 风格：鼠标 hover 或键盘 focus 显示对应中英文公式/字段含义，移开或失焦关闭，支持 Esc 关闭；手机端点按查看、再次点按或点击外部关闭，不改变计算结果。
 
 ### FR-10 CSV 导出
 - 页面仅在逐月明细区保留一个 CSV 导出按钮，避免重复入口。
@@ -198,3 +198,5 @@ Loan Investment Calculator 是面向马来西亚用户的免费、无需注册�
 | v2.1 | 2026-10-16 | 移除月度净现金流图表卡片和 Compare 同屏比较选项；逐月明细表头新增公式 `i` 提示；保留两种贷款算法、逐月现金流计算及 CSV。 |
 
 > 2026-10-16 Tooltip 修订：参考 https://ui.shadcn.com/docs/components/base/tooltip ，桌面端改为 hover/focus 触发、表头旁深色提示；手机保留点按。纯 HTML 实现同类样式与交互，未引入 React/shadcn 运行依赖。
+
+> 2026-10-16 最终修订：移除全部表头 `i` 图标，直接 hover 表头 label 显示 Tooltip；保留键盘 focus 与手机点按。

@@ -166,3 +166,8 @@ Run from repository root: `node tests/v21-regression.cjs`.
 - Regression checks cover loan formulas, Optimize, four trend-series values, signed bilingual tooltips, RM0 position/label/dash, CSV, Reset, responsive CSS and pointer/touch handlers.
 - Production verification: Sites returned terminal `succeeded` for the existing live URL; Site reread confirmed active status, version 7, same URL, custom owner-only access, no additional viewers. Live browser/mobile pixel rendering and physical touch were not independently exercised.
 - Release status: **Released**. The pre-existing project status referred to the earlier FR-14–FR-16 release; this entry records the subsequent RM0 release.
+
+## New requirement: FR-18 Light/Dark theme (2026-10-17)
+- User requested top-right sun icon for Light Mode and moon icon for Dark Mode. Theme applies throughout the page, including Canvas chart, all four trend series, RM0 baseline, tooltips, form, cards and monthly table.
+- PRD acceptance AC-26 through AC-28. Current spec uses default Light Mode, in-session switching only (no persistence); Reset keeps theme and refresh returns Light. Theme changes must not alter financial inputs, results, language or CSV.
+- **Requirements documentation updated only; implementation, regression and Sites deployment not performed for FR-18.** Keep prior release evidence intact.

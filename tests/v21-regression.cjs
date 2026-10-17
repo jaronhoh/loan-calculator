@@ -3,7 +3,7 @@ const html=fs.readFileSync(__dirname+'/../development/index.html','utf8');
 let script=html.match(/<script>([\s\S]*?)<\/script>/)[1];
 const elements={},listeners={};
 const cls={toggle(){},add(){},remove(){}};
-function el(id){return elements[id]??=( {value:'',textContent:'',innerHTML:'',classList:cls,closest(){return null},querySelector(){return null},addEventListener(k,f){(listeners[id]??={})[k]=f},getBoundingClientRect(){return {width:800,height:300}},getContext(){return new Proxy({},{get:()=>()=>{}})}})}
+function el(id){return elements[id]??=( {value:'',textContent:'',innerHTML:'',classList:cls,closest(){return null},querySelector(){return null},setAttribute(){},addEventListener(k,f){(listeners[id]??={})[k]=f},getBoundingClientRect(){return {width:800,height:300}},getContext(){return new Proxy({},{get:()=>()=>{}})}})}
 for(const id of ['loanAmount','tenure','loanRate','investmentAmount','returnRate','payoutFrequency']){let value='';Object.defineProperty(el(id),'value',{get:()=>value,set:x=>value=String(x)});}
 const document={getElementById:el,querySelectorAll:()=>[],addEventListener(){},documentElement:{},body:{appendChild(){}},createElement:()=>({click(){},remove(){}})};
 const context={document,window:{addEventListener(){}},console,Blob,URL:{createObjectURL(b){context.blob=b;return 'blob:test'},revokeObjectURL(){}},setTimeout,clearTimeout};

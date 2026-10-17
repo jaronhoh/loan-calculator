@@ -171,3 +171,11 @@ Run from repository root: `node tests/v21-regression.cjs`.
 - User requested top-right sun icon for Light Mode and moon icon for Dark Mode. Theme applies throughout the page, including Canvas chart, all four trend series, RM0 baseline, tooltips, form, cards and monthly table.
 - PRD acceptance AC-26 through AC-28. Current spec uses default Light Mode, in-session switching only (no persistence); Reset keeps theme and refresh returns Light. Theme changes must not alter financial inputs, results, language or CSV.
 - **Requirements documentation updated only; implementation, regression and Sites deployment not performed for FR-18.** Keep prior release evidence intact.
+
+## FR-18 implementation — 2026-10-17 (MYT)
+- Requirement baseline: GitHub main `70bf5cfe2d541ef2e9b86694f6dee75bd44df29a`.
+- Implemented bilingual top-right sun/moon native buttons, selected aria-pressed state and 44px targets. CSS covers inputs, cards, buttons, summaries, validation, both Tooltip types and monthly table. Canvas repaints four distinct series, axes, legend and dashed RM0 for the chosen theme.
+- Theme is separate from financial state. Switching preserves inputs, language, results, CSV and visible Tooltip; Reset retains theme; document reload starts light. Invalid input cannot revive old chart data on theme switch. Loan/optimization/CSV formulas unchanged.
+- Automated PASS: v21 77,854; v22 1,097; v23 11,566; v24 28; new v25-theme 369. Total 90,914 checks. Existing test DOM stubs extended only with native setAttribute support.
+- AC-26/27/28 browser acceptance: local IAB real browser at 1440x1000 and 390x844; visible sun/moon, selected state, Enter/Space activation, mouse clicks, bilingual names, no 390px page overflow, light/dark chart/RM0/Tooltip/table appearance, input/summary/table preservation, Reset retains dark and reload restores light verified. No browser console errors observed. CSV byte equality checked across both modes/languages and two investment amounts by automated VM; physical phone touch and native browser CSV download not independently exercised.
+- GitHub main implementation commit and deployment evidence will be appended after publication. No new branch, Site or audience change.

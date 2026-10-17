@@ -1,14 +1,14 @@
 # Loan Investment Calculator — Project Status & Handoff
 
 > Single source of truth for cross-conversation handoff.
-> Last updated: 2026-10-16 22:09 (Malaysia, UTC+08:00)
-> Case status: v2.2 UI enhancement RELEASED — FR-14–FR-17 implemented, regression tests passed, and the existing owner-only ChatGPT Site deployment succeeded.
+> Last updated: 2026-10-17 14:41 (Malaysia, UTC+08:00)
+> Case status: FR-18 RELEASED — Light/Dark implemented; 90,914 automated checks passed; local real-browser acceptance passed with physical-touch limitation; existing owner-only Site version 8 deployed successfully.
 
 ## Project identity
 - Repository: jaronhoh/loan-calculator
 - Branch: main (no additional GitHub branch created)
 - Application: development/index.html
-- Production version: v2.2 with FR-14–FR-17 UI enhancements (Released 2026-10-16); development version: v2.2
+- Production version: v2.2 with FR-14–FR-18 UI enhancements (Released 2026-10-17); development version: v2.2
 - Existing PocketBay app #3128: user explicitly authorized permanent deletion on 2026-10-16; deletion NOT executed or verified (no PocketBay delete integration available).
 - Official production platform: ChatGPT Sites; keep the existing Site intact.
 - Existing ChatGPT Site: appgprj_6ad0f21a67c88191ba4abfa0761bc3c0
@@ -179,3 +179,14 @@ Run from repository root: `node tests/v21-regression.cjs`.
 - Automated PASS: v21 77,854; v22 1,097; v23 11,566; v24 28; new v25-theme 369. Total 90,914 checks. Existing test DOM stubs extended only with native setAttribute support.
 - AC-26/27/28 browser acceptance: local IAB real browser at 1440x1000 and 390x844; visible sun/moon, selected state, Enter/Space activation, mouse clicks, bilingual names, no 390px page overflow, light/dark chart/RM0/Tooltip/table appearance, input/summary/table preservation, Reset retains dark and reload restores light verified. No browser console errors observed. CSV byte equality checked across both modes/languages and two investment amounts by automated VM; physical phone touch and native browser CSV download not independently exercised.
 - GitHub main implementation commit and deployment evidence will be appended after publication. No new branch, Site or audience change.
+
+## FR-18 final release evidence — 2026-10-17 14:41 MYT
+- Release status: **Released**. Direct GitHub main implementation commit (final application/test source): `8ed001a83cb406ef8486a46e3ad6b31dfb40d0d9`; verified by fetching origin/main after publication. This documentation-only follow-up records deployment evidence; it changes no application source. The containing commit is the final handoff documentation commit and is discoverable from this file's GitHub history.
+- Sites source commit: `520f776dc999b37f3a115b506652d581d0aad485`. Its dist/index.html is byte-identical to GitHub development/index.html. Existing .openai/hosting.json retained unchanged.
+- Saved version 8: `appgprj_6ad0f21a67c88191ba4abfa0761bc3c0~appgver_003f75f703888191a7e23ff4edbea9fc`.
+- Sites Deployment ID: `appgdep_6ad3185b875c819196fa20bdc3155bd9`; terminal **succeeded**, failure_message null; published `2026-10-17T06:40:47.595347Z` (14:40:47 MYT).
+- Existing URL: https://loan-investment-calculator.savoryboar128.chatgpt.site . Site reread: active, latest version 8, same URL, custom owner-only allowlist, revision 1, no additional viewers. No new Site, branch or access changes.
+- Final tests: PASS — v21 77,854; v22 1,097; v23 11,566; v24 28; v25-theme 369 = **90,914 checks**. All five scripts reran successfully as publication preparation.
+- Actual verification: local real-browser checks at desktop 1440x1000 and phone viewport 390x844 confirmed keyboard Enter/Space, mouse activation, selected state, both themes, Chinese/English, responsive page without horizontal overflow, chart/RM0/Tooltip/table appearance, data preservation, Reset/theme behavior and refresh/light behavior. CSV byte equality verified automatically in both modes/languages with two investment values. No console errors observed.
+- Production browser visit resolves to the expected ChatGPT sign-in page. Authenticated production UI interactions are **NOT independently verified**; native Sites terminal deployment and subsequent get_site confirm publication. No access restrictions were removed. Physical phone touchscreen and native browser CSV downloads are **NOT independently verified**.
+- Evidence screenshot: local IAB dark-theme desktop preview retained with this chat's outputs. Earlier pending FR-18 notes are historical and superseded by this release entry.

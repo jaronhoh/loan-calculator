@@ -1,8 +1,8 @@
 # Loan Investment Calculator — Project Status & Handoff
 
 > Single source of truth for cross-conversation handoff.
-> Last updated: 2026-10-17 14:41 (Malaysia, UTC+08:00)
-> Case status: FR-18 RELEASED — Light/Dark implemented; 90,914 automated checks passed; local real-browser acceptance passed with physical-touch limitation; existing owner-only Site version 8 deployed successfully.
+> Last updated: 2026-10-24 (Malaysia, UTC+08:00)
+> Case status: FR-19 implementation and acceptance passed; publication in progress. See latest appended evidence.
 
 ## Project identity
 - Repository: jaronhoh/loan-calculator
@@ -190,3 +190,17 @@ Run from repository root: `node tests/v21-regression.cjs`.
 - Actual verification: local real-browser checks at desktop 1440x1000 and phone viewport 390x844 confirmed keyboard Enter/Space, mouse activation, selected state, both themes, Chinese/English, responsive page without horizontal overflow, chart/RM0/Tooltip/table appearance, data preservation, Reset/theme behavior and refresh/light behavior. CSV byte equality verified automatically in both modes/languages with two investment values. No console errors observed.
 - Production browser visit resolves to the expected ChatGPT sign-in page. Authenticated production UI interactions are **NOT independently verified**; native Sites terminal deployment and subsequent get_site confirm publication. No access restrictions were removed. Physical phone touchscreen and native browser CSV downloads are **NOT independently verified**.
 - Evidence screenshot: local IAB dark-theme desktop preview retained with this chat's outputs. Earlier pending FR-18 notes are historical and superseded by this release entry.
+
+## FR-19 开始实施 — 2026-10-24
+- 已核实指定六个文件，main 基线 133eb96；FR-19 / AC-29–AC-32 需求已更新。
+- 现有 Site version 8、URL 及 custom owner-only revision 1 已核实；不新建 Site，不执行含义未明的“比赛”。
+- 实施、测试与部署结果将在最终证据追加。
+
+## FR-19 验收结果 — 2026-10-24
+- main 基线：133eb966295ac627be8601b4504f759cdd008132；指定六个文件均已核实并同步需求。
+- 最小应用变更：保留原输入节点和计算管线，统一原生模态 dialog、左侧布局、三种关闭方式、显式 Tab/Shift+Tab 循环、关闭焦点返回、背景隔离及滚动锁定。手机预留 24px 遮罩点击区。
+- 自动回归：v21 77,854；v22 1,097；v23 11,566；v24 28；v25-theme 369；v26-drawer 45；共 90,959 项检查通过。v26 比较旧 main 与新代码，16 种贷款方式/语言/派息周期组合的逐月数据和 CSV 字节完全相同。
+- 真实本地 IAB：1440×1000 和 390×844，中英文 × Light/Dark 共八组合均通过：三个区块、默认关闭、打开、Esc 关闭、焦点进入/返回、背景滚动锁定、无页面水平溢出。
+- 另验证关闭按钮、桌面及手机遮罩、Tab/Shift+Tab 循环、面板内部滚动、修改即时计算、输入保留、优化 90,791.75、贷款方式切换、图表箭头键 Tooltip、表头公式 Tooltip、手机表格横滚、Reset 保留主题及开关、刷新恢复默认及关闭。未观察到控制台错误/警告。
+- 验证限制：手机使用浏览器尺寸模拟，实体手机触屏和原生浏览器 CSV 下载未独立验证；CSV 数据通过自动回归。生产认证后的界面验证与部署成功分别记录。
+- 截图及浏览器矩阵将在 docs/evidence/fr19-drawer 保存。真实 GitHub commit 与 Sites deployment 待发布后追加。

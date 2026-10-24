@@ -1,0 +1,114 @@
+[
+  {
+    "focus": "closeSettingsBtn",
+    "lang": "zh-CN",
+    "locked": "hidden",
+    "open": true,
+    "overflow": false,
+    "sections": 3,
+    "theme": "light",
+    "width": 1440
+  },
+  {
+    "closed": true,
+    "focus": "openSettingsBtn"
+  },
+  {
+    "focus": "closeSettingsBtn",
+    "lang": "zh-CN",
+    "locked": "hidden",
+    "open": true,
+    "overflow": false,
+    "sections": 3,
+    "theme": "dark",
+    "width": 1440
+  },
+  {
+    "closed": true,
+    "focus": "openSettingsBtn"
+  },
+  {
+    "focus": "closeSettingsBtn",
+    "lang": "en",
+    "locked": "hidden",
+    "open": true,
+    "overflow": false,
+    "sections": 3,
+    "theme": "light",
+    "width": 1440
+  },
+  {
+    "closed": true,
+    "focus": "openSettingsBtn"
+  },
+  {
+    "focus": "closeSettingsBtn",
+    "lang": "en",
+    "locked": "hidden",
+    "open": true,
+    "overflow": false,
+    "sections": 3,
+    "theme": "dark",
+    "width": 1440
+  },
+  {
+    "closed": true,
+    "focus": "openSettingsBtn"
+  },
+  {
+    "focus": "closeSettingsBtn",
+    "lang": "zh-CN",
+    "locked": "hidden",
+    "open": true,
+    "overflow": false,
+    "sections": 3,
+    "theme": "light",
+    "width": 390
+  },
+  {
+    "closed": true,
+    "focus": "openSettingsBtn"
+  },
+  {
+    "focus": "closeSettingsBtn",
+    "lang": "zh-CN",
+    "locked": "hidden",
+    "open": true,
+    "overflow": false,
+    "sections": 3,
+    "theme": "dark",
+    "width": 390
+  },
+  {
+    "closed": true,
+    "focus": "openSettingsBtn"
+  },
+  {
+    "focus": "closeSettingsBtn",
+    "lang": "en",
+    "locked": "hidden",
+    "open": true,
+    "overflow": false,
+    "sections": 3,
+    "theme": "light",
+    "width": 390
+  },
+  {
+    "closed": true,
+    "focus": "openSettingsBtn"
+  },
+  {
+    "focus": "closeSettingsBtn",
+    "lang": "en",
+    "locked": "hidden",
+    "open": true,
+    "overflow": false,
+    "sections": 3,
+    "theme": "dark",
+    "width": 390
+  },
+  {
+    "closed": true,
+    "focus": "openSettingsBtn"
+  }
+]

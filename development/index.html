@@ -27,10 +27,18 @@ html[data-theme="dark"] .optimize-btn:disabled{background:#455572;border-color:#
 .theme-switch{display:flex;gap:4px;align-items:center;border:1px solid var(--line);border-radius:11px;padding:3px;background:var(--track)}
 .theme-button{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;padding:10px;border:1px solid transparent;border-radius:8px;background:transparent;color:var(--muted)}.theme-button:hover{background:var(--hover);color:var(--ink)}.theme-button[aria-pressed="true"]{background:var(--surface);border-color:var(--blue);color:var(--blue)}.theme-button svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 @media(max-width:600px){.topbar{position:relative;padding-top:4px}.topbar>div:first-child{padding-right:106px}.theme-switch{position:absolute;right:0;top:0}}
+/* Modal settings use the existing input nodes and theme tokens. */
+.layout{grid-template-columns:minmax(0,1fr)}.settings-open{min-height:44px;margin-bottom:18px}
+.settings-drawer{position:fixed;inset:0 auto 0 0;margin:0;width:min(420px,calc(100% - 24px));max-width:100%;height:100%;height:100dvh;max-height:100%;padding:0;border:0;border-right:1px solid var(--line);background:var(--bg);color:var(--ink);box-shadow:12px 0 40px #0003;overflow:auto;overscroll-behavior:contain}
+.settings-drawer::backdrop{background:#0007}.drawer-panel{padding:18px}.drawer-head{display:flex;align-items:center;justify-content:space-between;gap:12px;position:sticky;top:0;background:var(--bg);z-index:2;padding:0 0 16px}.drawer-head h2{margin:0;font-size:18px}.drawer-head .btn{min-width:44px;min-height:44px}
+.settings-drawer .sidebar{grid-template-columns:minmax(0,1fr)}.settings-drawer .mode-card{grid-column:auto}.settings-drawer .field input,.settings-drawer .field select,.settings-drawer .mode-switch button{min-height:44px}
+body:has(.settings-drawer[open]){overflow:hidden}
+@media(max-width:850px){.chart-grid{grid-template-columns:minmax(0,1fr)}}
 </style>
 </head>
 <body>
 <div class="shell">
+  <button id="openSettingsBtn" class="btn settings-open" type="button" aria-haspopup="dialog" aria-controls="settingsDrawer" aria-expanded="false" data-i18n="openSettings">☰ 参数设置</button>
   <header class="topbar">
     <div>
       <div class="eyebrow" data-i18n="eyebrow">PERSONAL FINANCE • SCENARIO PLANNER</div>
@@ -49,7 +57,54 @@ html[data-theme="dark"] .optimize-btn:disabled{background:#455572;border-color:#
     </div>
   </header>
   <div class="layout">
-    <aside class="sidebar">
+
+    <main class="main">
+      <div id="validationBanner" class="warning" role="alert"></div>
+      <section class="card">
+        <div class="card-head"><div><h2 data-i18n="summary">Summary</h2><div id="summarySubtitle" class="chart-meta">Reducing Balance</div></div><span class="section-tag" data-i18n="live">LIVE CALCULATION</span></div>
+        <div id="singleSummary" class="summary-grid">
+          <div class="metric"><div class="label" data-i18n="monthlyPayment">Monthly Payment</div><div class="value" id="monthlyPayment">—</div><div class="sub" data-i18n="loanInstalment">Loan instalment</div></div>
+          <div class="metric"><div class="label" data-i18n="totalInterest">Total Loan Interest</div><div class="value" id="totalInterest">—</div><div class="sub" data-i18n="overTenure">Over the full tenure</div></div>
+          <div class="metric"><div class="label" data-i18n="totalPayouts">Total Investment Payouts</div><div class="value" id="totalPayouts">—</div><div class="sub" data-i18n="cashIncome">Cash income, not reinvested</div></div>
+          <div class="metric"><div class="label" data-i18n="endingCashFlow">Final Cumulative Cash Flow</div><div class="value" id="endingCashFlow">—</div><div class="sub" data-i18n="afterAllMonths">After all monthly payments</div></div>
+          <div class="metric"><div class="label" data-i18n="endingNetAsset">Ending Net Asset</div><div class="value" id="endingNetAsset">—</div><div class="sub" data-i18n="assetsMinusDebt">Investment + cash − loan</div></div>
+        </div>
+        <div id="compareSummary" class="compare-grid hidden"></div>
+      </section>
+      <div class="chart-grid">
+
+        <section class="card chart-card">
+          <div class="card-head"><div><h2 data-i18n="trendChart">Asset & Cash Flow Trend</h2><div class="chart-meta" data-i18n="trendChartNote">Investment principal, remaining loan and cumulative cash flow</div></div></div>
+          <div class="trend-wrap" id="trendWrap">
+            <canvas id="trendChart" class="chart" role="img" aria-label="Investment, remaining loan, cumulative cash flow and available cash trend chart"></canvas>
+            <div id="trendTooltip" class="trend-tooltip" role="status" aria-live="polite" hidden></div>
+          </div>
+          <div class="legend">
+            <span><i class="dot" data-series="investmentPrincipal" style="background:#3157d5"></i><span data-i18n="investmentPrincipal">Investment principal</span></span>
+            <span><i class="dot" data-series="balance" style="background:#e08a26"></i><span data-i18n="remainingLoan">Remaining loan</span></span>
+            <span><i class="dot" data-series="cumulativeNetCashFlow" style="background:#159a76"></i><span data-i18n="cumulativeCashFlow">Cumulative cash flow</span></span>
+            <span><i class="dot" data-series="availableCash" style="background:#a855f7"></i><span data-i18n="availableCash">Available cash</span></span>
+          </div>
+        </section>
+      </div>
+      <section class="card table-card">
+        <div class="table-head">
+          <div><h2 data-i18n="schedule">Monthly Breakdown</h2><p id="tableDescription" data-i18n="scheduleNote">Full month-by-month loan, payout, cash flow and net asset schedule.</p></div>
+          <div class="table-tools"><button id="exportTableBtn" class="btn primary" type="button" data-i18n="export">Export CSV</button></div>
+        </div>
+        <div class="table-wrap" tabindex="0" role="region" aria-label="Monthly calculation table">
+          <table><thead id="scheduleHead"></thead><tbody id="scheduleBody"></tbody></table>
+          <div id="tableEmpty" class="empty hidden"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <footer class="footer"><strong data-i18n="disclaimerTitle">Important disclaimer:</strong> <span data-i18n="disclaimer">For scenario planning only, not financial, investment or lending advice. The expected return is a user-supplied assumption and is not guaranteed. Actual returns, fees, tax and loan terms may differ. All calculations run in this browser; inputs are not saved or sent to a server.</span></footer>
+</div>
+<dialog id="settingsDrawer" class="settings-drawer" aria-labelledby="settingsTitle">
+  <div class="drawer-panel" id="settingsPanel">
+    <div class="drawer-head"><h2 id="settingsTitle" data-i18n="settingsTitle">参数设置</h2><button id="closeSettingsBtn" class="btn" type="button" autofocus data-i18n="closeSettings">关闭</button></div>
+    <div class="sidebar">
       <section class="card">
         <div class="card-head"><h2 data-i18n="loanDetails">Loan</h2><span class="section-tag" data-i18n="loanTag">BORROW</span></div>
         <div class="field" id="loanAmountField">
@@ -100,55 +155,14 @@ html[data-theme="dark"] .optimize-btn:disabled{background:#455572;border-color:#
         <div class="mode-switch" role="group" aria-label="Loan calculation mode">
           <button type="button" data-mode="reducing" class="active" data-i18n="reducing">Reducing Balance</button>
           <button type="button" data-mode="flat" data-i18n="flat">Flat Rate</button>
-          
+
         </div>
         <div class="divider"></div>
         <p class="side-note" data-i18n="cashRule">Loan instalments happen every month. Investment payouts arrive only in payout months and are not reinvested.</p>
       </section>
-    </aside>
-    <main class="main">
-      <div id="validationBanner" class="warning" role="alert"></div>
-      <section class="card">
-        <div class="card-head"><div><h2 data-i18n="summary">Summary</h2><div id="summarySubtitle" class="chart-meta">Reducing Balance</div></div><span class="section-tag" data-i18n="live">LIVE CALCULATION</span></div>
-        <div id="singleSummary" class="summary-grid">
-          <div class="metric"><div class="label" data-i18n="monthlyPayment">Monthly Payment</div><div class="value" id="monthlyPayment">—</div><div class="sub" data-i18n="loanInstalment">Loan instalment</div></div>
-          <div class="metric"><div class="label" data-i18n="totalInterest">Total Loan Interest</div><div class="value" id="totalInterest">—</div><div class="sub" data-i18n="overTenure">Over the full tenure</div></div>
-          <div class="metric"><div class="label" data-i18n="totalPayouts">Total Investment Payouts</div><div class="value" id="totalPayouts">—</div><div class="sub" data-i18n="cashIncome">Cash income, not reinvested</div></div>
-          <div class="metric"><div class="label" data-i18n="endingCashFlow">Final Cumulative Cash Flow</div><div class="value" id="endingCashFlow">—</div><div class="sub" data-i18n="afterAllMonths">After all monthly payments</div></div>
-          <div class="metric"><div class="label" data-i18n="endingNetAsset">Ending Net Asset</div><div class="value" id="endingNetAsset">—</div><div class="sub" data-i18n="assetsMinusDebt">Investment + cash − loan</div></div>
-        </div>
-        <div id="compareSummary" class="compare-grid hidden"></div>
-      </section>
-      <div class="chart-grid">
-        
-        <section class="card chart-card">
-          <div class="card-head"><div><h2 data-i18n="trendChart">Asset & Cash Flow Trend</h2><div class="chart-meta" data-i18n="trendChartNote">Investment principal, remaining loan and cumulative cash flow</div></div></div>
-          <div class="trend-wrap" id="trendWrap">
-            <canvas id="trendChart" class="chart" role="img" aria-label="Investment, remaining loan, cumulative cash flow and available cash trend chart"></canvas>
-            <div id="trendTooltip" class="trend-tooltip" role="status" aria-live="polite" hidden></div>
-          </div>
-          <div class="legend">
-            <span><i class="dot" data-series="investmentPrincipal" style="background:#3157d5"></i><span data-i18n="investmentPrincipal">Investment principal</span></span>
-            <span><i class="dot" data-series="balance" style="background:#e08a26"></i><span data-i18n="remainingLoan">Remaining loan</span></span>
-            <span><i class="dot" data-series="cumulativeNetCashFlow" style="background:#159a76"></i><span data-i18n="cumulativeCashFlow">Cumulative cash flow</span></span>
-            <span><i class="dot" data-series="availableCash" style="background:#a855f7"></i><span data-i18n="availableCash">Available cash</span></span>
-          </div>
-        </section>
-      </div>
-      <section class="card table-card">
-        <div class="table-head">
-          <div><h2 data-i18n="schedule">Monthly Breakdown</h2><p id="tableDescription" data-i18n="scheduleNote">Full month-by-month loan, payout, cash flow and net asset schedule.</p></div>
-          <div class="table-tools"><button id="exportTableBtn" class="btn primary" type="button" data-i18n="export">Export CSV</button></div>
-        </div>
-        <div class="table-wrap" tabindex="0" role="region" aria-label="Monthly calculation table">
-          <table><thead id="scheduleHead"></thead><tbody id="scheduleBody"></tbody></table>
-          <div id="tableEmpty" class="empty hidden"></div>
-        </div>
-      </section>
-    </main>
+    </div>
   </div>
-  <footer class="footer"><strong data-i18n="disclaimerTitle">Important disclaimer:</strong> <span data-i18n="disclaimer">For scenario planning only, not financial, investment or lending advice. The expected return is a user-supplied assumption and is not guaranteed. Actual returns, fees, tax and loan terms may differ. All calculations run in this browser; inputs are not saved or sent to a server.</span></footer>
-</div>
+</dialog>
 <script>
 (function(){
 "use strict";
@@ -163,6 +177,9 @@ optimize:"Optimize",optimizeNote:"Reserves payments before the first payout only
 zh:{
 optimize:"一键优化",optimizeNote:"仅预留首次派息前的月供；后续仍可能出现资金缺口。",optimizeInvalid:"请检查输入，无法计算有效的正数投资金额。",optimizeSuccess:"投资金额已更新。",eyebrow:"个人财务 • 情景测算",title:"贷款投资计算器",subtitle:"在作出决定前，了解每月还款、派息时间、现金流和净资产变化。",reset:"恢复默认值",export:"导出 CSV",loanDetails:"贷款",loanTag:"借款",loanAmount:"贷款金额",tenure:"贷款期限",max420:"最多 420 个月",months:"个月",loanRate:"贷款年利率",perYear:"% / 年",investment:"投资",investTag:"投入资金",investmentAmount:"投资金额",returnRate:"预期投资回报率",payoutFrequency:"派息频率",every1:"每 1 个月",every3:"每 3 个月",every6:"每 6 个月",every12:"每 12 个月",investmentNote:"投资金额不能高于贷款金额。预期回报仅为假设，并非保证收益。",calculationMode:"贷款计算方式",reducing:"递减余额",flat:"平息法",compare:"比较",cashRule:"贷款每月照常还款。投资只在派息月份产生现金收入，不会自动复投。",summary:"结果摘要",live:"实时计算",monthlyPayment:"每月月供",loanInstalment:"贷款分期付款",totalInterest:"贷款总利息",overTenure:"整个贷款期限",totalPayouts:"投资总派息",cashIncome:"现金收入，不复投",endingCashFlow:"期末累计净现金流",afterAllMonths:"全部月供及派息后的结果",endingNetAsset:"期末净资产",assetsMinusDebt:"投资本金 + 可用现金 − 贷款",cashFlowChart:"月度净现金流",cashFlowChartNote:"当月派息减当月贷款月供",trendChart:"资产与现金流趋势",trendChartNote:"投资本金、剩余贷款及累计净现金流",investmentPrincipal:"投资本金",remainingLoan:"剩余贷款",cumulativeCashFlow:"累计净现金流",schedule:"逐月明细",scheduleNote:"完整显示每月贷款、派息、现金流和净资产。",disclaimerTitle:"重要声明：",disclaimer:"本工具仅用于情景测算，不构成财务、投资或贷款建议。预期回报是用户输入的假设，不代表保证收益。实际回报、费用、税务和贷款条款可能不同。所有计算均在当前浏览器完成；输入不会保存或发送到服务器。",invalidLoan:"贷款金额必须大于零。",invalidTenure:"贷款期限必须是 1 至 420 个月的整数。",invalidLoanRate:"贷款利率不能为负数。",invalidInvestment:"投资金额必须大于零。",investmentTooHigh:"投资金额不能高于贷款金额。",invalidReturn:"预期回报率不能为负数。",invalidPayout:"请选择支持的派息频率。",invalidInputs:"请修正标记的输入后查看计算结果。",modeReducing:"递减余额法",modeFlat:"平息法",modeCompare:"比较模式",fundingGap:"资金缺口",endingSurplus:"期末现金流",netAsset:"净资产",mode:"模式",month:"月份",payment:"月供",interest:"利息",principal:"已还本金",balance:"剩余贷款",payout:"投资派息",investValue:"投资本金",monthlyNet:"月度净现金流",cumulativeNet:"累计净现金流",availableCash:"可用现金",netAssets:"净资产",noData:"请修正输入以显示计算结果。",cashLegendReducing:"递减余额法",cashLegendFlat:"平息法",monthShort:"第",noChartData:"无数据",csvName:"贷款投资计算器",ending:"期末",initialCash:"初始保留现金"
 }};
+TEXT.en.openSettings="☰ Parameters";TEXT.zh.openSettings="☰ 参数设置";
+TEXT.en.settingsTitle="Parameters";TEXT.zh.settingsTitle="参数设置";
+TEXT.en.closeSettings="Close";TEXT.zh.closeSettings="关闭";
 TEXT.en.availableCash="Available cash";TEXT.zh.availableCash="可用现金";
 TEXT.en.trendChartNote="Investment principal, remaining loan, cumulative cash flow and available cash";
 TEXT.zh.trendChartNote="投资本金、剩余贷款、累计净现金流及可用现金";
@@ -402,6 +419,27 @@ function exportCsv(){
  const date=new Date(),stamp=date.getFullYear()+"-"+String(date.getMonth()+1).padStart(2,"0")+"-"+String(date.getDate()).padStart(2,"0");
  a.download=(state.language==="zh"?"贷款投资计算器":"loan-investment-calculator")+"-"+stamp+".csv";document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);
 }
+const settingsDrawer=$("settingsDrawer"),openSettingsBtn=$("openSettingsBtn");
+openSettingsBtn.addEventListener("click",()=>{
+ closeFormula();$("trendTooltip").hidden=true;
+ settingsDrawer.showModal();openSettingsBtn.setAttribute("aria-expanded","true");
+});
+$("closeSettingsBtn").addEventListener("click",()=>settingsDrawer.close());
+settingsDrawer.addEventListener("click",e=>{
+ if(e.target!==settingsDrawer)return;
+ const r=settingsDrawer.getBoundingClientRect();
+ if(e.clientX<r.left||e.clientX>=r.right||e.clientY<r.top||e.clientY>=r.bottom)settingsDrawer.close();
+});
+settingsDrawer.addEventListener("keydown",e=>{
+ if(e.key!=="Tab")return;
+ const controls=Array.from(settingsDrawer.querySelectorAll('button,input,select,[tabindex="0"]')).filter(el=>!el.disabled);
+ const first=controls[0],last=controls[controls.length-1];
+ if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}
+ else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}
+});
+settingsDrawer.addEventListener("close",()=>{
+ openSettingsBtn.setAttribute("aria-expanded","false");openSettingsBtn.focus();
+});
 fields.forEach(id=>$(id).addEventListener("input",render));
 $("language").addEventListener("change",e=>{state.language=e.target.value;render()});
 document.querySelectorAll("[data-mode]").forEach(b=>b.addEventListener("click",()=>{state.mode=b.dataset.mode;render()}));

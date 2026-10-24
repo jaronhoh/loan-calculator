@@ -2,7 +2,7 @@
 
 > Single source of truth for cross-conversation handoff.
 > Last updated: 2026-10-24 (Malaysia, UTC+08:00)
-> Case status: FR-19 implementation and acceptance passed; publication in progress. See latest appended evidence.
+> Case status: FR-19 RELEASED — 90,959 automated checks and local real-browser acceptance passed; existing owner-only Site version 9 deployed successfully.
 
 ## Project identity
 - Repository: jaronhoh/loan-calculator
@@ -204,3 +204,15 @@ Run from repository root: `node tests/v21-regression.cjs`.
 - 另验证关闭按钮、桌面及手机遮罩、Tab/Shift+Tab 循环、面板内部滚动、修改即时计算、输入保留、优化 90,791.75、贷款方式切换、图表箭头键 Tooltip、表头公式 Tooltip、手机表格横滚、Reset 保留主题及开关、刷新恢复默认及关闭。未观察到控制台错误/警告。
 - 验证限制：手机使用浏览器尺寸模拟，实体手机触屏和原生浏览器 CSV 下载未独立验证；CSV 数据通过自动回归。生产认证后的界面验证与部署成功分别记录。
 - 截图及浏览器矩阵将在 docs/evidence/fr19-drawer 保存。真实 GitHub commit 与 Sites deployment 待发布后追加。
+
+## FR-19 最终发布证据 — 2026-10-24 11:33 MYT
+- 状态：**Released**；统一左侧 Drawer 在桌面和手机默认关闭，主页面优先显示结果。
+- GitHub main 应用/需求/测试 commit：d24e3b20d76af54d332dc039dfeae39624ef87c5。通过连接工具直接提交 main，未创建分支；已 fetch origin/main 并确认文件树 563b442137c67d5f8390874d08467ffde93051ac 与本地已测试提交完全一致。未声称 GitHub CI 运行，本次使用本地回归。
+- Sites source commit：8216c809b12501bbfddf060eb75931532719e6c8。dist/index.html 与 GitHub development/index.html 字节一致（blob dda8417bfde1541b74e0ea49872aa51bc31588dc）；原 .openai/hosting.json 未改。
+- Sites version 9：appgprj_6ad0f21a67c88191ba4abfa0761bc3c0~appgver_f03a2fe22aa88191aced7427bd1157c6。
+- Deployment ID：appgdep_6adc26faf4948191a7c69d91f8bd89fc；terminal **succeeded**，failure_message null；updated_at 2026-10-24T03:33:33.227168+00:00（11:33:33 MYT）。
+- URL：https://loan-investment-calculator.savoryboar128.chatgpt.site；仍为原 Site appgprj_6ad0f21a67c88191ba4abfa0761bc3c0，没有新建 Site。
+- 部署后 get_site：active、version 9、相同 URL；access_policy 与部署前完全一致（custom、仅 owner、revision 1、0 external visitors、无 editors/groups）。env_set_revision 0。
+- 自动回归共 90,959 项通过；真实本地浏览器八组合及额外交互通过，详见上节和 docs/evidence/fr19-drawer。实体手机触屏及原生浏览器下载未独立验证；生产发布由原生 Sites 成功响应核实，未声称认证后生产 UI 验收。
+- 自动审批曾因把历史 Sites opening source SHA 误认为待部署版本而拒绝打包；检查 helper 确认 saveSource 会创建/推送/核实新提交后，原流程重试获准。最终仅部署上述新 Site source commit。
+- 本次文件仅记录发布证据，不改变已部署应用；该文档最终 commit 可从本文件 GitHub 历史查得。

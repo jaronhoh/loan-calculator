@@ -2,7 +2,7 @@
 
 > Single source of truth for cross-conversation handoff.
 > Last updated: 2026-10-24 (Malaysia, UTC+08:00)
-> Case status: FR-19 RELEASED — 90,959 automated checks and local real-browser acceptance passed; existing owner-only Site version 9 deployed successfully.
+> Case status: FR-19 RELEASED — 90,959 automated checks and local real-browser acceptance passed; existing owner-only Site version 10 deployed successfully.
 
 ## Project identity
 - Repository: jaronhoh/loan-calculator
@@ -221,3 +221,11 @@ Run from repository root: `node tests/v21-regression.cjs`.
 - 参数设置按钮移至恢复默认值右边；Drawer 从右侧打开，左侧遮罩关闭。更新 PRD/定型稿/模块/日志，取代此前位置定义。
 - 自动回归 90,959 项通过；真实浏览器 1440×1000 / 390×844 × 中英文 × Light/Dark 八组合验证按钮相邻且同排、默认关闭、面板贴右、左侧遮罩关闭和焦点返回，无页面水平溢出；另验证 Esc。
 - 本次仅调整 HTML 位置及三处 CSS；实体手机触屏未独立验证。GitHub/Sites 真正发布标识待部署后追加。
+
+### 右侧 Drawer 发布完成 — 2026-10-24 11:49 MYT
+- GitHub main implementation commit: 5d92848f1045caa3f30e392c0808a75aaf8c5527；远端 main 与本地测试内容逐字相同。
+- Sites source commit: f93ca215f817b4268bc031eb6f45040e2cc7b95b；dist/index.html 与 GitHub development/index.html 字节一致，hosting 配置未改。
+- Version 10: appgprj_6ad0f21a67c88191ba4abfa0761bc3c0~appgver_d8f848817ef0819191e80216c4ba2859。
+- Deployment: appgdep_6adc2abe30c08191b8fc2b0c79dcc31d；succeeded，failure_message null；2026-10-24T03:49:36.160491+00:00。
+- URL: https://loan-investment-calculator.savoryboar128.chatgpt.site；部署后 active、version 10，owner-only access_policy 与部署前完全相同（revision 1），没有新建 Site。
+- 自动回归 90,959 项及八组合本地浏览器验收通过。截图/矩阵保存在本聊天 outputs/right-drawer-*；物理触控与生产认证后 UI 未独立验证。本次是 HTML/CSS 位置调整，原计算/CSV/Tooltip 未改。

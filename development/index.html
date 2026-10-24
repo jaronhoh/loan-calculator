@@ -28,8 +28,8 @@ html[data-theme="dark"] .optimize-btn:disabled{background:#455572;border-color:#
 .theme-button{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;padding:10px;border:1px solid transparent;border-radius:8px;background:transparent;color:var(--muted)}.theme-button:hover{background:var(--hover);color:var(--ink)}.theme-button[aria-pressed="true"]{background:var(--surface);border-color:var(--blue);color:var(--blue)}.theme-button svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 @media(max-width:600px){.topbar{position:relative;padding-top:4px}.topbar>div:first-child{padding-right:106px}.theme-switch{position:absolute;right:0;top:0}}
 /* Modal settings use the existing input nodes and theme tokens. */
-.layout{grid-template-columns:minmax(0,1fr)}.settings-open{min-height:44px;margin-bottom:18px}
-.settings-drawer{position:fixed;inset:0 auto 0 0;margin:0;width:min(420px,calc(100% - 24px));max-width:100%;height:100%;height:100dvh;max-height:100%;padding:0;border:0;border-right:1px solid var(--line);background:var(--bg);color:var(--ink);box-shadow:12px 0 40px #0003;overflow:auto;overscroll-behavior:contain}
+.layout{grid-template-columns:minmax(0,1fr)}.settings-open{min-height:44px}
+.settings-drawer{position:fixed;inset:0 0 0 auto;margin:0;width:min(420px,calc(100% - 24px));max-width:100%;height:100%;height:100dvh;max-height:100%;padding:0;border:0;border-left:1px solid var(--line);background:var(--bg);color:var(--ink);box-shadow:-12px 0 40px #0003;overflow:auto;overscroll-behavior:contain}
 .settings-drawer::backdrop{background:#0007}.drawer-panel{padding:18px}.drawer-head{display:flex;align-items:center;justify-content:space-between;gap:12px;position:sticky;top:0;background:var(--bg);z-index:2;padding:0 0 16px}.drawer-head h2{margin:0;font-size:18px}.drawer-head .btn{min-width:44px;min-height:44px}
 .settings-drawer .sidebar{grid-template-columns:minmax(0,1fr)}.settings-drawer .mode-card{grid-column:auto}.settings-drawer .field input,.settings-drawer .field select,.settings-drawer .mode-switch button{min-height:44px}
 body:has(.settings-drawer[open]){overflow:hidden}
@@ -38,7 +38,6 @@ body:has(.settings-drawer[open]){overflow:hidden}
 </head>
 <body>
 <div class="shell">
-  <button id="openSettingsBtn" class="btn settings-open" type="button" aria-haspopup="dialog" aria-controls="settingsDrawer" aria-expanded="false" data-i18n="openSettings">☰ 参数设置</button>
   <header class="topbar">
     <div>
       <div class="eyebrow" data-i18n="eyebrow">PERSONAL FINANCE • SCENARIO PLANNER</div>
@@ -54,6 +53,7 @@ body:has(.settings-drawer[open]){overflow:hidden}
         <option value="en">English</option><option value="zh" selected>简体中文</option>
       </select>
       <button id="resetBtn" class="btn" type="button" data-i18n="reset">Reset defaults</button>
+    <button id="openSettingsBtn" class="btn settings-open" type="button" aria-haspopup="dialog" aria-controls="settingsDrawer" aria-expanded="false" data-i18n="openSettings">☰ 参数设置</button>
     </div>
   </header>
   <div class="layout">

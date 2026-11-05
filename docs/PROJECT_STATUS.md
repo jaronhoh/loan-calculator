@@ -247,3 +247,36 @@ Run from repository root: `node tests/v21-regression.cjs`.
 - NOT VERIFIED: full Tab/Shift+Tab focus loop; tooltip values for all four series/months and pointer hover/touch behavior; a browser-generated CSV file and its downloaded contents. Export CSV control and all 60 monthly rows/12 columns are present in the production page, but the session exposed no download artifact to inspect. The page's responsive table region is present; horizontal-scroll behavior was not physically exercised.
 - Scope/source baseline: production URL only, existing Site ID appgprj_6ad0f21a67c88191ba4abfa0761bc3c0. GitHub main docs, PRD and development/index.html were read; source declares v2.2 and contains the expected Drawer, chart, CSV and calculation handlers. Source inspection is not used as production PASS evidence.
 - No code changes, Site creation, or deployment performed. Temporary viewport override was reset. PocketBay deletion remains outside this verification and unexecuted.
+
+
+## 2026-11-05 Production Final QA (MYT)
+
+**Production Verification: Partial.** This entry covers the three remaining checks on the existing [production Site](https://loan-investment-calculator.savoryboar128.chatgpt.site/) using the authenticated ChatGPT in-app desktop browser. Earlier verification records are retained.
+
+### CSV download — PASS
+
+- Captured four browser download events and read the resulting files from Downloads. Default 60-month inputs were used with Reducing Balance and Flat Rate in both Simplified Chinese and English. Each file has one header and 60 sequential month rows (1–60), with 11 columns on every line. The full 60 data rows match byte-for-byte across languages for each mode. All 600 amount cells per mode use two decimals and preserve negative signs.
+- Chinese header: `月份,月供,利息,已还本金,剩余贷款,投资派息,投资本金,月度净现金流,累计净现金流,可用现金,净资产`
+- English header: `Month,Monthly payment,Interest,Principal paid,Remaining loan,Investment payout,Investment principal,Monthly net cash flow,Cumulative net cash flow,Available cash,Net asset`
+- Reducing Balance months 1/30/60: remaining loan RM98,491.68 / RM52,493.87 / RM0.00, available cash −RM1,841.65 / −RM40,249.50 / −RM80,499.17. Flat Rate: remaining loan RM98,333.33 / RM49,999.90 / RM0.00, available cash −RM2,000.00 / −RM45,000.00 / −RM90,000.00.
+
+| Mode | Language | Downloaded filename | Bytes | SHA-256 |
+| --- | --- | --- | ---: | --- |
+| Reducing Balance | ZH | 贷款投资计算器-2026-11-05.csv | 5405 | `d063b2436f2db959be11243fb3918b7231c694d2b5a35fd9cc30c19f1a29870c` |
+| Flat Rate | ZH | 贷款投资计算器-2026-11-05 (1).csv | 5403 | `3b541f7bfa6353b6ee4b2302536f7b659944641023123cb2d66b3fc98e0ab931` |
+| Flat Rate | EN | loan-investment-calculator-2026-11-05.csv | 5441 | `9a0342589a13b8058c6b975058191a28bf6b40bfe1aeee5ec47aa9e4ae5d1c6e` |
+| Reducing Balance | EN | loan-investment-calculator-2026-11-05 (1).csv | 5443 | `8974ed16154e33ba12353b2f8add027fc54f8178022d2f27836add8aeca1af94` |
+
+### Four trend-series tooltips — FAIL for full keyboard coverage
+
+- **Mouse PASS.** Use Reducing Balance, English, and set investment to RM90,000 to separate the two cash curves. Position the mouse over each plotted line. The production Tooltip matched Monthly Breakdown: month 29 investment principal RM90,000.00, remaining loan RM54,155.00, and available cash −RM32,607.85. Month 57 cumulative cash flow was −RM80,674.05 and available cash was −RM70,674.05. Moving outside the chart hid the Tooltip.
+- **Keyboard month navigation and Escape PASS.** Left/Right moved between months 5 and 6 and Escape hid the Tooltip.
+- **Keyboard series selection FAIL for this QA scope.** Reproduce by opening the production chart, setting investment to RM90,000 as above, focusing the chart and pressing Right, Down, Up, then Left. Right and Left change the month, but the tooltip always displays Investment principal. Down and Up leave the displayed series unchanged. Expected for full keyboard coverage: a keyboard path to inspect remaining loan, cumulative cash flow and available cash as well. No repair performed.
+- **Touch NOT VERIFIED.** This desktop session exposed mouse and keyboard input. A touch-capable session or physical touchscreen is needed to verify taps.
+
+### Right-side Drawer — PASS
+
+- Opening Settings moved focus to Close. Shift+Tab wrapped from Close to Flat Rate, and Tab wrapped back to Close. A full forward pass visited amount, tenure, loan rate, investment, Optimize, return rate, payout frequency and both loan-mode buttons before wrapping. Focus stayed in the modal.
+- Escape, the Close button and a backdrop click each dismissed the Drawer and returned focus to the Settings trigger. With the Drawer open, the left backdrop intercepted a point outside the panel and wheel scrolling on it left background scroll at 0. The panel's right edge matched the 922 px viewport edge.
+
+Open items: keyboard access to the other three trend series and touch Tooltip verification. This QA changed only this status document. The production Site, application code, deployment and PocketBay were outside the write scope.

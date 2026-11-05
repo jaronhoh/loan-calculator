@@ -1,6 +1,6 @@
 # Loan Investment Calculator — 产品需求文档（PRD）
 
-> **状态：Completed / Maintenance Mode；v2.2 已发布至 ChatGPT Sites Version 11。PocketBay #3128 属 Legacy System Cleanup，待删除/核实。**
+> **状态：Completed / Maintenance Mode；v2.2 已发布至 ChatGPT Sites Version 11。PocketBay #3128 属 Legacy System Cleanup；用户于 2026-11-05 确认已删除，本方未独立核验。**
 > **当前发布：v2.2｜Sites Version 11｜Production QA 与项目收尾：2026-11-05**
 > 唯一产品定义来源：[产品定型稿](../shaping/06-最终定型稿.md)。若 PRD 与定型稿不一致，以定型稿为准，并通过变更记录同步修订。
 
@@ -208,7 +208,7 @@ Loan Investment Calculator 是面向马来西亚用户的免费、无需注册�
 - 图表采用原生 Canvas 绘制，不要求后端或图表 API。
 - CSV 通过浏览器端 Blob 下载。
 - 正式网站采用现有 ChatGPT Sites（https://loan-investment-calculator.jaron-hoh.chatgpt.site；旧 savoryboar128 URL 重定向至此）；保留 GitHub `main` 为源代码。
-- 旧 PocketBay 应用 #3128 已获用户授权删除，但尚无删除成功的系统证据；在实际删除并核实前，不得记录为已删除。
+- 旧 PocketBay 应用 #3128：用户于 2026-11-05 确认已删除；本方未通过 PocketBay 账户独立核验。
 
 ## 10. 变更记录
 
@@ -223,7 +223,7 @@ Loan Investment Calculator 是面向马来西亚用户的免费、无需注册�
 
 > 2026-10-16 最终修订：移除全部表头 `i` 图标，直接 hover 表头 label 显示 Tooltip；保留键盘 focus 与手机点按。
 
-| 运维变更 | 2026-10-16 | 用户要求删除旧 PocketBay #3128，保留 ChatGPT Sites 为正式网站；删除执行及验证待完成。 |
+| 运维变更 | 2026-10-16 | 用户要求删除旧 PocketBay #3128，保留 ChatGPT Sites 为正式网站；用户于 2026-11-05 确认已删除；本方未独立核验。 |
 
 | v2.2 已发布 | 2026-10-16 | 一键优化投资金额按贷款金额 − (派息周期月数 − 1) × 当前模式月供计算；仅预留首次派息前月供，不承诺全期限现金充足。回归通过并部署至现有 Sites。 |
 > 自动回归使用 Node VM DOM stubs；实际浏览器布局、设备触控与下载验收未在本次执行中独立验证。
@@ -288,3 +288,6 @@ Loan Investment Calculator 是面向马来西亚用户的免费、无需注册�
 
 ## 发布完成状态（2026-11-05）
 FR-13 至 FR-19 均已完成并发布。FR-19 最终采用右侧模态 Drawer：桌面与手机默认关闭；参数设置按钮位于 Reset 旁边。此前左侧 Drawer 描述及未发布/待实施状态均为历史版本，已由 2026-10-24 位置修订及 2026-11-05 Version 11 生产验收取代。生产 QA 汇总见 `docs/PROJECT_STATUS.md`。
+
+## Legacy cleanup update（2026-11-05）
+用户确认旧 PocketBay 应用 #3128 已删除。此状态按用户确认记录；当前连接未提供 PocketBay 账户侧独立核验能力。

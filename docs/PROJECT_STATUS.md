@@ -237,3 +237,13 @@ Run from repository root: `node tests/v21-regression.cjs`.
 - PASS: Optimize recalculates the default investment amount to RM90,791.75.
 - NOT VERIFIED: close-button dismissal, backdrop dismissal, full focus loop and return, trend-tooltip details, Flat Rate mode, mobile viewport behavior, and downloaded CSV contents. Clicking Export CSV did not produce a verifiable download artifact in the browser session.
 - Physical touchscreen was not tested. No application changes or deployment were made. Verification was performed on the existing production Site URL.
+
+
+### 2026-11-05 production verification follow-up
+- PASS: production Flat Rate selection; displayed monthly payment RM2,000.00 and total interest RM20,000.00 under the current inputs.
+- PASS: Drawer close button and dimmed backdrop both close the open drawer. Closing returns focus to the settings trigger. Escape dismissal was also verified.
+- PASS: keyboard focus on the trend chart reveals an actual tooltip for month 1 (investment principal RM100,000.00). Chart accessibility text and legend identify four trend series; the dark-theme view showed the four series and dashed RM0 reference.
+- PASS: browser viewport simulator at 390×844 retained the calculator summary, trend chart and monthly breakdown. This is a simulated viewport check, not a physical mobile device or touchscreen check.
+- NOT VERIFIED: full Tab/Shift+Tab focus loop; tooltip values for all four series/months and pointer hover/touch behavior; a browser-generated CSV file and its downloaded contents. Export CSV control and all 60 monthly rows/12 columns are present in the production page, but the session exposed no download artifact to inspect. The page's responsive table region is present; horizontal-scroll behavior was not physically exercised.
+- Scope/source baseline: production URL only, existing Site ID appgprj_6ad0f21a67c88191ba4abfa0761bc3c0. GitHub main docs, PRD and development/index.html were read; source declares v2.2 and contains the expected Drawer, chart, CSV and calculation handlers. Source inspection is not used as production PASS evidence.
+- No code changes, Site creation, or deployment performed. Temporary viewport override was reset. PocketBay deletion remains outside this verification and unexecuted.

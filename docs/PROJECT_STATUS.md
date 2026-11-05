@@ -291,3 +291,10 @@ Open items: keyboard access to the other three trend series and touch Tooltip ve
 - **Keyboard PASS (production, Chinese and English).** Tab from Settings focused the chart. Left/Right changed months, Up/Down cycled all four series in both directions, and Escape hid the Tooltip. With investment RM90,000, observed month 1 investment principal RM90,000.00, remaining loan RM98,491.68, and cumulative cash flow −RM1,841.65. Month 2 cumulative cash flow was −RM3,683.30 and available cash RM6,316.70. The chart exposed localized keyboard instructions.
 - **Touch NOT VERIFIED.** The authenticated desktop in-app browser exposed mouse and keyboard input. Remaining check: use a touch-capable browser or phone to tap all four series across different months and confirm signed values.
 - This GitHub commit records release and QA evidence. The published application change is in the Sites source commit above.
+
+
+## 2026-11-05 Production verification closure (MYT)
+
+**Production Verification Completed.** The user confirmed that touch interaction on the trend chart passed. Touch is recorded as **PASS (user-confirmed)**, completing the outstanding item in the previous entry. The confirmation did not include device details or a point-by-point log.
+
+The existing production Site, version 11, is accepted. Final coverage includes the four actual CSV downloads, the right-side Drawer, and trend Tooltip mouse, keyboard, and touch interaction. This closure updates the QA record only.

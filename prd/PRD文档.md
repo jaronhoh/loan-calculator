@@ -1,9 +1,7 @@
-> v2.2 实施更新（2026-10-16）：一键优化已实现，自动回归通过；Sites 部署受执行审批限制，真实浏览器/移动端验收未完成。**未 Released，现网仍为 v2.1**。下方 v2.2 规划文字保留为需求基线。
-
 # Loan Investment Calculator — 产品需求文档（PRD）
 
-> **状态：v2.2 已在 ChatGPT Sites 发布；PocketBay #3128 删除待执行/核实**
-> **已发布版本：v2.2｜更新日期：2026-10-16**
+> **状态：Completed / Maintenance Mode；v2.2 已发布至 ChatGPT Sites Version 11。PocketBay #3128 属 Legacy System Cleanup，待删除/核实。**
+> **当前发布：v2.2｜Sites Version 11｜Production QA 与项目收尾：2026-11-05**
 > 唯一产品定义来源：[产品定型稿](../shaping/06-最终定型稿.md)。若 PRD 与定型稿不一致，以定型稿为准，并通过变更记录同步修订。
 
 ## 1. 产品概述
@@ -209,7 +207,7 @@ Loan Investment Calculator 是面向马来西亚用户的免费、无需注册�
 - 静态 HTML/CSS/JavaScript。
 - 图表采用原生 Canvas 绘制，不要求后端或图表 API。
 - CSV 通过浏览器端 Blob 下载。
-- 正式网站采用现有 ChatGPT Sites（loan-investment-calculator.savoryboar128.chatgpt.site）；保留 GitHub `main` 为源代码。
+- 正式网站采用现有 ChatGPT Sites（https://loan-investment-calculator.jaron-hoh.chatgpt.site；旧 savoryboar128 URL 重定向至此）；保留 GitHub `main` 为源代码。
 - 旧 PocketBay 应用 #3128 已获用户授权删除，但尚无删除成功的系统证据；在实际删除并核实前，不得记录为已删除。
 
 ## 10. 变更记录
@@ -286,3 +284,7 @@ Loan Investment Calculator 是面向马来西亚用户的免费、无需注册�
 
 ## FR-19 位置修订（2026-10-24）
 用户确认：参数设置按钮紧邻恢复默认值按钮，纳入同一顶部操作区；Drawer 改为从右侧打开，手机左侧保留遮罩点击区。本条取代原左上角独立按钮及左侧 Drawer 要求；默认关闭、三种关闭方式、焦点约束/返回、输入保留、实时计算、双语和主题保持。验收：桌面/手机按钮相邻、面板贴右边缘、左侧遮罩关闭正常。
+
+
+## 发布完成状态（2026-11-05）
+FR-13 至 FR-19 均已完成并发布。FR-19 最终采用右侧模态 Drawer：桌面与手机默认关闭；参数设置按钮位于 Reset 旁边。此前左侧 Drawer 描述及未发布/待实施状态均为历史版本，已由 2026-10-24 位置修订及 2026-11-05 Version 11 生产验收取代。生产 QA 汇总见 `docs/PROJECT_STATUS.md`。

@@ -9,7 +9,7 @@
 - Branch: main (no additional GitHub branch created)
 - Application: development/index.html
 - Production version: v2.2 with FR-14–FR-18 UI enhancements (Released 2026-10-17); development version: v2.2
-- Existing PocketBay app #3128: user explicitly authorized permanent deletion on 2026-10-16; deletion NOT executed or verified (no PocketBay delete integration available).
+- Existing PocketBay app #3128: user explicitly authorized permanent deletion on 2026-10-16; deletion user-confirmed complete on 2026-11-05; not independently verified by this agent.
 - Official production platform: ChatGPT Sites; keep the existing Site intact.
 - Existing ChatGPT Site: appgprj_6ad0f21a67c88191ba4abfa0761bc3c0
 - Site URL: https://loan-investment-calculator.savoryboar128.chatgpt.site
@@ -75,13 +75,13 @@ Run from repository root: `node tests/v21-regression.cjs`.
 - Terminal status: succeeded; failure_message: null.
 - Verified at: 2026-10-16 17:41:43 MYT (09:41:43 UTC), native Sites deployment response.
 - URL: https://loan-investment-calculator.savoryboar128.chatgpt.site
-- Existing Site reused; owner-only audience preserved; PocketBay #3128 untouched.
+- Existing Site reused; owner-only audience preserved; PocketBay #3128 was later reported deleted by the user on 2026-11-05; no independent verification.
 - Deployment success verifies publication, not browser/mobile acceptance. The outstanding browser checks below remain unverified.
 
 ## PocketBay retirement request — 2026-10-16
 - User explicitly requested deletion of PocketBay app #3128 (loan-calculator), with PRD/GitHub updates.
-- PocketBay deletion: **NOT EXECUTED / NOT VERIFIED**. Available tools do not provide PocketBay account application deletion; do not confuse this with uninstalling a ChatGPT plugin.
-- Required owner action: delete app #3128 from the PocketBay account interface, verify it is absent, then record confirmed deletion here.
+- PocketBay deletion: **USER-CONFIRMED DELETED (2026-11-05); NOT INDEPENDENTLY VERIFIED**. The available tools did not provide PocketBay account application deletion.
+- User later confirmed deletion on 2026-11-05. No independent account-side verification was available.
 - GitHub application source and ChatGPT Sites must remain untouched.
 
 ## v2.2 requirement baseline — One-click Optimize Investment (2026-10-16)
@@ -121,7 +121,7 @@ Run from repository root: `node tests/v21-regression.cjs`.
 - Regression PASS: 256 scenarios / 77,851 assertions (Node VM; actual browser/mobile visual and input acceptance remains unverified).
 - Existing Sites deployment: succeeded; ID appgdep_6ad1f20d2a508191bceb0a0ec2a5104f; saved version appgprj_6ad0f21a67c88191ba4abfa0761bc3c0~appgver_8da1f8eabe708191aa6b6ec54d68ce3b; source bda9857bd7cd071977113bb87a41e07365ffb817.
 - URL: https://loan-investment-calculator.savoryboar128.chatgpt.site
-- PRD and shaping synchronized; PocketBay #3128 untouched.
+- PRD and shaping synchronized; PocketBay #3128 was later reported deleted by the user on 2026-11-05; no independent verification.
 
 ## Case closure — 2026-10-16 17:49 MYT
 - User confirmation: “ok 我测试完成，close case”.
@@ -246,7 +246,7 @@ Run from repository root: `node tests/v21-regression.cjs`.
 - PASS: browser viewport simulator at 390×844 retained the calculator summary, trend chart and monthly breakdown. This is a simulated viewport check, not a physical mobile device or touchscreen check.
 - NOT VERIFIED: full Tab/Shift+Tab focus loop; tooltip values for all four series/months and pointer hover/touch behavior; a browser-generated CSV file and its downloaded contents. Export CSV control and all 60 monthly rows/12 columns are present in the production page, but the session exposed no download artifact to inspect. The page's responsive table region is present; horizontal-scroll behavior was not physically exercised.
 - Scope/source baseline: production URL only, existing Site ID appgprj_6ad0f21a67c88191ba4abfa0761bc3c0. GitHub main docs, PRD and development/index.html were read; source declares v2.2 and contains the expected Drawer, chart, CSV and calculation handlers. Source inspection is not used as production PASS evidence.
-- No code changes, Site creation, or deployment performed. Temporary viewport override was reset. PocketBay deletion remains outside this verification and unexecuted.
+- No code changes, Site creation, or deployment performed. Temporary viewport override was reset. PocketBay deletion was later confirmed by the user on 2026-11-05; not independently verified.
 
 
 ## 2026-11-05 Production Final QA (MYT)
@@ -331,7 +331,7 @@ The existing production Site, version 11, is accepted. Final coverage includes t
 - Development: none for the completed v2.2 scope.
 - QA: none for closure criteria; touch PASS is user-confirmed without an independent device log.
 - Documentation: restored this file after its accidental deletion.
-- Legacy System Cleanup: PocketBay #3128 deletion remains NOT EXECUTED / NOT VERIFIED. It is separate from application defects and is not marked complete.
+- Legacy System Cleanup: PocketBay #3128: user-confirmed deleted on 2026-11-05; not independently verified. This was a Legacy System Cleanup item, separate from application defects.
 
 ## Maintenance Rules
 - Confirm requirements before starting new features.
@@ -344,3 +344,7 @@ The existing production Site, version 11, is accepted. Final coverage includes t
 
 ## Status-file recovery note
 This was not merely a connector read issue: commit bf7c3941446fad6dc63b613f16d3a03f310bdfd8 deletes all 300 lines. Its parent retained the full record, including the 2026-11-05 QA evidence. This update restores that history and adds the closure summary.
+
+
+## PocketBay cleanup update — 2026-11-05
+The user confirmed that legacy PocketBay app #3128 has been deleted. This is recorded as user-confirmed; the deletion was not independently verified through PocketBay account access.

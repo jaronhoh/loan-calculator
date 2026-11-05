@@ -280,3 +280,14 @@ Run from repository root: `node tests/v21-regression.cjs`.
 - Escape, the Close button and a backdrop click each dismissed the Drawer and returned focus to the Settings trigger. With the Drawer open, the left backdrop intercepted a point outside the panel and wheel scrolling on it left background scroll at 0. The panel's right edge matched the 922 px viewport edge.
 
 Open items: keyboard access to the other three trend series and touch Tooltip verification. This QA changed only this status document. The production Site, application code, deployment and PocketBay were outside the write scope.
+
+
+## 2026-11-05 Trend Tooltip keyboard fix — production follow-up (MYT)
+
+**Production Verification: Partial.** Keyboard coverage now passes in production. Touch Tooltip verification remains open. The earlier CSV and Drawer PASS records remain the evidence for those checks.
+
+- Deployed Site version 11 at 14:30:11 MYT. Sites source commit `cb7f51c4b649aa594eaa58465acc35084f3105a6`, saved version `appgprj_6ad0f21a67c88191ba4abfa0761bc3c0~appgver_3bf32545f8488191b40619c7eff78247`, deployment `appgdep_6aec2254ed448191bf7a6e251c96e49c` returned terminal `succeeded`. The tracked hosting manifest and the owner-only access policy were verified unchanged.
+- Current production URL: https://loan-investment-calculator.jaron-hoh.chatgpt.site. The previous savoryboar128 URL redirected to the current URL and loaded the calculator in the authenticated session. An initial 404 cleared on retry.
+- **Keyboard PASS (production, Chinese and English).** Tab from Settings focused the chart. Left/Right changed months, Up/Down cycled all four series in both directions, and Escape hid the Tooltip. With investment RM90,000, observed month 1 investment principal RM90,000.00, remaining loan RM98,491.68, and cumulative cash flow −RM1,841.65. Month 2 cumulative cash flow was −RM3,683.30 and available cash RM6,316.70. The chart exposed localized keyboard instructions.
+- **Touch NOT VERIFIED.** The authenticated desktop in-app browser exposed mouse and keyboard input. Remaining check: use a touch-capable browser or phone to tap all four series across different months and confirm signed values.
+- This GitHub commit records release and QA evidence. The published application change is in the Sites source commit above.

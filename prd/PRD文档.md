@@ -300,4 +300,4 @@ FR-13 至 FR-19 均已完成并发布。FR-19 最终采用右侧模态 Drawer：
 - 中英文切换、桌面/手机、Light/Dark 均需正常显示。
 - 发布前允许明确显示 Pending release；实际发布后必须以真实 Sites 版本号及发布时间替换占位信息，再验证生产页面。
 - 验收：Footer 位置、响应式、中英文、主题、版本与 Sites 发布记录一致，且贷款计算/CSV/图表/Drawer 无回归。
-- 状态：GitHub 源码已加入待发布占位信息；Sites 部署与生产验证 Pending，不得标记 Released。
+- 状态（2026-11-06）：FR-20 Footer 源码已写入实际 Sites Version 12 与发布时间 2026-11-06 14:28 MYT；Sites Version 12 已部署成功。生产浏览器验证因 Owner Only 登录门槛未完成，FR-20 保持 Blocked，不标记 Completed / Released。

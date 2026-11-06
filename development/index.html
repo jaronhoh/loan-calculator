@@ -99,7 +99,7 @@ body:has(.settings-drawer[open]){overflow:hidden}
       </section>
     </main>
   </div>
-  <footer class="footer"><div class="release-meta" aria-label="Release information"><span id="releaseVersion">Sites Version 12</span><span aria-hidden="true"> | </span><span id="releaseUpdated">Last Updated: 2026-11-06 14:28 MYT</span></div><strong data-i18n="disclaimerTitle">Important disclaimer:</strong> <span data-i18n="disclaimer">For scenario planning only, not financial, investment or lending advice. The expected return is a user-supplied assumption and is not guaranteed. Actual returns, fees, tax and loan terms may differ. All calculations run in this browser; inputs are not saved or sent to a server.</span></footer>
+  <footer class="footer"><div class="release-meta" aria-label="Release information"><span id="releaseVersion">Sites Version 14</span><span aria-hidden="true"> | </span><span id="releaseUpdated">Last Updated: 2026-11-06 17:22 MYT</span></div><strong data-i18n="disclaimerTitle">Important disclaimer:</strong> <span data-i18n="disclaimer">For scenario planning only, not financial, investment or lending advice. The expected return is a user-supplied assumption and is not guaranteed. Actual returns, fees, tax and loan terms may differ. All calculations run in this browser; inputs are not saved or sent to a server.</span></footer>
 </div>
 <dialog id="settingsDrawer" class="settings-drawer" aria-labelledby="settingsTitle">
   <div class="drawer-panel" id="settingsPanel">
@@ -419,8 +419,8 @@ function render(){
 function applyLanguage(){
  updateThemeLabels();
  $("trendChart").setAttribute("aria-label",t("trendChartAria"));
- $("releaseVersion").textContent=state.language==="zh"?"Sites 版本 12":"Sites Version 12";
- $("releaseUpdated").textContent=state.language==="zh"?"最后更新：2026-11-06 14:28 MYT":"Last Updated: 2026-11-06 14:28 MYT";
+ $("releaseVersion").textContent=state.language==="zh"?"Sites 版本 14":"Sites Version 14";
+ $("releaseUpdated").textContent=state.language==="zh"?"最后更新：2026-11-06 17:22 MYT":"Last Updated: 2026-11-06 17:22 MYT";
  document.documentElement.lang=state.language==="zh"?"zh-CN":"en";
  document.querySelectorAll("[data-i18n]").forEach(el=>{const key=el.getAttribute("data-i18n");if(TEXT[state.language][key])el.textContent=TEXT[state.language][key]});
  $("language").value=state.language;

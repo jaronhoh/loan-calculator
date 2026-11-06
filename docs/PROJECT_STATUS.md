@@ -1,18 +1,36 @@
 # Loan Investment Calculator — Project Status & Handoff
 
 > Single source of truth for cross-conversation handoff.
-> Last updated: 2026-10-24 (Malaysia, UTC+08:00)
-> Case status: FR-19 RELEASED — 90,959 automated checks and local real-browser acceptance passed; existing owner-only Site version 10 deployed successfully.
+> Last updated: 2026-11-06 14:29 MYT
+> Case status: FR-20 Sites Version 12 deployment succeeded; production browser verification remains blocked pending owner sign-in.
+
+
+## Current status — FR-20 (2026-11-06)
+
+| Area | Status | Evidence |
+| --- | --- | --- |
+| Requirement / PRD | Confirmed; release metadata requirement retained | GitHub verified |
+| GitHub source | Updated release footer in `development/index.html`; code commit `089bd5538d9de3f32134f6f03532516f8b9d4026` | GitHub verified |
+| Automated regression | PASS — 6 existing suites, 90,959 checks total | Executed against GitHub main source; Node VM / DOM and canvas stubs |
+| Sites deployment | SUCCEEDED — Version 12; deployment `appgdep_6aed738eeb388191aac004a2cd611281`; source commit `471b5cc2e0beb9c0c68a62965e1820f3ca5d0903` | Sites verified |
+| Production verification | BLOCKED — browser is shown “Sign in required”; live footer, device rendering, and on-page interactions could not be verified | Browser observed; no auth bypass attempted |
+| FR-20 status | BLOCKED pending production browser QA; not marked Completed / Released | Evidence split above |
+
+- Published at: 2026-11-06 14:28:48 MYT (Sites deployment `updated_at`; footer displays 2026-11-06 14:28 MYT).
+- Production URL: https://loan-investment-calculator.jaron-hoh.chatgpt.site (Sites verified).
+- Access/configuration: custom owner-only access retained; one owner allowlisted, no groups; no Site or URL replacement.
+- The exact GitHub source was copied into the existing Site's managed static source checkout. GitHub source commit and Sites managed-source commit are distinct identifiers and are recorded separately above.
+- Regression limits: VM suites do not prove live browser rendering, native keyboard/touch behavior, or an actual browser CSV download. These remain unverified because the owner-only production page requires ChatGPT sign-in in the available browser.
 
 ## Project identity
 - Repository: jaronhoh/loan-calculator
 - Branch: main (no additional GitHub branch created)
 - Application: development/index.html
-- Production version: v2.2 with FR-14–FR-18 UI enhancements (Released 2026-10-17); development version: v2.2
+- Production version: Sites Version 12; application version: v2.2 (FR-20 footer metadata)
 - Existing PocketBay app #3128: user explicitly authorized permanent deletion on 2026-10-16; deletion user-confirmed complete on 2026-11-05; not independently verified by this agent.
 - Official production platform: ChatGPT Sites; keep the existing Site intact.
 - Existing ChatGPT Site: appgprj_6ad0f21a67c88191ba4abfa0761bc3c0
-- Site URL: https://loan-investment-calculator.savoryboar128.chatgpt.site
+- Site URL: https://loan-investment-calculator.jaron-hoh.chatgpt.site
 - Audience: existing owner-only custom access preserved.
 
 ## v2.2 release — 2026-10-16 (MYT)

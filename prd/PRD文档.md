@@ -1,7 +1,7 @@
 # Loan Investment Calculator — 产品需求文档（PRD）
 
-> **状态：Completed / Maintenance Mode；v2.2 已发布至 ChatGPT Sites Version 11。PocketBay #3128 属 Legacy System Cleanup；用户于 2026-11-05 确认已删除，本方未独立核验。**
-> **当前发布：v2.2｜Sites Version 11｜Production QA 与项目收尾：2026-11-05**
+> **FR-20 状态：Blocked / Production QA 未完成；FR-13–FR-19 保持已发布。不得将 FR-20 标记为 Completed / Released。**
+> **当前生产：v2.2｜ChatGPT Sites Version 12｜Footer 显示更新时间 2026-11-06 14:28 MYT；键盘四线导航、指定视口及真实触控仍待验收。**
 > 唯一产品定义来源：[产品定型稿](../shaping/06-最终定型稿.md)。若 PRD 与定型稿不一致，以定型稿为准，并通过变更记录同步修订。
 
 ## 1. 产品概述

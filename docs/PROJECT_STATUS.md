@@ -1,8 +1,8 @@
 # Loan Investment Calculator — Project Status & Handoff
 
 > Single source of truth for cross-conversation handoff.
-> Last updated: 2026-11-06 16:31 MYT
-> Case status: Sites Version 12 deployment succeeded; Owner browser access verified; FR-20 Production QA remains Blocked on keyboard-series and device/viewport acceptance.
+> Last updated: 2026-11-06 16:43 MYT
+> Case status: Sites Version 12 deployment succeeded; Owner browser access verified; requested simulated desktop/mobile viewport checks passed; FR-20 remains Blocked on four-series keyboard navigation and real-touch acceptance.
 
 
 ## Current status — FR-20 (2026-11-06)
@@ -13,14 +13,14 @@
 | GitHub source | Updated release footer in `development/index.html`; code commit `089bd5538d9de3f32134f6f03532516f8b9d4026` | GitHub verified |
 | Automated regression | PASS — 6 existing suites, 90,959 checks total | Executed against GitHub main source; Node VM / DOM and canvas stubs |
 | Sites deployment | SUCCEEDED — Version 12; deployment `appgdep_6aed738eeb388191aac004a2cd611281`; source commit `471b5cc2e0beb9c0c68a62965e1820f3ca5d0903` | Sites verified |
-| Production verification | PARTIAL; authorized Owner session accessed production and confirmed Footer, pointer Tooltips for all four series (with separated local test values), month navigation, Escape dismissal, language/theme rendering, and Settings Drawer. Keyboard cannot select all four series; exact requested viewports and real touch remain unverified. | Live production browser observations and Sites API |
+| Production verification | PARTIAL; authorized Owner session confirmed Footer, all four pointer Tooltips, Escape dismissal, bilingual/theme rendering, and Settings Drawer. Exact 1440×900, 390×844, and 375×812 browser-simulated viewport checks now pass with no page-level horizontal overflow; table scroll stays inside its own container. Keyboard cannot select all four series; real touch remains unverified. | Live production browser observations, explicit viewport measurements, and Sites API |
 | FR-20 status | BLOCKED; not marked Completed / Released | Required keyboard-series, target-viewport and real-touch criteria remain outstanding |
 
 - Published at: 2026-11-06 14:28:48 MYT (Sites deployment `updated_at`; footer displays 2026-11-06 14:28 MYT).
 - Production URL: https://loan-investment-calculator.jaron-hoh.chatgpt.site (Sites verified).
 - Access/configuration: custom owner-only access retained; one owner allowlisted, no groups; no Site or URL replacement.
 - The exact GitHub source was copied into the existing Site's managed static source checkout. GitHub source commit and Sites managed-source commit are distinct identifiers and are recorded separately above.
-- Verification limits: The prior 90,959-check VM suites do not prove live rendering or native device input. This follow-up verified production Footer, pointer Tooltips for all four series under a separated local scenario, month navigation, Escape dismissal, settings drawer, and bilingual/theme rendering. Keyboard selection of all four series, the exact 1440×900 / 390×844 / 375×812 viewports, and physical touch remain outstanding; browser CSV download remains prior user-confirmed evidence and was not repeated.
+- Verification limits: The recorded 90,959-check VM suites do not prove native device input. This follow-up measured exact browser-simulated 1440×900, 390×844, and 375×812 viewports and confirmed no page-level horizontal overflow; responsive table scrolling remains internal. Live calculation, Flat Rate, Reset, CSV download, drawer open/close, bilingual/theme rendering and bilingual Tooltips were exercised. Keyboard selection of all four chart series fails, and physical touch remains unverified.
 
 ## Project identity
 - Repository: jaronhoh/loan-calculator
@@ -419,3 +419,14 @@ Owner confirmed production footer Sites Version 12 and Last Updated 2026-11-06 1
 - Static source inspection of GitHub `main` `development/index.html` confirms the chart `keydown` handler changes months only for `ArrowLeft` / `ArrowRight`, and selects `trendGeometry.points.find(x => x.month === month)`, which returns the first series point for that month. It handles Escape by hiding the tooltip, but contains no `ArrowUp` / `ArrowDown` series navigation. This corroborates the live finding that keyboard access to all four trend lines fails.
 - Exact 1440×900, 390×844, and 375×812 viewport checks remain unverified. The available browser observations do not establish those exact viewport sizes. No real touch-device test was available or performed; desktop pointer input is not counted as touch.
 - Existing user-confirmed regression evidence and the recorded 90,959 automated checks remain documented, but they do not satisfy the failed keyboard criterion or prove the requested viewport/touch coverage. FR-20 remains Blocked; no Completed / Released or Production QA Passed claim is made.
+
+
+## FR-20 production QA update — 2026-11-06 16:43 MYT
+
+- **Browser viewport tests (simulated, not native devices):** Exact CSS viewports 1440×900, 390×844, and 375×812 were set with the browser viewport control. At desktop, `innerWidth=1440`, document/body scroll width matched the 1425px client width (vertical scrollbar accounts for the difference); summary/chart widths were 1307px. At 390×844, document/body/client width was 375px; at 375×812 it was 360px; in both cases the document/body widths matched client width, with no page-level horizontal overflow. Summary/chart widths were 317px and 303px respectively. The monthly table remains horizontally scrollable inside its own 560px-high table container (934px table content versus 302px / 287px visible inner width). Footer follows the main content and is not fixed over it; version/time were visible in the full-page mobile capture.
+- **Mobile Settings Drawer:** At 390×844 it opened at the right edge (x=24, width=366, height=844); at 375×812 it opened at the right edge (x=24, width=351, height=812). Both use vertical scrolling, expose the Close control, and closed successfully.
+- **Language/theme:** At 390×844, English + Dark rendered `Sites Version 12` / `Last Updated: 2026-11-06 14:28 MYT`, `lang=en`, dark background RGB(16,23,34), and no page-level overflow. At 375×812, Chinese + Light rendered the Chinese footer, `lang=zh-CN`, light background RGB(246,247,251), and no page-level overflow.
+- **Tooltip:** Production pointer interaction showed Month 1 / Investment principal / RM100,000.00 in Chinese Light and English Dark; Escape hid the tooltip in both. Prior recorded separated-value pointer checks verified all four series against Month 12 table data. **Keyboard selection across the four series still fails**; source audit confirms only left/right month movement and first-series selection.
+- **Calculation regression:** With loan RM120,000, 60 months and 4%, reducing-balance summary recalculated to monthly RM2,209.98 and total interest RM12,599.00. With investment RM90,000 and return 8%, total payouts recalculated to RM36,000.00, ending cumulative net cash flow −RM96,599.00, ending net asset RM23,401.00. Flat Rate at defaults showed monthly RM2,000.00, total interest RM20,000.00, payouts RM30,000.00, ending cumulative net cash flow −RM90,000.00, and ending net asset RM10,000.00.
+- **Reset / CSV:** Reset restored default inputs (RM100,000 loan/investment, 60 months, 4% loan, 6% return, six-month payout), Reducing Balance, Chinese, and closed drawer; Reset preserved the active theme as specified by PRD. CSV downloaded and its header plus first two monthly rows matched the displayed default calculation. Existing automated 90,959-check record was not rerun in this browser pass.
+- **Release decision:** Responsive layout and exercised regression flows passed in simulated browser viewports. Native touch was unavailable and was not simulated or claimed as a real-device pass. Since chart keyboard navigation to four series fails (and touch remains unverified), FR-20 remains **Blocked**, not Completed / Released; Production QA is not globally Passed.

@@ -301,3 +301,7 @@ FR-13 至 FR-19 均已完成并发布。FR-19 最终采用右侧模态 Drawer：
 - 发布前允许明确显示 Pending release；实际发布后必须以真实 Sites 版本号及发布时间替换占位信息，再验证生产页面。
 - 验收：Footer 位置、响应式、中英文、主题、版本与 Sites 发布记录一致，且贷款计算/CSV/图表/Drawer 无回归。
 - 状态（2026-11-06）：FR-20 Footer 源码已写入实际 Sites Version 12 与发布时间 2026-11-06 14:28 MYT；Sites Version 12 已部署成功。生产浏览器验证因 Owner Only 登录门槛未完成，FR-20 保持 Blocked，不标记 Completed / Released。
+
+
+### FR-20 生产验收跟进（2026-11-06）
+用户确认生产 Footer 显示 Sites 版本 12、最后更新 2026-11-06 14:28 MYT；摘要、Drawer、利率变更、平息法、Reset、语言/主题切换、CSV 下载的先前验收仍有效。图表 Tooltip 与实际桌面/移动视口尚未验收。FR-20 保持 Blocked。

@@ -1,7 +1,7 @@
 # Loan Investment Calculator — Project Status & Handoff
 
 > Single source of truth for cross-conversation handoff.
-> Last updated: 2026-11-06 16:43 MYT
+> Last updated: 2026-11-06 16:44 MYT
 > Case status: Sites Version 12 deployment succeeded; Owner browser access verified; requested simulated desktop/mobile viewport checks passed; FR-20 remains Blocked on four-series keyboard navigation and real-touch acceptance.
 
 
@@ -14,7 +14,7 @@
 | Automated regression | PASS — 6 existing suites, 90,959 checks total | Executed against GitHub main source; Node VM / DOM and canvas stubs |
 | Sites deployment | SUCCEEDED — Version 12; deployment `appgdep_6aed738eeb388191aac004a2cd611281`; source commit `471b5cc2e0beb9c0c68a62965e1820f3ca5d0903` | Sites verified |
 | Production verification | PARTIAL; authorized Owner session confirmed Footer, all four pointer Tooltips, Escape dismissal, bilingual/theme rendering, and Settings Drawer. Exact 1440×900, 390×844, and 375×812 browser-simulated viewport checks now pass with no page-level horizontal overflow; table scroll stays inside its own container. Keyboard cannot select all four series; real touch remains unverified. | Live production browser observations, explicit viewport measurements, and Sites API |
-| FR-20 status | BLOCKED; not marked Completed / Released | Required keyboard-series, target-viewport and real-touch criteria remain outstanding |
+| FR-20 status | BLOCKED; not marked Completed / Released | Four-series keyboard navigation fails and native touch remains unverified; requested browser-simulated viewports passed |
 
 - Published at: 2026-11-06 14:28:48 MYT (Sites deployment `updated_at`; footer displays 2026-11-06 14:28 MYT).
 - Production URL: https://loan-investment-calculator.jaron-hoh.chatgpt.site (Sites verified).

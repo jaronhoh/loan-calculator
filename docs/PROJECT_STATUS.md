@@ -1,8 +1,8 @@
 # Loan Investment Calculator — Project Status & Handoff
 
 > Single source of truth for cross-conversation handoff.
-> Last updated: 2026-11-06 14:29 MYT
-> Case status: FR-20 Sites Version 12 deployment succeeded; production browser verification remains blocked pending owner sign-in.
+> Last updated: 2026-11-06 16:31 MYT
+> Case status: Sites Version 12 deployment succeeded; Owner browser access verified; FR-20 Production QA remains Blocked on keyboard-series and device/viewport acceptance.
 
 
 ## Current status — FR-20 (2026-11-06)
@@ -13,14 +13,14 @@
 | GitHub source | Updated release footer in `development/index.html`; code commit `089bd5538d9de3f32134f6f03532516f8b9d4026` | GitHub verified |
 | Automated regression | PASS — 6 existing suites, 90,959 checks total | Executed against GitHub main source; Node VM / DOM and canvas stubs |
 | Sites deployment | SUCCEEDED — Version 12; deployment `appgdep_6aed738eeb388191aac004a2cd611281`; source commit `471b5cc2e0beb9c0c68a62965e1820f3ca5d0903` | Sites verified |
-| Production verification | BLOCKED — browser is shown “Sign in required”; live footer, device rendering, and on-page interactions could not be verified | Browser observed; no auth bypass attempted |
-| FR-20 status | BLOCKED pending production browser QA; not marked Completed / Released | Evidence split above |
+| Production verification | PARTIAL; authorized Owner session accessed production and confirmed Footer, pointer Tooltips for all four series (with separated local test values), month navigation, Escape dismissal, language/theme rendering, and Settings Drawer. Keyboard cannot select all four series; exact requested viewports and real touch remain unverified. | Live production browser observations and Sites API |
+| FR-20 status | BLOCKED; not marked Completed / Released | Required keyboard-series, target-viewport and real-touch criteria remain outstanding |
 
 - Published at: 2026-11-06 14:28:48 MYT (Sites deployment `updated_at`; footer displays 2026-11-06 14:28 MYT).
 - Production URL: https://loan-investment-calculator.jaron-hoh.chatgpt.site (Sites verified).
 - Access/configuration: custom owner-only access retained; one owner allowlisted, no groups; no Site or URL replacement.
 - The exact GitHub source was copied into the existing Site's managed static source checkout. GitHub source commit and Sites managed-source commit are distinct identifiers and are recorded separately above.
-- Regression limits: VM suites do not prove live browser rendering, native keyboard/touch behavior, or an actual browser CSV download. These remain unverified because the owner-only production page requires ChatGPT sign-in in the available browser.
+- Verification limits: The prior 90,959-check VM suites do not prove live rendering or native device input. This follow-up verified production Footer, pointer Tooltips for all four series under a separated local scenario, month navigation, Escape dismissal, settings drawer, and bilingual/theme rendering. Keyboard selection of all four series, the exact 1440×900 / 390×844 / 375×812 viewports, and physical touch remain outstanding; browser CSV download remains prior user-confirmed evidence and was not repeated.
 
 ## Project identity
 - Repository: jaronhoh/loan-calculator

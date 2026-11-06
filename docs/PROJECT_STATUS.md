@@ -374,3 +374,7 @@ The user confirmed that legacy PocketBay app #3128 has been deleted. This is rec
 - Deployment: Pending. Before declaring completion, obtain actual Sites version and publish time, replace placeholders in the deployed Site and source of truth, and verify footer against Sites release evidence.
 - Regression and production verification: Not yet executed for FR-20. Prior Version 11 acceptance remains historical evidence only.
 - Project lifecycle: Maintenance Mode with FR-20 change in progress; do not claim this new requirement released.
+
+
+## FR-20 follow-up — 2026-11-06
+Owner confirmed production footer Sites Version 12 and Last Updated 2026-11-06 14:28 MYT. Existing summary, drawer, interest-rate, flat-rate, reset, language/theme and CSV checks remain valid. Chart tooltip and desktop/mobile viewport checks remain pending. FR-20 is BLOCKED. This is user-reported QA, not independent browser verification.

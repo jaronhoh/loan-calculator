@@ -345,3 +345,10 @@ Owner-session production access and Sites API reconfirmed the existing productio
 生产计算回归：递减余额模式在 RM120,000 / 60 个月 / 4% 下月供 RM2,209.98、总利息 RM12,599.00；投资 RM90,000、年回报 8% 时总派息 RM36,000.00、期末累计净现金流 −RM96,599.00、净资产 RM23,401.00。平息法默认值下月供 RM2,000.00、总利息 RM20,000.00、总派息 RM30,000.00、期末累计净现金流 −RM90,000.00、净资产 RM10,000.00。Reset 恢复计算默认值/递减余额/中文并关闭 Drawer，主题保留当前状态（符合 FR-18）；CSV 文件表头及前两个月数据与默认逐月计算一致。Tooltip 在中文浅色、英文深色显示正确月份、系列及金额，Escape 关闭；此前四条指针 Tooltip 均已分别核对。
 
 仍未通过/未验证：图表键盘只能左右切换月份并始终选第一条线，无法通过键盘访问另外三条线；没有实体触控设备，真实触控未验收。故 FR-20 保持 **Blocked**，不得标记 Completed / Released；Production QA 不能整体标记 Passed。
+
+
+### FR-20 发布异常与当前状态（2026-11-06，最新 Work 反馈）
+- Work 报告现网为 Sites V13，但 Footer 仍显示 Sites 版本 12 / 2026-11-06 14:28 MYT，版本不一致，验收 FAIL。
+- GitHub 源码提交 `2f51df93a94a00b911fc077889cb23eb7b1d4d89` 已写 Sites Version 14 / 2026-11-06 17:28 MYT，但 V14 仅保存，部署遇到 `no healthy upstream`，不能视为生产版本。
+- 图表 Tooltip 仅部分通过；四线键盘导航及真实触控未完成。最新 Work 任务被 Escape 中断；既有模拟视口检查证据不等同真实设备验收。
+- FR-20 保持 **Blocked**；不继续盲目重试部署，不将 GitHub Commit 当成 Sites 发布成功。

@@ -331,3 +331,8 @@ FR-20 保持 **Blocked**，不标记 Completed / Released：键盘访问四条�
 为区分默认情景中重叠的累计现金流与可用现金，在生产浏览器本地临时将投资金额设为 RM90,000（贷款 RM100,000）；未修改源码、服务器数据、URL、权限或部署。生产页第 12 月四条指针 Tooltip 均与逐月明细一致：投资本金 RM90,000.00、剩余贷款 RM81,564.67、累计净现金流 −RM16,699.80、可用现金 −RM6,699.80。键盘 ArrowRight 能移动至第 2 个月并显示投资本金 RM100,000.00；ArrowDown 未切换至其他系列；Escape 可关闭 Tooltip。因此键盘访问全部四条线仍为 **FAIL / 不接受通过**。
 
 点击 Reset 后默认投资金额 RM100,000、原摘要值、简体中文浅色主题及关闭的设置抽屉均已恢复。另有 682×588 浏览器截图可见标题及摘要卡片响应式换行，但该截图不是已设置/确认的 CSS 视口，不能替代 1440×900、390×844、375×812 指定检查。没有物理触控设备，真实触控仍未验证。FR-20 继续 **Blocked**；不标记 Completed / Released，不改变发布状态。
+
+
+## FR-20 Production QA evidence addendum — 2026-11-06
+
+Owner-session production access and Sites API reconfirmed the existing production URL, Version 12, and the footer timestamp `2026-11-06 14:28 MYT`. Inspection of `development/index.html` on GitHub `main` confirms the chart keyboard handler supports month movement with left/right arrows and Escape dismissal, but does not implement series selection: it chooses the first point for each month and has no up/down handling. Production keyboard navigation to all four lines therefore fails. The requested exact desktop/mobile viewport sizes and real-device touch remain unverified. Keep FR-20 Blocked; do not mark Production QA Passed or Completed / Released until these gates are met.

@@ -182,7 +182,7 @@ TEXT.en.settingsTitle="Parameters";TEXT.zh.settingsTitle="参数设置";
 TEXT.en.closeSettings="Close";TEXT.zh.closeSettings="关闭";
 TEXT.en.availableCash="Available cash";TEXT.zh.availableCash="可用现金";
 TEXT.en.trendChartNote="Investment principal, remaining loan, cumulative cash flow and available cash";
-TEXT.zh.trendChartNote="投资本金、剩余贷款、累计净现金流及可用现金";
+TEXT.zh.trendChartNote="投资本金、剩余贷款、累计净现金流及可用现金";TEXT.en.trendChartAria="Interactive trend chart. Left/Right changes month; Up/Down changes data series; Escape closes the tooltip.";TEXT.zh.trendChartAria="交互式趋势图。左/右方向键切换月份，上/下方向键切换数据线，按 Esc 关闭提示。";
 function t(key){return (TEXT[state.language]||TEXT.en)[key]||TEXT.en[key]||key}
 function money(n){if(!Number.isFinite(n))return "—";return (n<0?"−":"")+"RM "+Math.abs(n).toLocaleString(state.language==="zh"?"zh-CN":"en-MY",{minimumFractionDigits:2,maximumFractionDigits:2})}
 function cents(n){return Math.round((n+Number.EPSILON)*100)/100}
@@ -313,7 +313,7 @@ function drawCashChart(results){
  $("cashLegend").innerHTML=results.map(r=>'<span><i class="dot" style="background:'+(r.mode==="reducing"?"#3157d5":"#e08a26")+'"></i>'+escapeHtml(results.length===1?t("cashLegend"+(r.mode==="reducing"?"Reducing":"Flat")):modeName(r.mode))+'</span>').join("");
 }
 let trendGeometry=null;
-const TREND_LABELS={investmentPrincipal:"investmentPrincipal",balance:"remainingLoan",cumulativeNetCashFlow:"cumulativeCashFlow",availableCash:"availableCash"};
+const TREND_LABELS={investmentPrincipal:"investmentPrincipal",balance:"remainingLoan",cumulativeNetCashFlow:"cumulativeCashFlow",availableCash:"availableCash"};const TREND_SERIES=Object.keys(TREND_LABELS);
 function drawTrendChart(results){
  const {ctx,w,h}=chartSetup($("trendChart"));ctx.clearRect(0,0,w,h);
  const rows=results[0].rows,n=rows.length;
@@ -333,7 +333,7 @@ function drawTrendChart(results){
 }
 function showTrendTooltip(point,clientX){
  const tip=$("trendTooltip"),wrap=$("trendWrap");if(!point||!trendGeometry){tip.hidden=true;return;}
- const g=trendGeometry,canvas=$("trendChart"),rect=canvas.getBoundingClientRect();
+ const g=trendGeometry,canvas=$("trendChart"),rect=canvas.getBoundingClientRect();tip.dataset.month=String(point.month);tip.dataset.series=point.key;
  tip.innerHTML="<strong>"+escapeHtml((state.language==="zh"?"第 "+point.month+" 个月":"Month "+point.month))+"</strong><span>"+escapeHtml(t(TREND_LABELS[point.key]))+": "+escapeHtml(money(point.value))+"</span>";tip.hidden=false;
  const x=Math.max(6,Math.min(rect.width-tip.offsetWidth-6,point.x-tip.offsetWidth/2));
  const y=point.y+14+tip.offsetHeight<rect.height?point.y+14:Math.max(6,point.y-tip.offsetHeight-12);
@@ -346,13 +346,29 @@ function nearestTrendPoint(e){
  if(best&&d<=18*18)return best;
  const month=g.rows[monthIndex]?.month;return g.points.filter(p=>p.month===month).sort((a,b)=>Math.abs(a.y-y)-Math.abs(b.y-y))[0]||null;
 }
-const trendCanvas=$("trendChart");if(trendCanvas.setAttribute){trendCanvas.setAttribute("tabindex","0");trendCanvas.setAttribute("aria-label","Interactive trend chart. Use arrow keys to inspect months.");}
+const trendCanvas=$("trendChart");if(trendCanvas.setAttribute){trendCanvas.setAttribute("tabindex","0");trendCanvas.setAttribute("aria-label",t("trendChartAria"));}
 trendCanvas.addEventListener("pointermove",e=>{if(e.pointerType==="touch")return;showTrendTooltip(nearestTrendPoint(e),e.clientX)});
 trendCanvas.addEventListener("pointerleave",()=>{$("trendTooltip").hidden=true});
 trendCanvas.addEventListener("pointerdown",e=>{if(e.pointerType==="touch"){e.preventDefault();const p=nearestTrendPoint(e);if(p)showTrendTooltip(p,e.clientX);else $("trendTooltip").hidden=true}});
 trendCanvas.addEventListener("focus",()=>{if(trendGeometry)showTrendTooltip(trendGeometry.points[0])});
 trendCanvas.addEventListener("blur",()=>{$("trendTooltip").hidden=true});
-trendCanvas.addEventListener("keydown",e=>{if(!trendGeometry)return;const current=$("trendTooltip").dataset.month||"1",month=Math.max(1,Math.min(trendGeometry.rows.length,Number(current)+(e.key==="ArrowRight"?1:e.key==="ArrowLeft"?-1:0)));if(e.key==="ArrowRight"||e.key==="ArrowLeft"){e.preventDefault();const p=trendGeometry.points.find(x=>x.month===month);showTrendTooltip(p);$("trendTooltip").dataset.month=String(month)}if(e.key==="Escape")$("trendTooltip").hidden=true});
+trendCanvas.addEventListener("keydown",e=>{
+ if(!trendGeometry)return;
+ const keys=["ArrowRight","ArrowLeft","ArrowDown","ArrowUp","Escape"];
+ if(!keys.includes(e.key))return;
+ e.preventDefault();
+ const tip=$("trendTooltip");
+ if(e.key==="Escape"){tip.hidden=true;return;}
+ const month=Math.max(1,Math.min(trendGeometry.rows.length,Number(tip.dataset.month)||1));
+ const activeSeries=TREND_SERIES.indexOf(tip.dataset.series||TREND_SERIES[0]);
+ let nextMonth=month,nextSeries=activeSeries<0?0:activeSeries;
+ if(e.key==="ArrowRight")nextMonth=Math.min(trendGeometry.rows.length,month+1);
+ else if(e.key==="ArrowLeft")nextMonth=Math.max(1,month-1);
+ else if(e.key==="ArrowDown")nextSeries=(nextSeries+1)%TREND_SERIES.length;
+ else if(e.key==="ArrowUp")nextSeries=(nextSeries-1+TREND_SERIES.length)%TREND_SERIES.length;
+ const series=TREND_SERIES[nextSeries];
+ showTrendTooltip(trendGeometry.points.find(p=>p.month===nextMonth&&p.key===series));
+});
 window.addEventListener("resize",()=>{$("trendTooltip").hidden=true});
 const FORMULAS={"zh":{"month":"月份序号","payment":"P＝贷款本金，r＝年利率÷12，n＝总月数（利率用小数）。递减余额：P×r÷[1−(1+r)^(-n)]；r＝0 时为 P÷n。平息：P÷n＋(P×年利率×n÷12)÷n。金额取分，末期调整。","interest":"递减余额：期初贷款余额×年利率÷12；平息：总利息＝贷款本金×年利率×期数÷12，按期分配。金额取分，末期调整。","principal":"已还本金＝月供−利息","balance":"剩余贷款＝上期余额−已还本金","payout":"派息月：投资本金×年回报率×派息间隔÷12；其他月份为0","investValue":"投资本金＝原始投资金额（不复投）","monthlyNet":"月度净现金流＝投资派息−月供","cumulativeNet":"累计净现金流＝截至当月的月度净现金流之和","availableCash":"可用现金＝贷款金额−投资金额＋累计净现金流","netAssets":"净资产＝投资本金＋可用现金−剩余贷款","mode":"所选贷款计算方式"},"en":{"month":"Month index","payment":"P = loan principal, r = annual rate / 12, n = months (rates as decimals). Reducing: P×r/[1−(1+r)^(-n)]; when r = 0: P/n. Flat: P/n + (P×annual rate×n/12)/n. Rounded to cents; final payment adjusted.","interest":"Reducing: opening balance × annual rate / 12; Flat: total interest = loan principal × annual rate × n / 12, divided across n months. Rounded to cents; final month reconciles rounding.","principal":"Principal = payment − interest","balance":"Balance = previous balance − principal","payout":"Payout months: investment × annual return × payout interval / 12; otherwise 0","investValue":"Original investment amount; no reinvestment","monthlyNet":"Monthly net = payout − payment","cumulativeNet":"Sum of monthly net cash flows to date","availableCash":"Available cash = loan − investment + cumulative net","netAssets":"Net asset = investment + available cash − remaining loan","mode":"Selected loan method"}};
  const HEADERS=[["mode","mode"],["month","month"],["payment","payment"],["interest","interest"],["principal","principal"],["balance","balance"],["payout","payout"],["investValue","investmentPrincipal"],["monthlyNet","monthlyNetCashFlow"],["cumulativeNet","cumulativeNetCashFlow"],["availableCash","availableCash"],["netAssets","netAsset"]];
@@ -402,6 +418,7 @@ function render(){
 }
 function applyLanguage(){
  updateThemeLabels();
+ $("trendChart").setAttribute("aria-label",t("trendChartAria"));
  $("releaseVersion").textContent=state.language==="zh"?"Sites 版本 12":"Sites Version 12";
  $("releaseUpdated").textContent=state.language==="zh"?"最后更新：2026-11-06 14:28 MYT":"Last Updated: 2026-11-06 14:28 MYT";
  document.documentElement.lang=state.language==="zh"?"zh-CN":"en";

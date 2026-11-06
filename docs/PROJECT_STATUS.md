@@ -378,3 +378,13 @@ The user confirmed that legacy PocketBay app #3128 has been deleted. This is rec
 
 ## FR-20 follow-up — 2026-11-06
 Owner confirmed production footer Sites Version 12 and Last Updated 2026-11-06 14:28 MYT. Existing summary, drawer, interest-rate, flat-rate, reset, language/theme and CSV checks remain valid. Chart tooltip and desktop/mobile viewport checks remain pending. FR-20 is BLOCKED. This is user-reported QA, not independent browser verification.
+
+
+## FR-20 Production QA Closure Attempt — 2026-11-06
+- Production URL: https://loan-investment-calculator.jaron-hoh.chatgpt.site; actual footer observed: Sites Version 12; Last Updated 2026-11-06 14:28 MYT.
+- Browser session was authenticated through the existing ChatGPT account chooser; no access settings were changed. Previously user-confirmed regression evidence remains: summary, settings drawer, rate recalculation, flat-rate mode, Reset, language/theme switching and CSV download.
+- This run observed the production page at browser viewport 509 × 604 (not a physical device). Document width 494px; no horizontal overflow at this observed viewport. English/Dark appearance and footer content were visible; no clipping conclusion is made for the requested 1440×900, 390×844 or 375×812 targets.
+- Chart canvas accepted keyboard focus. Tooltip content, month/series values and Escape dismissal were not visually confirmed in this run. No real touch device was available; touch remains unverified.
+- Desktop/mobile responsive acceptance at the three requested dimensions remains NOT VERIFIED because the browser viewport override is unavailable in this session. Real touch remains NOT VERIFIED.
+- Result: Production QA is **BLOCKED**, not Passed. FR-20 remains **Blocked**, not Completed/Released. Existing Sites Version 12 and URL unchanged; no redeployment performed.
+- Automated regression (historical evidence): 90,959 checks passed; this does not replace the unverified live tooltip/device-size checks.

@@ -388,3 +388,16 @@ Owner confirmed production footer Sites Version 12 and Last Updated 2026-11-06 1
 - Desktop/mobile responsive acceptance at the three requested dimensions remains NOT VERIFIED because the browser viewport override is unavailable in this session. Real touch remains NOT VERIFIED.
 - Result: Production QA is **BLOCKED**, not Passed. FR-20 remains **Blocked**, not Completed/Released. Existing Sites Version 12 and URL unchanged; no redeployment performed.
 - Automated regression (historical evidence): 90,959 checks passed; this does not replace the unverified live tooltip/device-size checks.
+
+
+## FR-20 Production QA follow-up — 2026-11-06
+- Owner access: PASS. The existing authenticated ChatGPT browser session opened the existing production URL; no authentication bypass, access-policy change, URL change, Site creation, source edit, or redeployment was performed.
+- Sites evidence: Sites API reports latest version 12; Version 12 deployment `appgdep_6aed738eeb388191aac004a2cd611281` is `succeeded` at the existing production URL, with Sites source commit `471b5cc2e0beb9c0c68a62965e1820f3ca5d0903`.
+- Footer: PASS. At the bottom of the live page it displays `Sites 版本 12` and `最后更新：2026-11-06 14:28 MYT`; English mode displays `Sites Version 12` and `Last Updated: 2026-11-06 14:28 MYT`.
+- Chart pointer Tooltip: PARTIAL. Live pointer interaction showed Month 11 / Remaining loan / RM 83,129.22 and Month 12 / Cumulative cash flow / −RM 16,099.80. Investment principal was also shown in the Tooltip. Available Cash Tooltip was not independently verified.
+- Chart keyboard: PARTIAL / FAIL against FR-20 acceptance. ArrowRight advanced the month and showed Month 2 / Investment principal / RM 100,000.00; Escape hid the Tooltip. Arrow-key interaction did not demonstrate selection of the other three series; keyboard access to all four series is not accepted as passed.
+- Language/theme: PASS for observed combinations. Chinese Light and English Dark rendered legible chart labels/Tooltip content and the footer values.
+- Responsive: NOT VERIFIED at required targets. The available in-app browser screenshot was 1265×713; the footer was visible at page bottom, the Settings Drawer opened, and no page-level horizontal overflow was visible at that observed size (the monthly table has its own horizontal scrolling). Exact 1440×900, 390×844 and 375×812 viewport checks were unavailable. This is not a mobile-device test.
+- Touch: NOT VERIFIED; no physical touch device was available. Desktop/browser interaction is not counted as real touch evidence.
+- Existing regression: prior user-confirmed results cover the summary, Settings Drawer, recalculation, Flat Rate, Reset, language/theme switching and CSV download; prior automated record remains 90,959 checks passed. This follow-up did not rerun those suites or claim a new browser CSV download.
+- Final gate: FR-20 remains **Blocked** and is not marked Completed / Released because keyboard selection of all four chart series did not pass and exact target viewport / real-touch evidence is missing. Deployment success is recorded separately from production QA. Project status should not be advanced on this evidence alone.

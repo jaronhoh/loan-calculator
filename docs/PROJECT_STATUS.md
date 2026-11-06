@@ -430,3 +430,12 @@ Owner confirmed production footer Sites Version 12 and Last Updated 2026-11-06 1
 - **Calculation regression:** With loan RM120,000, 60 months and 4%, reducing-balance summary recalculated to monthly RM2,209.98 and total interest RM12,599.00. With investment RM90,000 and return 8%, total payouts recalculated to RM36,000.00, ending cumulative net cash flow −RM96,599.00, ending net asset RM23,401.00. Flat Rate at defaults showed monthly RM2,000.00, total interest RM20,000.00, payouts RM30,000.00, ending cumulative net cash flow −RM90,000.00, and ending net asset RM10,000.00.
 - **Reset / CSV:** Reset restored default inputs (RM100,000 loan/investment, 60 months, 4% loan, 6% return, six-month payout), Reducing Balance, Chinese, and closed drawer; Reset preserved the active theme as specified by PRD. CSV downloaded and its header plus first two monthly rows matched the displayed default calculation. Existing automated 90,959-check record was not rerun in this browser pass.
 - **Release decision:** Responsive layout and exercised regression flows passed in simulated browser viewports. Native touch was unavailable and was not simulated or claimed as a real-device pass. Since chart keyboard navigation to four series fails (and touch remains unverified), FR-20 remains **Blocked**, not Completed / Released; Production QA is not globally Passed.
+
+
+## FR-20 deployment incident — 2026-11-06 (latest user-provided Work report)
+- Production Sites runtime reported as **V13**, while visible footer still says **Sites Version 12 / 2026-11-06 14:28 MYT**: footer metadata is stale (FAIL).
+- GitHub `development/index.html` at commit `2f51df93a94a00b911fc077889cb23eb7b1d4d89` now hardcodes **Sites Version 14 / 2026-11-06 17:28 MYT**. This is source state, NOT proof of deployment.
+- Work reported V14 saved but deploy failed with `no healthy upstream`, including retry. **V14 is NOT production**. Do not retry blindly or claim successful deployment.
+- Chart tooltip: partial PASS (hover in both languages, month and two-series switching, Escape); full four-series keyboard and physical touch remain unaccepted.
+- Latest Work session ended after user Escape; its final responsive checks were not completed. Earlier recorded browser-simulated viewport checks remain historical evidence, not proof of physical-device acceptance.
+- FR-20 remains **BLOCKED**. Preserve production URL and access. No deployment is authorized by this documentation update.

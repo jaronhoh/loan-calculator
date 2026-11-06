@@ -1,7 +1,7 @@
 # Loan Investment Calculator — 产品需求文档（PRD）
 
 > **FR-20 状态：Blocked / Production QA 未完成；FR-13–FR-19 保持已发布。不得将 FR-20 标记为 Completed / Released。**
-> **当前生产：v2.2｜ChatGPT Sites Version 12｜Footer 显示更新时间 2026-11-06 14:28 MYT；键盘四线导航、指定视口及真实触控仍待验收。**
+> **当前生产：v2.2｜ChatGPT Sites Version 12｜Footer 显示更新时间 2026-11-06 14:28 MYT；指定浏览器模拟视口已通过，图表键盘四线导航失败、真实触控待验证。**
 > 唯一产品定义来源：[产品定型稿](../shaping/06-最终定型稿.md)。若 PRD 与定型稿不一致，以定型稿为准，并通过变更记录同步修订。
 
 ## 1. 产品概述
@@ -336,3 +336,12 @@ FR-20 保持 **Blocked**，不标记 Completed / Released：键盘访问四条�
 ## FR-20 Production QA evidence addendum — 2026-11-06
 
 Owner-session production access and Sites API reconfirmed the existing production URL, Version 12, and the footer timestamp `2026-11-06 14:28 MYT`. Inspection of `development/index.html` on GitHub `main` confirms the chart keyboard handler supports month movement with left/right arrows and Escape dismissal, but does not implement series selection: it chooses the first point for each month and has no up/down handling. Production keyboard navigation to all four lines therefore fails. The requested exact desktop/mobile viewport sizes and real-device touch remain unverified. Keep FR-20 Blocked; do not mark Production QA Passed or Completed / Released until these gates are met.
+
+
+## FR-20 生产验收追加结果 — 2026-11-06 16:43 MYT
+
+在现有授权 Owner 会话中对原生产 URL 进行浏览器模拟视口测试：1440×900、390×844、375×812 的页面级宽度均无水平溢出；移动端逐月表在自身可滚动容器中横向查看，Footer 位于内容之后。手机两种目标尺寸下 Settings Drawer 均可从右侧打开、纵向滚动并关闭。390×844 英文深色、375×812 中文浅色均正确显示 Footer 和内容；桌面 1440×900 默认中文浅色正常。以上均为浏览器模拟 CSS 视口，不是实体手机或触控验证。
+
+生产计算回归：递减余额模式在 RM120,000 / 60 个月 / 4% 下月供 RM2,209.98、总利息 RM12,599.00；投资 RM90,000、年回报 8% 时总派息 RM36,000.00、期末累计净现金流 −RM96,599.00、净资产 RM23,401.00。平息法默认值下月供 RM2,000.00、总利息 RM20,000.00、总派息 RM30,000.00、期末累计净现金流 −RM90,000.00、净资产 RM10,000.00。Reset 恢复计算默认值/递减余额/中文并关闭 Drawer，主题保留当前状态（符合 FR-18）；CSV 文件表头及前两个月数据与默认逐月计算一致。Tooltip 在中文浅色、英文深色显示正确月份、系列及金额，Escape 关闭；此前四条指针 Tooltip 均已分别核对。
+
+仍未通过/未验证：图表键盘只能左右切换月份并始终选第一条线，无法通过键盘访问另外三条线；没有实体触控设备，真实触控未验收。故 FR-20 保持 **Blocked**，不得标记 Completed / Released；Production QA 不能整体标记 Passed。

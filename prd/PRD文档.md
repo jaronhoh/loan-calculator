@@ -352,3 +352,11 @@ Owner-session production access and Sites API reconfirmed the existing productio
 - GitHub 源码提交 `2f51df93a94a00b911fc077889cb23eb7b1d4d89` 已写 Sites Version 14 / 2026-11-06 17:28 MYT，但 V14 仅保存，部署遇到 `no healthy upstream`，不能视为生产版本。
 - 图表 Tooltip 仅部分通过；四线键盘导航及真实触控未完成。最新 Work 任务被 Escape 中断；既有模拟视口检查证据不等同真实设备验收。
 - FR-20 保持 **Blocked**；不继续盲目重试部署，不将 GitHub Commit 当成 Sites 发布成功。
+
+### FR-20 V15 发布检查（2026-11-06）
+
+Sites 核实最后成功发布的是 V13（17:12 MYT，部署 `appgdep_6aed99da6a348191a250d5f95dd4309d`）。既有 Owner 浏览器记录显示其 Footer 为 V12 / 14:28 MYT。V14 已保存，发布 `appgdep_6aed9e17f1188191aa1f9eb18747886a` 于 17:30 MYT 失败，错误为 `no healthy upstream`。具体上游故障及恢复状态未查明。
+
+Sites 保存接口分配版本号。尚未验证静态页面可读取真实版本及发布时间的受支持接口，GitHub main 页脚仍固定显示 V14 / 17:28 MYT。V15 未保存、未部署。FR-20 保持 **Blocked**。
+
+本轮源码语法检查和七项定向回归通过。四线键盘切换、月份切换及 Escape 已在模拟状态中验证，生产浏览器、模拟视口及真实触控未重验。

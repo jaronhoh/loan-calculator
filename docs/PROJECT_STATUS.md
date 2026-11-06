@@ -439,3 +439,11 @@ Owner confirmed production footer Sites Version 12 and Last Updated 2026-11-06 1
 - Chart tooltip: partial PASS (hover in both languages, month and two-series switching, Escape); full four-series keyboard and physical touch remain unaccepted.
 - Latest Work session ended after user Escape; its final responsive checks were not completed. Earlier recorded browser-simulated viewport checks remain historical evidence, not proof of physical-device acceptance.
 - FR-20 remains **BLOCKED**. Preserve production URL and access. No deployment is authorized by this documentation update.
+
+## FR-20 V15 release check — 2026-11-06
+
+- Sites confirmed V13 as the last successful production deployment at 17:12 MYT. Deployment `appgdep_6aed99da6a348191a250d5f95dd4309d`, Sites source `c1f7418234bf0537af50aa7cc1a4ac4b7f637056`, and the existing Owner Only production URL. The V13 footer mismatch (V12 / 14:28 MYT) is from the prior Owner browser report.
+- V14 is the latest saved version. Its archive exists, Sites source is `72e3d79fe420d6af0df8be4c44b150bd8a177caf`, and deployment `appgdep_6aed9e17f1188191aa1f9eb18747886a` failed at 17:30 MYT with `no healthy upstream` and no URL. The production Worker error query returned no events. The failing upstream and its recovery could not be verified.
+- The save API assigns the version number. Its release metadata is returned to the management caller, and no supported runtime source of the actual Sites version and publication time was verified for this static page. GitHub main's footer still contains V14 / 2026-11-06 17:28 MYT. V15 was neither saved nor deployed.
+- GitHub main source verification passed for script parsing and seven targeted checks covering reducing balance, flat rate, zero interest, final balance, keyboard month movement, four-series rotation with reverse wrapping, and Escape dismissal. Keyboard checks used an isolated handler with mocked chart state. Production browser, viewport, and real-touch acceptance were not rerun.
+- FR-20 remains **Blocked**.

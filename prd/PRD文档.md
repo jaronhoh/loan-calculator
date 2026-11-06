@@ -311,3 +311,17 @@ FR-13 至 FR-19 均已完成并发布。FR-19 最终采用右侧模态 Drawer：
 Production checks against the existing Version 12 URL confirmed the displayed footer values: Sites Version 12 and Last Updated 2026-11-06 14:28 MYT. User-confirmed regression evidence for the summary, settings drawer, recalculation, Flat Rate, Reset, bilingual/theme switching and CSV download is retained.
 
 The current browser reported viewport 509 × 604, document width 494px (no horizontal overflow at this observed size). English/Dark mode displayed. This is not one of the requested 1440×900, 390×844 or 375×812 dimensions and is not a physical mobile device. Chart keyboard focus works, but Tooltip month/series/value content and Escape dismissal were not visually confirmed. Real touch was not available. Requested target-size desktop/mobile checks and touch testing therefore remain NOT VERIFIED. FR-20 remains Blocked; do not mark Completed/Released until outstanding checks pass.
+
+
+## FR-20 生产验收跟进（2026-11-06）
+现有 Owner 登录会话已打开原生产 URL；未绕过登录、改权限、改 URL、改源码或重新部署。Sites API 核对最新版本为 12，部署 `appgdep_6aed738eeb388191aac004a2cd611281` 状态 `succeeded`，Sites 源码提交 `471b5cc2e0beb9c0c68a62965e1820f3ca5d0903`。
+
+- Footer：PASS；生产页底部显示「Sites 版本 12」及「最后更新：2026-11-06 14:28 MYT」，英文为 “Sites Version 12” / “Last Updated: 2026-11-06 14:28 MYT”。
+- 图表指针 Tooltip：PARTIAL；已观察 Month 11 剩余贷款 RM 83,129.22、Month 12 累计现金流 −RM 16,099.80 及投资本金 Tooltip；可用现金 Tooltip 未独立确认。
+- 键盘 Tooltip：PARTIAL / FAIL；方向键能移动月份，Month 2 显示投资本金 RM 100,000.00；Escape 能关闭 Tooltip。未能用键盘访问全部四条趋势线，不能按通过处理。
+- 双语/主题：已观察中文浅色、英文深色下标题、Tooltip 与 Footer 正常显示。
+- 响应式：NOT VERIFIED（指定尺寸）；本次可用浏览器截图为 1265×713，底部 Footer 可见，设置抽屉可打开；该视口未见页面级横向溢出，逐月表格自身可横向滚动。1440×900、390×844、375×812 指定尺寸均未测试。
+- 真实触控：NOT VERIFIED；没有物理触控设备，不以桌面操作代替。
+- 回归：保留用户之前确认的摘要、设置抽屉、重算、平息法、Reset、语言/主题、CSV 结果；自动回归既有记录为 90,959 项通过。本次未重跑自动套件或声称新完成浏览器 CSV 下载。
+
+FR-20 保持 **Blocked**，不标记 Completed / Released：键盘访问四条曲线未通过，指定视口及真实触控缺少验证。部署成功与生产验收结论分开记录。

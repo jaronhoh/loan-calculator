@@ -348,3 +348,11 @@ This was not merely a connector read issue: commit bf7c3941446fad6dc63b613f16d3a
 
 ## PocketBay cleanup update — 2026-11-05
 The user confirmed that legacy PocketBay app #3128 has been deleted. This is recorded as user-confirmed; the deletion was not independently verified through PocketBay account access.
+
+
+## FR-20 Footer release metadata — 2026-11-06
+- Requirement confirmed: display actual ChatGPT Sites version and corresponding successful release timestamp in MYT at the page bottom; support Chinese/English, desktop/mobile, and light/dark.
+- Development: GitHub main has footer placeholder `Sites Version 12 (Pending release)` / `Last Updated: Pending release`; these are explicitly **not** evidence that Sites Version 12 exists or was published.
+- Deployment: Pending. Before declaring completion, obtain actual Sites version and publish time, replace placeholders in the deployed Site and source of truth, and verify footer against Sites release evidence.
+- Regression and production verification: Not yet executed for FR-20. Prior Version 11 acceptance remains historical evidence only.
+- Project lifecycle: Maintenance Mode with FR-20 change in progress; do not claim this new requirement released.

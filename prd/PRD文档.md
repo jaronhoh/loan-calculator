@@ -291,3 +291,13 @@ FR-13 至 FR-19 均已完成并发布。FR-19 最终采用右侧模态 Drawer：
 
 ## Legacy cleanup update（2026-11-05）
 用户确认旧 PocketBay 应用 #3128 已删除。此状态按用户确认记录；当前连接未提供 PocketBay 账户侧独立核验能力。
+
+
+## FR-20 Footer 发布版本与更新时间（2026-11-06）
+- 在页面最底部显示 ChatGPT Sites Version 与 Last Updated（MYT）。
+- 版本号必须来自实际 Sites 发布记录，不得使用应用版本号或 GitHub Commit 数量推算。
+- Last Updated 为该 Sites 版本实际成功发布的时间，采用 MYT（UTC+8），不得以访问时间或 GitHub 提交时间替代。
+- 中英文切换、桌面/手机、Light/Dark 均需正常显示。
+- 发布前允许明确显示 Pending release；实际发布后必须以真实 Sites 版本号及发布时间替换占位信息，再验证生产页面。
+- 验收：Footer 位置、响应式、中英文、主题、版本与 Sites 发布记录一致，且贷款计算/CSV/图表/Drawer 无回归。
+- 状态：GitHub 源码已加入待发布占位信息；Sites 部署与生产验证 Pending，不得标记 Released。

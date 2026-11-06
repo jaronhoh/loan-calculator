@@ -305,3 +305,9 @@ FR-13 至 FR-19 均已完成并发布。FR-19 最终采用右侧模态 Drawer：
 
 ### FR-20 生产验收跟进（2026-11-06）
 用户确认生产 Footer 显示 Sites 版本 12、最后更新 2026-11-06 14:28 MYT；摘要、Drawer、利率变更、平息法、Reset、语言/主题切换、CSV 下载的先前验收仍有效。图表 Tooltip 与实际桌面/移动视口尚未验收。FR-20 保持 Blocked。
+
+
+## FR-20 Production QA closure attempt — 2026-11-06
+Production checks against the existing Version 12 URL confirmed the displayed footer values: Sites Version 12 and Last Updated 2026-11-06 14:28 MYT. User-confirmed regression evidence for the summary, settings drawer, recalculation, Flat Rate, Reset, bilingual/theme switching and CSV download is retained.
+
+The current browser reported viewport 509 × 604, document width 494px (no horizontal overflow at this observed size). English/Dark mode displayed. This is not one of the requested 1440×900, 390×844 or 375×812 dimensions and is not a physical mobile device. Chart keyboard focus works, but Tooltip month/series/value content and Escape dismissal were not visually confirmed. Real touch was not available. Requested target-size desktop/mobile checks and touch testing therefore remain NOT VERIFIED. FR-20 remains Blocked; do not mark Completed/Released until outstanding checks pass.

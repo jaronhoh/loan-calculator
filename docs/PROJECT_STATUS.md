@@ -410,3 +410,12 @@ Owner confirmed production footer Sites Version 12 and Last Updated 2026-11-06 1
 - Reset restored the default RM100,000 investment, original summary (RM30,000 total payouts; −RM80,499.17 cumulative cash flow; RM19,500.83 net asset), Chinese Light mode, and closed Settings Drawer.
 - A browser screenshot capture at 682×588 showed responsive wrapping of header and summary cards, but this was not an explicitly set or confirmed CSS viewport and does not satisfy the required 1440×900, 390×844 or 375×812 checks. Real touch remains untested; no physical touch device is available.
 - FR-20 remains **Blocked** because keyboard navigation does not expose all four chart series and target viewport / real-touch evidence remains outstanding. No release or deployment status change.
+
+
+
+## FR-20 Production QA evidence addendum — 2026-11-06
+
+- Reopened the existing production URL in the authorized Owner session. The live page rendered the Chinese interface, summary, 60-month schedule, and footer `Sites 版本 12` / `最后更新：2026-11-06 14:28 MYT`; Sites API independently reports latest version 12 and the existing deployment as `succeeded`. No deployment or access-setting change was made.
+- Static source inspection of GitHub `main` `development/index.html` confirms the chart `keydown` handler changes months only for `ArrowLeft` / `ArrowRight`, and selects `trendGeometry.points.find(x => x.month === month)`, which returns the first series point for that month. It handles Escape by hiding the tooltip, but contains no `ArrowUp` / `ArrowDown` series navigation. This corroborates the live finding that keyboard access to all four trend lines fails.
+- Exact 1440×900, 390×844, and 375×812 viewport checks remain unverified. The available browser observations do not establish those exact viewport sizes. No real touch-device test was available or performed; desktop pointer input is not counted as touch.
+- Existing user-confirmed regression evidence and the recorded 90,959 automated checks remain documented, but they do not satisfy the failed keyboard criterion or prove the requested viewport/touch coverage. FR-20 remains Blocked; no Completed / Released or Production QA Passed claim is made.

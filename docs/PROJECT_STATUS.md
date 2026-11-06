@@ -401,3 +401,12 @@ Owner confirmed production footer Sites Version 12 and Last Updated 2026-11-06 1
 - Touch: NOT VERIFIED; no physical touch device was available. Desktop/browser interaction is not counted as real touch evidence.
 - Existing regression: prior user-confirmed results cover the summary, Settings Drawer, recalculation, Flat Rate, Reset, language/theme switching and CSV download; prior automated record remains 90,959 checks passed. This follow-up did not rerun those suites or claim a new browser CSV download.
 - Final gate: FR-20 remains **Blocked** and is not marked Completed / Released because keyboard selection of all four chart series did not pass and exact target viewport / real-touch evidence is missing. Deployment success is recorded separately from production QA. Project status should not be advanced on this evidence alone.
+
+
+## FR-20 Production QA additional chart evidence — 2026-11-06
+- A temporary browser-local scenario set the investment to RM90,000 against a RM100,000 loan so cumulative cash flow and available cash no longer overlapped. No source, server data, URL, access, or deployment was changed.
+- Live pointer movement over Month 12 showed all four Tooltip values matching the monthly schedule: Investment principal RM90,000.00; Remaining loan RM81,564.67; Cumulative net cash flow −RM16,699.80; Available cash −RM6,699.80.
+- Chart keyboard verification: ArrowRight moved to Month 2 and showed Investment principal RM100,000.00; ArrowDown did not switch to another series. Escape dismissed the Tooltip. Thus keyboard access to all four trend lines remains **FAIL / not accepted**.
+- Reset restored the default RM100,000 investment, original summary (RM30,000 total payouts; −RM80,499.17 cumulative cash flow; RM19,500.83 net asset), Chinese Light mode, and closed Settings Drawer.
+- A browser screenshot capture at 682×588 showed responsive wrapping of header and summary cards, but this was not an explicitly set or confirmed CSS viewport and does not satisfy the required 1440×900, 390×844 or 375×812 checks. Real touch remains untested; no physical touch device is available.
+- FR-20 remains **Blocked** because keyboard navigation does not expose all four chart series and target viewport / real-touch evidence remains outstanding. No release or deployment status change.

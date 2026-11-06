@@ -402,6 +402,8 @@ function render(){
 }
 function applyLanguage(){
  updateThemeLabels();
+ $("releaseVersion").textContent=state.language==="zh"?"Sites 版本 12（待发布）":"Sites Version 12 (Pending release)";
+ $("releaseUpdated").textContent=state.language==="zh"?"最后更新：待发布":"Last Updated: Pending release";
  document.documentElement.lang=state.language==="zh"?"zh-CN":"en";
  document.querySelectorAll("[data-i18n]").forEach(el=>{const key=el.getAttribute("data-i18n");if(TEXT[state.language][key])el.textContent=TEXT[state.language][key]});
  $("language").value=state.language;

@@ -19,32 +19,32 @@
 
 
 > Single source of truth for cross-conversation handoff.
-> Last updated: 2026-11-06 16:44 MYT
-> Case status: Sites Version 12 deployment succeeded; Owner browser access verified; requested simulated desktop/mobile viewport checks passed; FR-20 remains Blocked on four-series keyboard navigation and real-touch acceptance.
+> Last updated: 2026-11-24 MYT
+> Current release: Sites V16 succeeded; FR-21 Released; FR-20 Cancelled. Earlier blocked/pending records below are historical and superseded.
 
-
-## Current status — FR-20 (2026-11-06)
+## Current status — 2026-11-24
 
 | Area | Status | Evidence |
 | --- | --- | --- |
-| Requirement / PRD | Confirmed; release metadata requirement retained | GitHub verified |
-| GitHub source | Updated release footer in `development/index.html`; code commit `089bd5538d9de3f32134f6f03532516f8b9d4026` | GitHub verified |
-| Automated regression | PASS — 6 existing suites, 90,959 checks total | Executed against GitHub main source; Node VM / DOM and canvas stubs |
-| Sites deployment | SUCCEEDED — Version 12; deployment `appgdep_6aed738eeb388191aac004a2cd611281`; source commit `471b5cc2e0beb9c0c68a62965e1820f3ca5d0903` | Sites verified |
-| Production verification | PARTIAL; authorized Owner session confirmed Footer, all four pointer Tooltips, Escape dismissal, bilingual/theme rendering, and Settings Drawer. Exact 1440×900, 390×844, and 375×812 browser-simulated viewport checks now pass with no page-level horizontal overflow; table scroll stays inside its own container. Keyboard cannot select all four series; real touch remains unverified. | Live production browser observations, explicit viewport measurements, and Sites API |
-| FR-20 status | BLOCKED; not marked Completed / Released | Four-series keyboard navigation fails and native touch remains unverified; requested browser-simulated viewports passed |
+| FR-20 | Cancelled | Owner decision; historical blockers superseded |
+| FR-21 requirements and implementation | Completed / Released | Application commit `259c879b7fd73a565a69751f2f1bc1b25f9f5ecf` |
+| Automated regression | PASS — seven suites, 92,444 checks at FR-21 release; seven suites also passed for V16 | Recorded Work release evidence |
+| Sites deployment | SUCCEEDED — V16 | Deployment `appgdep_6b0481c5a8088191a480eb5a816d7bf5`; published 2026-11-24 02:11:35 MYT |
+| Production verification | FR-21 browser acceptance passed; V16 bilingual footer verified | Recorded Owner browser checks; physical mobile/touch not verified |
+| Access | Owner Only retained | Recorded Sites release evidence |
+| Next action | Maintenance; no redeployment required | No outstanding release blocker recorded |
 
-- Published at: 2026-11-06 14:28:48 MYT (Sites deployment `updated_at`; footer displays 2026-11-06 14:28 MYT).
-- Production URL: https://loan-investment-calculator.jaron-hoh.chatgpt.site (Sites verified).
-- Access/configuration: custom owner-only access retained; one owner allowlisted, no groups; no Site or URL replacement.
-- The exact GitHub source was copied into the existing Site's managed static source checkout. GitHub source commit and Sites managed-source commit are distinct identifiers and are recorded separately above.
-- Verification limits: The recorded 90,959-check VM suites do not prove native device input. This follow-up measured exact browser-simulated 1440×900, 390×844, and 375×812 viewports and confirmed no page-level horizontal overflow; responsive table scrolling remains internal. Live calculation, Flat Rate, Reset, CSV download, drawer open/close, bilingual/theme rendering and bilingual Tooltips were exercised. Keyboard selection of all four chart series fails, and physical touch remains unverified.
+- Production URL: https://loan-investment-calculator.jaron-hoh.chatgpt.site/
+- V16 GitHub application source: `d04052034e5c764f5eea35d67717ee8036ffbbda`; Sites managed source: `544af3402b1b4e9515536d0c14bf798e05638737`.
+- Footer content timestamp: 2026-11-24 02:09 MYT (static HTML; distinct from actual deployment time).
+- Evidence classification: GitHub records directly checked; Sites API and production browser results are recorded Work evidence, not independently rerun during this documentation correction.
+- Historical FR-20 and FR-21 deployment blockers do not describe the current release.
 
 ## Project identity
 - Repository: jaronhoh/loan-calculator
 - Branch: main (no additional GitHub branch created)
 - Application: development/index.html
-- Production version: Sites Version 12; application version: v2.2 (FR-20 footer metadata)
+- Production version: Sites V16 (FR-21 plus bilingual static footer update)
 - Existing PocketBay app #3128: user explicitly authorized permanent deletion on 2026-10-16; deletion user-confirmed complete on 2026-11-05; not independently verified by this agent.
 - Official production platform: ChatGPT Sites; keep the existing Site intact.
 - Existing ChatGPT Site: appgprj_6ad0f21a67c88191ba4abfa0761bc3c0
@@ -478,3 +478,31 @@ FR-20 is Cancelled by owner; historical Blocked entries are superseded. Preserve
 - Existing production URL and owner-only access verified through Sites API (owner only; no editors, groups, or external visitors).
 - FR-21 deployment BLOCKED: direct GitHub network failed DNS resolution; Sites source-helper opening did not complete and was terminated; elevated network execution requests were aborted. GitHub read/write contents API works, but cannot push the separate Sites artifact source repository. No FR-21 archive-backed version or deployment was created. Do not substitute the GitHub application commit for the Sites repository HEAD.
 - Production browser QA, browser simulated viewports, CSV download and physical-device testing were not performed in this run. FR-21 is not Released; final production publication time/version/deployment ID are pending. FR-20 remains Cancelled.
+
+## Historical current-status snapshot — 2026-11-06 (superseded)
+
+> Single source of truth for cross-conversation handoff.
+> Last updated: 2026-11-06 16:44 MYT
+> Case status: Sites Version 12 deployment succeeded; Owner browser access verified; requested simulated desktop/mobile viewport checks passed; FR-20 remains Blocked on four-series keyboard navigation and real-touch acceptance.
+
+
+### FR-20 status at 2026-11-06
+
+| Area | Status | Evidence |
+| --- | --- | --- |
+| Requirement / PRD | Confirmed; release metadata requirement retained | GitHub verified |
+| GitHub source | Updated release footer in `development/index.html`; code commit `089bd5538d9de3f32134f6f03532516f8b9d4026` | GitHub verified |
+| Automated regression | PASS — 6 existing suites, 90,959 checks total | Executed against GitHub main source; Node VM / DOM and canvas stubs |
+| Sites deployment | SUCCEEDED — Version 12; deployment `appgdep_6aed738eeb388191aac004a2cd611281`; source commit `471b5cc2e0beb9c0c68a62965e1820f3ca5d0903` | Sites verified |
+| Production verification | PARTIAL; authorized Owner session confirmed Footer, all four pointer Tooltips, Escape dismissal, bilingual/theme rendering, and Settings Drawer. Exact 1440×900, 390×844, and 375×812 browser-simulated viewport checks now pass with no page-level horizontal overflow; table scroll stays inside its own container. Keyboard cannot select all four series; real touch remains unverified. | Live production browser observations, explicit viewport measurements, and Sites API |
+| FR-20 status | BLOCKED; not marked Completed / Released | Four-series keyboard navigation fails and native touch remains unverified; requested browser-simulated viewports passed |
+
+- Published at: 2026-11-06 14:28:48 MYT (Sites deployment `updated_at`; footer displays 2026-11-06 14:28 MYT).
+- Production URL: https://loan-investment-calculator.jaron-hoh.chatgpt.site (Sites verified).
+- Access/configuration: custom owner-only access retained; one owner allowlisted, no groups; no Site or URL replacement.
+- The exact GitHub source was copied into the existing Site's managed static source checkout. GitHub source commit and Sites managed-source commit are distinct identifiers and are recorded separately above.
+- Verification limits: The recorded 90,959-check VM suites do not prove native device input. This follow-up measured exact browser-simulated 1440×900, 390×844, and 375×812 viewports and confirmed no page-level horizontal overflow; responsive table scrolling remains internal. Live calculation, Flat Rate, Reset, CSV download, drawer open/close, bilingual/theme rendering and bilingual Tooltips were exercised. Keyboard selection of all four chart series fails, and physical touch remains unverified.
+
+
+## 2026-11-24 — Current-status reconciliation
+Updated the canonical current-status block and project identity to match the existing V15/V16 release records. Historical evidence retained. Documentation only; no source or production changes.

@@ -462,3 +462,12 @@ Owner confirmed production footer Sites Version 12 and Last Updated 2026-11-06 1
 
 ## 2026-11-24 — FR-20 cancellation / FR-21 approval
 FR-20 is Cancelled by owner; historical Blocked entries are superseded. Preserve V14 production (user-reported succeeded, 2026-11-06 18:20 MYT), original URL and Owner Only. FR-21 principal repayment approved; PRD committed, implementation/testing/deployment pending. No production change made.
+
+
+## FR-21 release verification — 2026-11-24 MYT (current)
+- Tested application source: `259c879b7fd73a565a69751f2f1bc1b25f9f5ecf` on GitHub main; no application source changes were necessary in this run.
+- Independently rerun Node VM/DOM-stub suites: FR-21 1,485 checks PASS (two loan modes, payout frequencies 1/3/6/12); v21 77,854 checks PASS; v22 1,097 checks PASS. Total: 80,436 checks PASS. These results do not establish rendered-browser, physical-device, or production QA.
+- Sites API confirmed V14 deployment `appgdep_6aeda9c5f8b881919e88f4cc772f23fd` succeeded, updated at 2026-11-06 18:20:11 MYT; saved version `appgprj_6ad0f21a67c88191ba4abfa0761bc3c0~appgver_649617b51b5c8191b437b06d8a6592f7`, Sites source `72e3d79fe420d6af0df8be4c44b150bd8a177caf`. Preserve this rollback baseline. Historical V14 failed attempts are superseded by this later successful deployment.
+- Existing production URL and owner-only access verified through Sites API (owner only; no editors, groups, or external visitors).
+- FR-21 deployment BLOCKED: direct GitHub network failed DNS resolution; Sites source-helper opening did not complete and was terminated; elevated network execution requests were aborted. GitHub read/write contents API works, but cannot push the separate Sites artifact source repository. No FR-21 archive-backed version or deployment was created. Do not substitute the GitHub application commit for the Sites repository HEAD.
+- Production browser QA, browser simulated viewports, CSV download and physical-device testing were not performed in this run. FR-21 is not Released; final production publication time/version/deployment ID are pending. FR-20 remains Cancelled.

@@ -1,5 +1,16 @@
 # Loan Investment Calculator — Project Status & Handoff
 
+## Current status — FR-21 (2026-11-24)
+
+- FR-20: Cancelled; V14 remains the rollback baseline.
+- FR-21: Development and targeted automated tests completed in the current GitHub source update. Checkbox defaults unchecked and Reset restores unchecked.
+- Automated tests: FR-21 1,485 checks PASS; v21 77,854 checks PASS; v22 1,097 checks PASS. These use Node VM/DOM stubs; they do not verify production rendering or physical-device behavior.
+- GitHub main: source and new FR-21 regression test included in this release commit; verified SHA is reported with the release result.
+- Sites: V14 deployment was independently confirmed `succeeded` at the unchanged Owner Only URL. FR-21 publication and production verification remain pending until the existing Site source checkout can be synchronized.
+
+---
+
+
 > Single source of truth for cross-conversation handoff.
 > Last updated: 2026-11-06 16:44 MYT
 > Case status: Sites Version 12 deployment succeeded; Owner browser access verified; requested simulated desktop/mobile viewport checks passed; FR-20 remains Blocked on four-series keyboard navigation and real-touch acceptance.

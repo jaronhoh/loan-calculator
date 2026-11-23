@@ -32,7 +32,8 @@
 | Sites deployment | SUCCEEDED — V16 | Deployment `appgdep_6b0481c5a8088191a480eb5a816d7bf5`; published 2026-11-24 02:11:35 MYT |
 | Production verification | FR-21 browser acceptance passed; V16 bilingual footer verified | Recorded Owner browser checks; physical mobile/touch not verified |
 | Access | Owner Only retained | Recorded Sites release evidence |
-| Next action | Maintenance; no redeployment required | No outstanding release blocker recorded |
+| FR-22 | Implemented and tested; awaiting production deployment approval | 7 existing suites / 92,445 checks; FR-22 / 111 checks; Edge / 64 checks at 390px and 1280px |
+| Next action | Await explicit approval for FR-22 Sites deployment | Production remains Sites V16 |
 
 - Production URL: https://loan-investment-calculator.jaron-hoh.chatgpt.site/
 - V16 GitHub application source: `d04052034e5c764f5eea35d67717ee8036ffbbda`; Sites managed source: `544af3402b1b4e9515536d0c14bf798e05638737`.
@@ -506,3 +507,9 @@ FR-20 is Cancelled by owner; historical Blocked entries are superseded. Preserve
 
 ## 2026-11-24 — Current-status reconciliation
 Updated the canonical current-status block and project identity to match the existing V15/V16 release records. Historical evidence retained. Documentation only; no source or production changes.
+
+## 2026-11-24 — FR-22 implementation and verification
+
+七套既有回归共 92,445 项通过，含更新后的零投资金额校验；FR-22 独立数值测试 111 项通过。Edge 无头浏览器完成 390px 与 1280px 视口共 64 项检查，覆盖模式、派息周期、FR-21、即时重算、中英文、深浅主题、Reset 与布局。实体设备与生产环境未验收。
+
+源码基线为 `9f7289e33663a490dfa972c7f775de84daa41825`，生产仍为 Sites V16。FR-22 等待生产部署批准，原 URL 及 Owner Only 权限保留，FR-20 保持 Cancelled。

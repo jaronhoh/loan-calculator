@@ -70,6 +70,8 @@ body:has(.settings-drawer[open]){overflow:hidden}
           <div class="metric"><div class="label" data-i18n="totalPayouts">Total Investment Payouts</div><div class="value" id="totalPayouts">—</div><div class="sub" data-i18n="cashIncome">Cash income, not reinvested</div></div>
           <div class="metric"><div class="label" data-i18n="endingCashFlow">Final Cumulative Cash Flow</div><div class="value" id="endingCashFlow">—</div><div class="sub" data-i18n="afterAllMonths">After all monthly payments</div></div>
           <div class="metric"><div class="label" data-i18n="endingNetAsset">Ending Net Asset</div><div class="value" id="endingNetAsset">—</div><div class="sub" data-i18n="assetsMinusDebt">Investment + cash − loan</div></div>
+          <div class="metric"><div class="label" data-i18n="netRoi">Net ROI (%)</div><div class="value" id="netRoi">—</div><div class="sub" data-i18n="netRoiNote">Earned returns less loan interest</div></div>
+          <div class="metric"><div class="label" data-i18n="annualizedNetReturn">Annualized Net Return (%)</div><div class="value" id="annualizedNetReturn">—</div><div class="sub" data-i18n="annualizedNetReturnNote">Based on monthly cash flow timing</div></div>
         </div>
         <div id="principalSummary" class="summary-grid principal-summary hidden" aria-live="polite">
           <div class="metric"><div class="label" data-i18n="remainingInvestmentPrincipal">Remaining Investment Principal</div><div class="value" id="summaryRemainingPrincipal">—</div></div>
@@ -136,7 +138,7 @@ body:has(.settings-drawer[open]){overflow:hidden}
         <div class="card-head"><h2 data-i18n="investment">Investment</h2><span class="section-tag" data-i18n="investTag">DEPLOY</span></div>
         <div class="field" id="investmentAmountField">
           <label for="investmentAmount"><span data-i18n="investmentAmount">Investment Amount</span><span class="hint">RM</span></label>
-          <div class="input-wrap"><span class="prefix">RM</span><input class="money" id="investmentAmount" type="number" min="0.01" step="0.01" value="100000" inputmode="decimal"></div>
+          <div class="input-wrap"><span class="prefix">RM</span><input class="money" id="investmentAmount" type="number" min="0" step="0.01" value="100000" inputmode="decimal"></div>
           <p class="error" data-error="investmentAmount"></p>
   <button type="button" class="btn optimize-btn" id="optimizeBtn" data-i18n="optimize" style="margin-top:8px;min-height:44px">一键优化</button>
           <p class="side-note" data-i18n="optimizeNote">仅预留首次派息前的月供；后续仍可能出现资金缺口。</p>
@@ -185,10 +187,10 @@ const fields=["loanAmount","tenure","loanRate","investmentAmount","returnRate","
 let state={...DEFAULTS};
 const TEXT={
 en:{
-optimize:"Optimize",optimizeNote:"Reserves payments before the first payout only; later funding shortfalls may still occur.",optimizeInvalid:"Check the inputs; a valid positive investment amount could not be calculated.",optimizeSuccess:"Investment amount updated.",eyebrow:"PERSONAL FINANCE • SCENARIO PLANNER",title:"Loan Investment Calculator",subtitle:"Understand repayments, payout timing, monthly cash flow and net asset impact before you commit.",reset:"Reset defaults",export:"Export CSV",loanDetails:"Loan",loanTag:"BORROW",loanAmount:"Loan Amount",tenure:"Loan Tenure",max420:"Max 420 months",months:"months",loanRate:"Loan Interest Rate",perYear:"% p.a.",investment:"Investment",investTag:"DEPLOY",investmentAmount:"Investment Amount",returnRate:"Expected Return Rate",payoutFrequency:"Payout Frequency",every1:"Every month",every3:"Every 3 months",every6:"Every 6 months",every12:"Every 12 months",investmentNote:"Investment amount must not exceed the loan amount. Returns are assumptions, not guarantees.",calculationMode:"Loan Calculation",reducing:"Reducing Balance",flat:"Flat Rate",compare:"Compare",cashRule:"Loan instalments happen every month. Investment payouts arrive only in payout months and are not reinvested.",summary:"Summary",live:"LIVE CALCULATION",monthlyPayment:"Monthly Payment",loanInstalment:"Loan instalment",totalInterest:"Total Loan Interest",overTenure:"Over the full tenure",totalPayouts:"Total Investment Payouts",cashIncome:"Cash income, not reinvested",endingCashFlow:"Final Cumulative Cash Flow",afterAllMonths:"After all monthly payments",endingNetAsset:"Ending Net Asset",assetsMinusDebt:"Investment + cash − loan",cashFlowChart:"Monthly Net Cash Flow",cashFlowChartNote:"Payout minus monthly loan instalment",trendChart:"Asset & Cash Flow Trend",trendChartNote:"Investment principal, remaining loan and cumulative cash flow",investmentPrincipal:"Investment principal",remainingLoan:"Remaining loan",cumulativeCashFlow:"Cumulative cash flow",schedule:"Monthly Breakdown",scheduleNote:"Full month-by-month loan, payout, cash flow and net asset schedule.",disclaimerTitle:"Important disclaimer:",disclaimer:"For scenario planning only, not financial, investment or lending advice. The expected return is a user-supplied assumption and is not guaranteed. Actual returns, fees, tax and loan terms may differ. All calculations run in this browser; inputs are not saved or sent to a server.",invalidLoan:"Loan amount must be greater than zero.",invalidTenure:"Loan tenure must be a whole number from 1 to 420 months.",invalidLoanRate:"Loan interest rate cannot be negative.",invalidInvestment:"Investment amount must be greater than zero.",investmentTooHigh:"Investment amount cannot exceed loan amount.",invalidReturn:"Expected return rate cannot be negative.",invalidPayout:"Choose a supported payout frequency.",invalidInputs:"Please correct the highlighted inputs to see the calculation.",modeReducing:"Reducing Balance",modeFlat:"Flat Rate",modeCompare:"Compare",fundingGap:"Funding shortfall",endingSurplus:"Ending cash flow",netAsset:"Net asset",mode:"Mode",month:"Month",payment:"Monthly payment",interest:"Interest",principal:"Principal paid",balance:"Remaining loan",payout:"Investment payout",investValue:"Investment principal",monthlyNet:"Monthly net cash flow",cumulativeNet:"Cumulative net cash flow",availableCash:"Available cash",netAssets:"Net asset",noData:"Correct the inputs to display results.",cashLegendReducing:"Reducing balance",cashLegendFlat:"Flat rate",monthShort:"M",noChartData:"No data",csvName:"loan-investment-calculator",ending:"End of term",initialCash:"Initial retained cash"
+optimize:"Optimize",optimizeNote:"Reserves payments before the first payout only; later funding shortfalls may still occur.",optimizeInvalid:"Check the inputs; a valid positive investment amount could not be calculated.",optimizeSuccess:"Investment amount updated.",eyebrow:"PERSONAL FINANCE • SCENARIO PLANNER",title:"Loan Investment Calculator",subtitle:"Understand repayments, payout timing, monthly cash flow and net asset impact before you commit.",reset:"Reset defaults",export:"Export CSV",loanDetails:"Loan",loanTag:"BORROW",loanAmount:"Loan Amount",tenure:"Loan Tenure",max420:"Max 420 months",months:"months",loanRate:"Loan Interest Rate",perYear:"% p.a.",investment:"Investment",investTag:"DEPLOY",investmentAmount:"Investment Amount",returnRate:"Expected Return Rate",payoutFrequency:"Payout Frequency",every1:"Every month",every3:"Every 3 months",every6:"Every 6 months",every12:"Every 12 months",investmentNote:"Investment amount must not exceed the loan amount. Returns are assumptions, not guarantees.",calculationMode:"Loan Calculation",reducing:"Reducing Balance",flat:"Flat Rate",compare:"Compare",cashRule:"Loan instalments happen every month. Investment payouts arrive only in payout months and are not reinvested.",summary:"Summary",live:"LIVE CALCULATION",monthlyPayment:"Monthly Payment",loanInstalment:"Loan instalment",totalInterest:"Total Loan Interest",overTenure:"Over the full tenure",totalPayouts:"Total Investment Payouts",cashIncome:"Cash income, not reinvested",endingCashFlow:"Final Cumulative Cash Flow",afterAllMonths:"After all monthly payments",endingNetAsset:"Ending Net Asset",assetsMinusDebt:"Investment + cash − loan",cashFlowChart:"Monthly Net Cash Flow",cashFlowChartNote:"Payout minus monthly loan instalment",trendChart:"Asset & Cash Flow Trend",trendChartNote:"Investment principal, remaining loan and cumulative cash flow",investmentPrincipal:"Investment principal",remainingLoan:"Remaining loan",cumulativeCashFlow:"Cumulative cash flow",schedule:"Monthly Breakdown",scheduleNote:"Full month-by-month loan, payout, cash flow and net asset schedule.",disclaimerTitle:"Important disclaimer:",disclaimer:"For scenario planning only, not financial, investment or lending advice. The expected return is a user-supplied assumption and is not guaranteed. Actual returns, fees, tax and loan terms may differ. All calculations run in this browser; inputs are not saved or sent to a server.",invalidLoan:"Loan amount must be greater than zero.",invalidTenure:"Loan tenure must be a whole number from 1 to 420 months.",invalidLoanRate:"Loan interest rate cannot be negative.",invalidInvestment:"Investment amount must be zero or greater.",investmentTooHigh:"Investment amount cannot exceed loan amount.",invalidReturn:"Expected return rate cannot be negative.",invalidPayout:"Choose a supported payout frequency.",invalidInputs:"Please correct the highlighted inputs to see the calculation.",modeReducing:"Reducing Balance",modeFlat:"Flat Rate",modeCompare:"Compare",fundingGap:"Funding shortfall",endingSurplus:"Ending cash flow",netAsset:"Net asset",mode:"Mode",month:"Month",payment:"Monthly payment",interest:"Interest",principal:"Principal paid",balance:"Remaining loan",payout:"Investment payout",investValue:"Investment principal",monthlyNet:"Monthly net cash flow",cumulativeNet:"Cumulative net cash flow",availableCash:"Available cash",netAssets:"Net asset",noData:"Correct the inputs to display results.",cashLegendReducing:"Reducing balance",cashLegendFlat:"Flat rate",monthShort:"M",noChartData:"No data",csvName:"loan-investment-calculator",ending:"End of term",initialCash:"Initial retained cash"
 },
 zh:{
-optimize:"一键优化",optimizeNote:"仅预留首次派息前的月供；后续仍可能出现资金缺口。",optimizeInvalid:"请检查输入，无法计算有效的正数投资金额。",optimizeSuccess:"投资金额已更新。",eyebrow:"个人财务 • 情景测算",title:"贷款投资计算器",subtitle:"在作出决定前，了解每月还款、派息时间、现金流和净资产变化。",reset:"恢复默认值",export:"导出 CSV",loanDetails:"贷款",loanTag:"借款",loanAmount:"贷款金额",tenure:"贷款期限",max420:"最多 420 个月",months:"个月",loanRate:"贷款年利率",perYear:"% / 年",investment:"投资",investTag:"投入资金",investmentAmount:"投资金额",returnRate:"预期投资回报率",payoutFrequency:"派息频率",every1:"每 1 个月",every3:"每 3 个月",every6:"每 6 个月",every12:"每 12 个月",investmentNote:"投资金额不能高于贷款金额。预期回报仅为假设，并非保证收益。",calculationMode:"贷款计算方式",reducing:"递减余额",flat:"平息法",compare:"比较",cashRule:"贷款每月照常还款。投资只在派息月份产生现金收入，不会自动复投。",summary:"结果摘要",live:"实时计算",monthlyPayment:"每月月供",loanInstalment:"贷款分期付款",totalInterest:"贷款总利息",overTenure:"整个贷款期限",totalPayouts:"投资总派息",cashIncome:"现金收入，不复投",endingCashFlow:"期末累计净现金流",afterAllMonths:"全部月供及派息后的结果",endingNetAsset:"期末净资产",assetsMinusDebt:"投资本金 + 可用现金 − 贷款",cashFlowChart:"月度净现金流",cashFlowChartNote:"当月派息减当月贷款月供",trendChart:"资产与现金流趋势",trendChartNote:"投资本金、剩余贷款及累计净现金流",investmentPrincipal:"投资本金",remainingLoan:"剩余贷款",cumulativeCashFlow:"累计净现金流",schedule:"逐月明细",scheduleNote:"完整显示每月贷款、派息、现金流和净资产。",disclaimerTitle:"重要声明：",disclaimer:"本工具仅用于情景测算，不构成财务、投资或贷款建议。预期回报是用户输入的假设，不代表保证收益。实际回报、费用、税务和贷款条款可能不同。所有计算均在当前浏览器完成；输入不会保存或发送到服务器。",invalidLoan:"贷款金额必须大于零。",invalidTenure:"贷款期限必须是 1 至 420 个月的整数。",invalidLoanRate:"贷款利率不能为负数。",invalidInvestment:"投资金额必须大于零。",investmentTooHigh:"投资金额不能高于贷款金额。",invalidReturn:"预期回报率不能为负数。",invalidPayout:"请选择支持的派息频率。",invalidInputs:"请修正标记的输入后查看计算结果。",modeReducing:"递减余额法",modeFlat:"平息法",modeCompare:"比较模式",fundingGap:"资金缺口",endingSurplus:"期末现金流",netAsset:"净资产",mode:"模式",month:"月份",payment:"月供",interest:"利息",principal:"已还本金",balance:"剩余贷款",payout:"投资派息",investValue:"投资本金",monthlyNet:"月度净现金流",cumulativeNet:"累计净现金流",availableCash:"可用现金",netAssets:"净资产",noData:"请修正输入以显示计算结果。",cashLegendReducing:"递减余额法",cashLegendFlat:"平息法",monthShort:"第",noChartData:"无数据",csvName:"贷款投资计算器",ending:"期末",initialCash:"初始保留现金"
+optimize:"一键优化",optimizeNote:"仅预留首次派息前的月供；后续仍可能出现资金缺口。",optimizeInvalid:"请检查输入，无法计算有效的正数投资金额。",optimizeSuccess:"投资金额已更新。",eyebrow:"个人财务 • 情景测算",title:"贷款投资计算器",subtitle:"在作出决定前，了解每月还款、派息时间、现金流和净资产变化。",reset:"恢复默认值",export:"导出 CSV",loanDetails:"贷款",loanTag:"借款",loanAmount:"贷款金额",tenure:"贷款期限",max420:"最多 420 个月",months:"个月",loanRate:"贷款年利率",perYear:"% / 年",investment:"投资",investTag:"投入资金",investmentAmount:"投资金额",returnRate:"预期投资回报率",payoutFrequency:"派息频率",every1:"每 1 个月",every3:"每 3 个月",every6:"每 6 个月",every12:"每 12 个月",investmentNote:"投资金额不能高于贷款金额。预期回报仅为假设，并非保证收益。",calculationMode:"贷款计算方式",reducing:"递减余额",flat:"平息法",compare:"比较",cashRule:"贷款每月照常还款。投资只在派息月份产生现金收入，不会自动复投。",summary:"结果摘要",live:"实时计算",monthlyPayment:"每月月供",loanInstalment:"贷款分期付款",totalInterest:"贷款总利息",overTenure:"整个贷款期限",totalPayouts:"投资总派息",cashIncome:"现金收入，不复投",endingCashFlow:"期末累计净现金流",afterAllMonths:"全部月供及派息后的结果",endingNetAsset:"期末净资产",assetsMinusDebt:"投资本金 + 可用现金 − 贷款",cashFlowChart:"月度净现金流",cashFlowChartNote:"当月派息减当月贷款月供",trendChart:"资产与现金流趋势",trendChartNote:"投资本金、剩余贷款及累计净现金流",investmentPrincipal:"投资本金",remainingLoan:"剩余贷款",cumulativeCashFlow:"累计净现金流",schedule:"逐月明细",scheduleNote:"完整显示每月贷款、派息、现金流和净资产。",disclaimerTitle:"重要声明：",disclaimer:"本工具仅用于情景测算，不构成财务、投资或贷款建议。预期回报是用户输入的假设，不代表保证收益。实际回报、费用、税务和贷款条款可能不同。所有计算均在当前浏览器完成；输入不会保存或发送到服务器。",invalidLoan:"贷款金额必须大于零。",invalidTenure:"贷款期限必须是 1 至 420 个月的整数。",invalidLoanRate:"贷款利率不能为负数。",invalidInvestment:"投资金额不能为负数，且不能为空。",investmentTooHigh:"投资金额不能高于贷款金额。",invalidReturn:"预期回报率不能为负数。",invalidPayout:"请选择支持的派息频率。",invalidInputs:"请修正标记的输入后查看计算结果。",modeReducing:"递减余额法",modeFlat:"平息法",modeCompare:"比较模式",fundingGap:"资金缺口",endingSurplus:"期末现金流",netAsset:"净资产",mode:"模式",month:"月份",payment:"月供",interest:"利息",principal:"已还本金",balance:"剩余贷款",payout:"投资派息",investValue:"投资本金",monthlyNet:"月度净现金流",cumulativeNet:"累计净现金流",availableCash:"可用现金",netAssets:"净资产",noData:"请修正输入以显示计算结果。",cashLegendReducing:"递减余额法",cashLegendFlat:"平息法",monthShort:"第",noChartData:"无数据",csvName:"贷款投资计算器",ending:"期末",initialCash:"初始保留现金"
 }};
 TEXT.en.openSettings="☰ Parameters";TEXT.zh.openSettings="☰ 参数设置";
 TEXT.en.settingsTitle="Parameters";TEXT.zh.settingsTitle="参数设置";
@@ -202,18 +204,22 @@ TEXT.en.allowInvestmentPrincipal="Allow investment principal for loan repayment"
 TEXT.en.totalOutOfPocket="Total out-of-pocket repayment";TEXT.zh.totalOutOfPocket="累计自有资金还款额";
 TEXT.en.trendChartNote="Investment principal, remaining loan, cumulative cash flow and available cash";
 TEXT.zh.trendChartNote="投资本金、剩余贷款、累计净现金流及可用现金";TEXT.en.trendChartAria="Interactive trend chart. Left/Right changes month; Up/Down changes data series; Escape closes the tooltip.";TEXT.zh.trendChartAria="交互式趋势图。左/右方向键切换月份，上/下方向键切换数据线，按 Esc 关闭提示。";
+TEXT.en.netRoi="Net ROI (%)";TEXT.zh.netRoi="净投资回报率";
+TEXT.en.annualizedNetReturn="Annualized Net Return (%)";TEXT.zh.annualizedNetReturn="净年化回报率";
+TEXT.en.netRoiNote="Earned returns less loan interest";TEXT.zh.netRoiNote="已赚投资收益扣除贷款利息";
+TEXT.en.annualizedNetReturnNote="Based on monthly cash flow timing";TEXT.zh.annualizedNetReturnNote="按月度现金流时间计算";
 function t(key){if((key==="investmentPrincipal"||key==="investValue")&&state.allowInvestmentPrincipalRepayment)return (TEXT[state.language]||TEXT.en).remainingInvestmentPrincipal;return (TEXT[state.language]||TEXT.en)[key]||TEXT.en[key]||key}
 function money(n){if(!Number.isFinite(n))return "—";return (n<0?"−":"")+"RM "+Math.abs(n).toLocaleString(state.language==="zh"?"zh-CN":"en-MY",{minimumFractionDigits:2,maximumFractionDigits:2})}
 function cents(n){return Math.round((n+Number.EPSILON)*100)/100}
 function fmtNum(n){return cents(n).toLocaleString(state.language==="zh"?"zh-CN":"en-MY",{minimumFractionDigits:2,maximumFractionDigits:2})}
 function modeName(mode){return mode==="reducing"?t("modeReducing"):mode==="flat"?t("modeFlat"):t("modeCompare")}
 function validate(){
- const v={loanAmount:Number($("loanAmount").value),tenure:Number($("tenure").value),loanRate:($("loanRate").value.trim()===""?NaN:Number($("loanRate").value)),investmentAmount:Number($("investmentAmount").value),returnRate:($("returnRate").value.trim()===""?NaN:Number($("returnRate").value)),payoutFrequency:Number($("payoutFrequency").value)};
+ const v={loanAmount:Number($("loanAmount").value),tenure:Number($("tenure").value),loanRate:($("loanRate").value.trim()===""?NaN:Number($("loanRate").value)),investmentAmount:(String($("investmentAmount").value).trim()===""?NaN:Number($("investmentAmount").value)),returnRate:($("returnRate").value.trim()===""?NaN:Number($("returnRate").value)),payoutFrequency:Number($("payoutFrequency").value)};
  const errors={};
  if(!Number.isFinite(v.loanAmount)||v.loanAmount<=0)errors.loanAmount=t("invalidLoan");
  if(!Number.isInteger(v.tenure)||v.tenure<1||v.tenure>420)errors.tenure=t("invalidTenure");
  if(!Number.isFinite(v.loanRate)||v.loanRate<0)errors.loanRate=t("invalidLoanRate");
- if(!Number.isFinite(v.investmentAmount)||v.investmentAmount<=0)errors.investmentAmount=t("invalidInvestment");
+ if(!Number.isFinite(v.investmentAmount)||v.investmentAmount<0)errors.investmentAmount=t("invalidInvestment");
  else if(Number.isFinite(v.loanAmount)&&v.investmentAmount>v.loanAmount)errors.investmentAmount=t("investmentTooHigh");
  if(!Number.isFinite(v.returnRate)||v.returnRate<0)errors.returnRate=t("invalidReturn");
  if(![1,3,6,12].includes(v.payoutFrequency))errors.payoutFrequency=t("invalidPayout");
@@ -262,7 +268,8 @@ function buildLegacySchedule(v,mode){
     const netAsset=cents(v.investmentAmount+availableCash-balance);
     rows.push({mode,month,payment:actualPayment,interest:interestPaid,principal,balance,payout:investmentPayout,investmentPrincipal:cents(v.investmentAmount),monthlyNetCashFlow,cumulativeNetCashFlow:cumulative,initialRetainedCash,availableCash,netAsset});
   }
-  return {mode,monthlyPayment:payment,totalInterest:cents(totalInterest),totalPayouts:cents(rows.reduce((s,r)=>s+r.payout,0)),totalRepayment:cents(P+totalInterest),initialRetainedCash,rows};
+  return {mode,monthlyPayment:payment,totalInterest:cents(totalInterest),totalPayouts:cents(rows.reduce((s,r)=>s+r.payout,0)),totalRepayment:cents(P+totalInterest),initialRetainedCash,rows,
+    unpaidReturn:cents(v.investmentAmount*(v.returnRate/100)*(n%v.payoutFrequency)/12)};
  }
 function buildPrincipalRepaymentSchedule(v,mode){
  const n=v.tenure,P=cents(v.loanAmount),annualRate=v.loanRate/100,monthlyRate=annualRate/12;
@@ -295,7 +302,7 @@ function buildPrincipalRepaymentSchedule(v,mode){
    const netAsset=cents(investmentPrincipal+availableCash-balance);
    rows.push({mode,month,payment:actualPayment,interest,principal,balance,payout:investmentPayout,investmentPrincipal,remainingInvestmentPrincipal:investmentPrincipal,principalWithdrawal,outOfPocketRepayment,cumulativePrincipalWithdrawal,monthlyNetCashFlow,cumulativeNetCashFlow:cumulative,initialRetainedCash,availableCash,netAsset});
  }
- return {mode,monthlyPayment:payment,totalInterest:cents(totalInterest),totalPayouts:cents(rows.reduce((sum,row)=>sum+row.payout,0)),totalRepayment:cents(P+totalInterest),initialRetainedCash,rows};
+ return {mode,monthlyPayment:payment,totalInterest:cents(totalInterest),totalPayouts:cents(rows.reduce((sum,row)=>sum+row.payout,0)),totalRepayment:cents(P+totalInterest),initialRetainedCash,rows,unpaidReturn:accruedReturn};
 }
 function optimizeInvestment(){
  const check=validate(),v=check.values;
@@ -317,7 +324,97 @@ function getResults(v){
  return modes.map(m=>buildSchedule(v,m));
 }
 function setValue(id,val,cls){const el=$(id);el.textContent=val;el.classList.remove("negative","positive");if(cls)el.classList.add(cls)}
-function renderSummary(results){
+// Isolate positive roots of the cash-flow polynomial using log(discount factor).
+// Descartes' rule handles zero/one sign change. Otherwise derivative roots split
+// the polynomial into monotonic intervals, including roots a sign scan could miss.
+function positiveDiscountRoots(terms, topLevel=true){
+ let changes=0;
+ for(let i=1;i<terms.length;i++){
+   if(terms[i].sign!==terms[i-1].sign)changes++;
+ }
+ if(changes===0)return [];
+ const first=terms[0],last=terms.at(-1);
+ const maxLog=Math.max(...terms.map(term=>term.logAmount));
+ const margin=Math.log(terms.length)+2;
+ const low=first.logAmount-maxLog-margin;
+ const high=maxLog-last.logAmount+margin;
+
+ function evaluate(logDiscount){
+   // Remove a common exponent so evaluation remains finite at extreme rates.
+   const highest=Math.max(...terms.map(term=>term.logAmount+term.month*logDiscount));
+   let sum=0, magnitude=0;
+   for(const term of terms){
+     const weight=Math.exp(term.logAmount+term.month*logDiscount-highest);
+     sum+=term.sign*weight;
+     magnitude+=weight;
+   }
+   return [sum,magnitude];
+ }
+
+ let turningPoints=[];
+ if(changes>1){
+   const derivative=terms.slice(1).map(term=>({
+     month:term.month-terms[1].month,
+     sign:term.sign,
+     logAmount:term.logAmount+Math.log(term.month-first.month)
+   }));
+   turningPoints=positiveDiscountRoots(derivative,false).filter(point=>point>low&&point<high);
+ }
+ const points=[low,...turningPoints,high];
+ const values=points.map(point=>{
+   const [sum,magnitude]=evaluate(point);
+   return Math.abs(sum)<=64*Number.EPSILON*magnitude?0:sum;
+ });
+ const roots=[];
+ for(let i=1;i<points.length;i++){
+   const leftValue=values[i-1],rightValue=values[i];
+   if(rightValue===0){
+     // A near-zero extremum cannot reliably distinguish a tangent from two
+     // closely spaced roots at the precision of the input cash flows.
+     if(topLevel)return [points[i],points[i]];
+     roots.push(points[i]);
+   }
+   if(leftValue*rightValue>=0)continue;
+   let left=points[i-1],right=points[i];
+   for(let step=0;step<64;step++){
+     const mid=left+(right-left)/2;
+     const [value]=evaluate(mid);
+     if(value===0){left=right=mid;break;}
+     if(Math.sign(value)===Math.sign(leftValue))left=mid;
+     else right=mid;
+   }
+   roots.push(left+(right-left)/2);
+   if(topLevel&&roots.length>1)return roots;
+ }
+ return roots;
+}
+function annualizedIrr(cashFlows){
+ if(!cashFlows.every(Number.isFinite))return null;
+ const terms=cashFlows.flatMap((amount,month)=>amount===0?[]:[{
+   month,sign:Math.sign(amount),logAmount:Math.log(Math.abs(amount))
+ }]);
+ const roots=positiveDiscountRoots(terms);
+ if(roots.length!==1)return null;
+ const annualized=Math.expm1(-12*roots[0]);
+ return Number.isFinite(annualized)?annualized:null;
+}
+function netReturnMetrics(result,investmentAmount){
+ const initial=cents(investmentAmount);
+ if(initial<=0||!Number.isFinite(initial))return {roi:null,annualized:null};
+ const last=result.rows.at(-1);
+ const earned=cents(result.totalPayouts+result.unpaidReturn);
+ const cashFlows=[-initial,...result.rows.map(row=>cents(row.payout+row.principalWithdrawal-row.interest))];
+ cashFlows[cashFlows.length-1]=cents(cashFlows.at(-1)+last.remainingInvestmentPrincipal+result.unpaidReturn);
+ return {roi:cents(earned-result.totalInterest)/initial,annualized:annualizedIrr(cashFlows)};
+}
+function formatReturn(rate){
+ const percent=rate*100;
+ if(rate===null||!Number.isFinite(percent))return "N/A";
+ return new Intl.NumberFormat(state.language==="zh"?"zh-CN":"en-MY",{
+   minimumFractionDigits:2,maximumFractionDigits:2,useGrouping:false
+ }).format(Math.abs(percent)<0.005?0:percent)+"%";
+}
+function renderSummary(results,investmentAmount){
  const single=results.length===1;
   const principalSummary=$("principalSummary"),showPrincipal=single&&state.allowInvestmentPrincipalRepayment;
   principalSummary.classList.toggle("hidden",!showPrincipal);
@@ -335,6 +432,9 @@ function renderSummary(results){
    setValue("monthlyPayment",money(r.monthlyPayment));
    setValue("totalInterest",money(r.totalInterest));
    setValue("totalPayouts",money(r.totalPayouts));
+   const metrics=netReturnMetrics(r,investmentAmount);
+   setValue("netRoi",formatReturn(metrics.roi));
+   setValue("annualizedNetReturn",formatReturn(metrics.annualized));
    setValue("endingCashFlow",money(last.cumulativeNetCashFlow),last.cumulativeNetCashFlow<0?"negative":"positive");
    setValue("endingNetAsset",money(last.netAsset),last.netAsset<0?"negative":"positive");
  }else{
@@ -499,7 +599,7 @@ function render(){
    $("scheduleHead").innerHTML="";$("scheduleBody").innerHTML="";return;
  }
  const results=getResults(check.values);
- renderSummary(results);drawTrendChart(results);renderTable(results);
+ renderSummary(results,check.values.investmentAmount);drawTrendChart(results);renderTable(results);
 }
 function applyLanguage(){
  updateThemeLabels();

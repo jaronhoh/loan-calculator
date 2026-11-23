@@ -35,7 +35,7 @@ html[data-theme="dark"] .optimize-btn:disabled{background:#455572;border-color:#
 .settings-drawer .sidebar{grid-template-columns:minmax(0,1fr)}.settings-drawer .mode-card{grid-column:auto}.settings-drawer .field input,.settings-drawer .field select,.settings-drawer .mode-switch button{min-height:44px}
 body:has(.settings-drawer[open]){overflow:hidden}
 @media(max-width:850px){.chart-grid{grid-template-columns:minmax(0,1fr)}}
-.repayment-toggle{display:flex;align-items:flex-start;gap:10px;margin:16px 0 10px;padding:12px;border:1px solid var(--line);border-radius:11px;background:var(--surface);font-size:13px;font-weight:700;cursor:pointer}.repayment-toggle input{width:18px;height:18px;flex:0 0 18px;margin:1px 0 0;accent-color:var(--blue)}.principal-summary{margin-top:12px}.principal-summary .metric{background:var(--blue-soft)}
+.repayment-toggle{display:flex;align-items:flex-start;gap:10px;margin:16px 0 10px;padding:12px;border:1px solid var(--line);border-radius:11px;background:var(--surface);font-size:13px;font-weight:700;cursor:pointer}.repayment-toggle input{width:18px;height:18px;flex:0 0 18px;margin:1px 0 0;accent-color:var(--blue)}.principal-summary{display:contents}.principal-summary .metric{background:var(--blue-soft)}
 </style>
 </head>
 <body>
@@ -72,11 +72,11 @@ body:has(.settings-drawer[open]){overflow:hidden}
           <div class="metric"><div class="label" data-i18n="endingNetAsset">Ending Net Asset</div><div class="value" id="endingNetAsset">—</div><div class="sub" data-i18n="assetsMinusDebt">Investment + cash − loan</div></div>
           <div class="metric"><div class="label" data-i18n="netRoi">Net ROI (%)</div><div class="value" id="netRoi">—</div><div class="sub" data-i18n="netRoiNote">Earned returns less loan interest</div></div>
           <div class="metric"><div class="label" data-i18n="annualizedNetReturn">Annualized Net Return (%)</div><div class="value" id="annualizedNetReturn">—</div><div class="sub" data-i18n="annualizedNetReturnNote">Based on monthly cash flow timing</div></div>
-        </div>
         <div id="principalSummary" class="summary-grid principal-summary hidden" aria-live="polite">
           <div class="metric"><div class="label" data-i18n="remainingInvestmentPrincipal">Remaining Investment Principal</div><div class="value" id="summaryRemainingPrincipal">—</div></div>
           <div class="metric"><div class="label" data-i18n="cumulativePrincipalWithdrawal">Cumulative Principal Withdrawal</div><div class="value" id="summaryCumulativeWithdrawal">—</div></div>
           <div class="metric"><div class="label" data-i18n="totalOutOfPocket">Total Out-of-Pocket Repayment</div><div class="value" id="summaryOutOfPocket">—</div></div>
+        </div>
         </div>
         <div id="compareSummary" class="compare-grid hidden"></div>
       </section>
@@ -110,7 +110,7 @@ body:has(.settings-drawer[open]){overflow:hidden}
       </section>
     </main>
   </div>
-  <footer class="footer"><div class="release-meta" aria-label="Release information"><span lang="zh-CN">Sites 版本 17 | 内容更新：2026-11-24 02:58 MYT</span><span lang="en">Sites Version 17 | Content updated: 2026-11-24 02:58 MYT</span></div><strong data-i18n="disclaimerTitle">Important disclaimer:</strong> <span data-i18n="disclaimer">For scenario planning only, not financial, investment or lending advice. The expected return is a user-supplied assumption and is not guaranteed. Actual returns, fees, tax and loan terms may differ. All calculations run in this browser; inputs are not saved or sent to a server.</span></footer>
+  <footer class="footer"><div class="release-meta" aria-label="Release information"><span lang="zh-CN">Sites 版本 19 | 内容更新：2026-11-24 02:58 MYT</span><span lang="en">Sites Version 19 | Content updated: 2026-11-24 02:58 MYT</span></div><strong data-i18n="disclaimerTitle">Important disclaimer:</strong> <span data-i18n="disclaimer">For scenario planning only, not financial, investment or lending advice. The expected return is a user-supplied assumption and is not guaranteed. Actual returns, fees, tax and loan terms may differ. All calculations run in this browser; inputs are not saved or sent to a server.</span></footer>
 </div>
 <dialog id="settingsDrawer" class="settings-drawer" aria-labelledby="settingsTitle">
   <div class="drawer-panel" id="settingsPanel">

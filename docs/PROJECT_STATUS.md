@@ -20,7 +20,7 @@
 
 > Single source of truth for cross-conversation handoff.
 > Last updated: 2026-11-24 MYT
-> Current release: Sites V16 succeeded; FR-21 Released; FR-20 Cancelled. Earlier blocked/pending records below are historical and superseded.
+> Current release: Sites V19 succeeded; FR-22 deployed; FR-21 Released; FR-20 Cancelled. Earlier blocked/pending records below are historical and superseded.
 
 ## Current status — 2026-11-24
 
@@ -32,8 +32,8 @@
 | Sites deployment | SUCCEEDED — V16 | Deployment `appgdep_6b0481c5a8088191a480eb5a816d7bf5`; published 2026-11-24 02:11:35 MYT |
 | Production verification | FR-21 browser acceptance passed; V16 bilingual footer verified | Recorded Owner browser checks; physical mobile/touch not verified |
 | Access | Owner Only retained | Recorded Sites release evidence |
-| FR-22 | Implemented and tested; awaiting production deployment approval | 7 existing suites / 92,445 checks; FR-22 / 111 checks; Edge / 64 checks at 390px and 1280px |
-| Next action | Await explicit approval for FR-22 Sites deployment | Production remains Sites V16 |
+| FR-22 | Deployed as Sites V19; production layout verified | 7 existing suites / 92,445 checks; FR-22 / 111 checks; Edge / 64 checks at 390px and 1280px |
+| Next action | Maintenance | FR-22 deployed as Sites V19 |
 
 - Production URL: https://loan-investment-calculator.jaron-hoh.chatgpt.site/
 - V16 GitHub application source: `d04052034e5c764f5eea35d67717ee8036ffbbda`; Sites managed source: `544af3402b1b4e9515536d0c14bf798e05638737`.
@@ -513,3 +513,12 @@ Updated the canonical current-status block and project identity to match the exi
 七套既有回归共 92,445 项通过，含更新后的零投资金额校验；FR-22 独立数值测试 111 项通过。Edge 无头浏览器完成 390px 与 1280px 视口共 64 项检查，覆盖模式、派息周期、FR-21、即时重算、中英文、深浅主题、Reset 与布局。实体设备与生产环境未验收。
 
 源码基线为 `9f7289e33663a490dfa972c7f775de84daa41825`，生产仍为 Sites V16。FR-22 等待生产部署批准，原 URL 及 Owner Only 权限保留，FR-20 保持 Cancelled。
+
+
+## FR-22 / Sites V19 当前记录（2026-11-24 MYT）
+
+- FR-22 已部署至原生产站点，Sites V17 首次上线，V18 修正页脚，V19 完成摘要布局调整。V19 部署 `appgdep_6b04905407648191ad1c159bca831150` 状态 succeeded，发布时间 2026-11-24 03:13:40 MYT，保存版本 `appgprj_6ad0f21a67c88191ba4abfa0761bc3c0~appgver_3f1cc78879908191a72dbd6a5158b42f`。
+- V19 Sites 源码 `e22031b4bf171ca8287ebf3ef218a1bb5d6591d4`。GitHub development/index.html 同步相同应用内容。生产地址 https://loan-investment-calculator.jaron-hoh.chatgpt.site/，Owner Only；FR-20 Cancelled。
+- 摘要采用同一网格。FR-21 关闭时显示原五项及净 ROI、净年化回报率，共七项。开启时再显示剩余投资本金、累计本金提取额、累计自有资金还款额，共十项。三项紧接 ROI 和年化指标，不另起独立网格；桌面端五列两行，窄屏按既有响应式列数自动换行。
+- V19 生产浏览器开启 FR-21 后已读取十张卡片的位置，前五项同一行，后五项同一行。默认 FR-22 线上值已确认净 ROI 19.50%、净年化回报率 3.86%。V18 线上页脚已核对版本 18，V19 源码页脚为版本 19。
+- FR-22 发布前七套既有回归 92,445 项、独立数值测试 111 项、Edge 390px/1280px 共 64 项通过。V19 仅调整容器布局及页脚，另完成上述生产布局检查；本次文档同步未重跑全套测试。实体设备未独立验证。

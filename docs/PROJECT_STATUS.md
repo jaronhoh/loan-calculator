@@ -1,5 +1,11 @@
 # Loan Investment Calculator — Project Status & Handoff
 
+## V16 页脚更新（2026-11-24 MYT）
+
+- Sites V16 于 **02:11:35 MYT** 发布成功，部署 `appgdep_6b0481c5a8088191a480eb5a816d7bf5`。GitHub 源码 `d04052034e5c764f5eea35d67717ee8036ffbbda`，Sites 源码 `544af3402b1b4e9515536d0c14bf798e05638737`。原生产地址保持 Owner Only。
+- 线上中英文页脚均显示 V16 和内容更新时间 **02:09 MYT**。版本与内容更新时间为 HTML 固定文字，CSS 随页面语言显示对应文字。Sites 实际发布时间以部署记录为准。
+- 每次发布同步更新中英文页脚固定文字，并在发布后核对页脚版本与 Sites 实际版本。V16 的七套自动化回归全部通过，生产浏览器已核对两种语言。FR-20 保持 Cancelled。
+
 ## FR-21 生产发布与验收（2026-11-24 MYT）
 
 - FR-21 已发布。Sites V15，状态 `succeeded`，发布时间 2026-11-24 02:01:40 MYT，部署 `appgdep_6b047f71aadc8191870824ce022cf73d`，保存版本 `appgprj_6ad0f21a67c88191ba4abfa0761bc3c0~appgver_7404d2e577c881918232c7ce3d7a6dc7`。

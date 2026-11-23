@@ -447,3 +447,7 @@ Owner confirmed production footer Sites Version 12 and Last Updated 2026-11-06 1
 - The save API assigns the version number. Its release metadata is returned to the management caller, and no supported runtime source of the actual Sites version and publication time was verified for this static page. GitHub main's footer still contains V14 / 2026-11-06 17:28 MYT. V15 was neither saved nor deployed.
 - GitHub main source verification passed for script parsing and seven targeted checks covering reducing balance, flat rate, zero interest, final balance, keyboard month movement, four-series rotation with reverse wrapping, and Escape dismissal. Keyboard checks used an isolated handler with mocked chart state. Production browser, viewport, and real-touch acceptance were not rerun.
 - FR-20 remains **Blocked**.
+
+
+## 2026-11-24 — FR-20 cancellation / FR-21 approval
+FR-20 is Cancelled by owner; historical Blocked entries are superseded. Preserve V14 production (user-reported succeeded, 2026-11-06 18:20 MYT), original URL and Owner Only. FR-21 principal repayment approved; PRD committed, implementation/testing/deployment pending. No production change made.

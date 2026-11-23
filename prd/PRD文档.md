@@ -1,7 +1,7 @@
 # Loan Investment Calculator — 产品需求文档（PRD）
 
-> **FR-20：Cancelled（用户决定）；FR-21：已确认需求，待开发、测试及发布。FR-13–FR-19 保持已发布。**
-> **当前生产基线：Sites V14，按用户提供的 Work 报告部署成功（2026-11-06 18:20 MYT）；本次未独立复验。**
+> **FR-20：Cancelled。FR-21：已通过生产验收并发布。FR-13–FR-19 保持已发布。**
+> **当前生产版本：Sites V15（2026-11-24 02:01:40 MYT）。V14 为回滚基线。**
 > 唯一产品定义来源：[产品定型稿](../shaping/06-最终定型稿.md)。若 PRD 与定型稿不一致，以定型稿为准，并通过变更记录同步修订。
 
 ## 1. 产品概述
@@ -378,10 +378,18 @@ FR-20 正式取消；历史 Blocked 记录仅供审计，不再作为发布门�
 开发实现与针对性自动化测试已完成并随当前源码提交；未勾选时沿用原计算路径，勾选后按已派发收益、投资本金、自有资金的顺序支付月供。PRD 中的生产发布和验收状态须以 Sites 实际部署及现网验证为准。
 
 
-## FR-21 release verification — 2026-11-24 MYT (current)
+## FR-21 发布前验证记录（2026-11-24 MYT）
 - Tested application source: `259c879b7fd73a565a69751f2f1bc1b25f9f5ecf` on GitHub main; no application source changes were necessary in this run.
 - Independently rerun Node VM/DOM-stub suites: FR-21 1,485 checks PASS (two loan modes, payout frequencies 1/3/6/12); v21 77,854 checks PASS; v22 1,097 checks PASS. Total: 80,436 checks PASS. These results do not establish rendered-browser, physical-device, or production QA.
 - Sites API confirmed V14 deployment `appgdep_6aeda9c5f8b881919e88f4cc772f23fd` succeeded, updated at 2026-11-06 18:20:11 MYT; saved version `appgprj_6ad0f21a67c88191ba4abfa0761bc3c0~appgver_649617b51b5c8191b437b06d8a6592f7`, Sites source `72e3d79fe420d6af0df8be4c44b150bd8a177caf`. Preserve this rollback baseline. Historical V14 failed attempts are superseded by this later successful deployment.
 - Existing production URL and owner-only access verified through Sites API (owner only; no editors, groups, or external visitors).
 - FR-21 deployment BLOCKED: direct GitHub network failed DNS resolution; Sites source-helper opening did not complete and was terminated; elevated network execution requests were aborted. GitHub read/write contents API works, but cannot push the separate Sites artifact source repository. No FR-21 archive-backed version or deployment was created. Do not substitute the GitHub application commit for the Sites repository HEAD.
 - Production browser QA, browser simulated viewports, CSV download and physical-device testing were not performed in this run. FR-21 is not Released; final production publication time/version/deployment ID are pending. FR-20 remains Cancelled.
+
+## FR-21 生产发布与验收（2026-11-24 MYT）
+
+- FR-21 已发布。Sites V15，状态 `succeeded`，发布时间 2026-11-24 02:01:40 MYT，部署 `appgdep_6b047f71aadc8191870824ce022cf73d`，保存版本 `appgprj_6ad0f21a67c88191ba4abfa0761bc3c0~appgver_7404d2e577c881918232c7ce3d7a6dc7`。
+- [生产站点](https://loan-investment-calculator.jaron-hoh.chatgpt.site/) 保持 Owner Only。Sites 源码提交 `6d99d09b7ddca120befe91e0863d4072c1b4f852`，静态包使用 GitHub 应用源码 `259c879b7fd73a565a69751f2f1bc1b25f9f5ecf` 的相同 HTML。保留 V14 回滚基线，部署 `appgdep_6aeda9c5f8b881919e88f4cc772f23fd`。
+- 七套 Node VM 回归共 92,444 项通过。FR-21 通过 1,485 项，覆盖默认关闭的原结果、月初本金计提、四种派息周期、未用派息结转、收益→本金→自有资金、本金非负及后续收益。
+- 生产 Owner 浏览器通过两种贷款模式 × 四种派息周期。开启后，摘要与图例显示新增指标，60 行明细显示 14 列。平息样例剩余本金为 RM 0.00。CSV 实际下载并验证 60 行和新增列。中英文、浅色与深色、图表键盘提示以及 Reset 恢复未勾选、默认月供 RM 1,841.65 和 11 列均已验证。Reset 保留当前主题。
+- 生产页面通过 390px 与 1280px 模拟视口检查，图表和参数面板适配，宽表可在容器内滚动。未在实体手机上验证。FR-20 保持 Cancelled，Footer 不在本次范围。

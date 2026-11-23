@@ -1,12 +1,13 @@
 # Loan Investment Calculator — Project Status & Handoff
 
-## Current status — FR-21 (2026-11-24)
+## FR-21 生产发布与验收（2026-11-24 MYT）
 
-- FR-20: Cancelled; V14 remains the rollback baseline.
-- FR-21: Development and targeted automated tests completed in the current GitHub source update. Checkbox defaults unchecked and Reset restores unchecked.
-- Automated tests: FR-21 1,485 checks PASS; v21 77,854 checks PASS; v22 1,097 checks PASS. These use Node VM/DOM stubs; they do not verify production rendering or physical-device behavior.
-- GitHub main: source and new FR-21 regression test included in this release commit; verified SHA is reported with the release result.
-- Sites: V14 deployment was independently confirmed `succeeded` at the unchanged Owner Only URL. FR-21 publication and production verification remain pending until the existing Site source checkout can be synchronized.
+- FR-21 已发布。Sites V15，状态 `succeeded`，发布时间 2026-11-24 02:01:40 MYT，部署 `appgdep_6b047f71aadc8191870824ce022cf73d`，保存版本 `appgprj_6ad0f21a67c88191ba4abfa0761bc3c0~appgver_7404d2e577c881918232c7ce3d7a6dc7`。
+- [生产站点](https://loan-investment-calculator.jaron-hoh.chatgpt.site/) 保持 Owner Only。Sites 源码提交 `6d99d09b7ddca120befe91e0863d4072c1b4f852`，静态包使用 GitHub 应用源码 `259c879b7fd73a565a69751f2f1bc1b25f9f5ecf` 的相同 HTML。保留 V14 回滚基线，部署 `appgdep_6aeda9c5f8b881919e88f4cc772f23fd`。
+- 七套 Node VM 回归共 92,444 项通过。FR-21 通过 1,485 项，覆盖默认关闭的原结果、月初本金计提、四种派息周期、未用派息结转、收益→本金→自有资金、本金非负及后续收益。
+- 生产 Owner 浏览器通过两种贷款模式 × 四种派息周期。开启后，摘要与图例显示新增指标，60 行明细显示 14 列。平息样例剩余本金为 RM 0.00。CSV 实际下载并验证 60 行和新增列。中英文、浅色与深色、图表键盘提示以及 Reset 恢复未勾选、默认月供 RM 1,841.65 和 11 列均已验证。Reset 保留当前主题。
+- 生产页面通过 390px 与 1280px 模拟视口检查，图表和参数面板适配，宽表可在容器内滚动。未在实体手机上验证。FR-20 保持 Cancelled，Footer 不在本次范围。
+
 
 ---
 
@@ -464,7 +465,7 @@ Owner confirmed production footer Sites Version 12 and Last Updated 2026-11-06 1
 FR-20 is Cancelled by owner; historical Blocked entries are superseded. Preserve V14 production (user-reported succeeded, 2026-11-06 18:20 MYT), original URL and Owner Only. FR-21 principal repayment approved; PRD committed, implementation/testing/deployment pending. No production change made.
 
 
-## FR-21 release verification — 2026-11-24 MYT (current)
+## FR-21 发布前验证记录（2026-11-24 MYT）
 - Tested application source: `259c879b7fd73a565a69751f2f1bc1b25f9f5ecf` on GitHub main; no application source changes were necessary in this run.
 - Independently rerun Node VM/DOM-stub suites: FR-21 1,485 checks PASS (two loan modes, payout frequencies 1/3/6/12); v21 77,854 checks PASS; v22 1,097 checks PASS. Total: 80,436 checks PASS. These results do not establish rendered-browser, physical-device, or production QA.
 - Sites API confirmed V14 deployment `appgdep_6aeda9c5f8b881919e88f4cc772f23fd` succeeded, updated at 2026-11-06 18:20:11 MYT; saved version `appgprj_6ad0f21a67c88191ba4abfa0761bc3c0~appgver_649617b51b5c8191b437b06d8a6592f7`, Sites source `72e3d79fe420d6af0df8be4c44b150bd8a177caf`. Preserve this rollback baseline. Historical V14 failed attempts are superseded by this later successful deployment.
